@@ -1,0 +1,20 @@
+{
+  "day": 36,
+  "title": "伤害公式函数",
+  "hook": "同一个函数，喂不同的料，出不同的结果",
+  "stage": 4,
+  "concepts": ["参数", "实参与形参", "多参数"],
+  "estimated_minutes": 40,
+  "needs_stdin": false,
+  "uses_turtle": false,
+  "next_teaser": "明天学 return —— 让函数把结果「交回来」，而不只是打印 🎲",
+  "challenge": {
+    "title": "属性克制加成",
+    "desc": "给伤害函数再加一个 element 参数，克制时伤害 ×1.5（回收 Day 12 的克制表）。"
+  },
+  "cheatsheet": [
+    { "name": "参数", "desc": "括号里的占位名", "code": "def hit(atk, defense):" },
+    { "name": "传参", "desc": "调用时按顺序给值", "code": "hit(88, 25)" },
+    { "name": "个数要对上", "desc": "少给多给都报错", "code": "hit(88)  # TypeError" }
+  ]
+}

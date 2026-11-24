@@ -1,0 +1,17 @@
+{
+  "day": 4,
+  "title": "入学登记处",
+  "hook": "让程序开口问你问题，然后发一张学生证",
+  "stage": 1,
+  "concepts": ["input", "类型转换", "int/str"],
+  "estimated_minutes": 40,
+  "needs_stdin": true,
+  "uses_turtle": false,
+  "next_teaser": "明天做一台中二称号生成器，输入名字自动生成称号 🔮",
+  "cheatsheet": [
+    { "name": "input()", "desc": "问一句话，拿回她输入的内容（永远是文字）", "code": "name = input(\"你叫什么？\")" },
+    { "name": "int()", "desc": "把文字变成整数", "code": "age = int(\"16\")" },
+    { "name": "float()", "desc": "把文字变成小数", "code": "h = float(\"1.62\")" },
+    { "name": "str()", "desc": "把数字变成文字", "code": "s = str(16)" }
+  ]
+}

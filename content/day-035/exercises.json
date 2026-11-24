@@ -1,0 +1,63 @@
+[
+  {
+    "id": "d35-p1",
+    "type": "predict",
+    "title": "定义会执行吗",
+    "question": "这段会打印什么？",
+    "code": "print(\"A\")\n\ndef f():\n    print(\"B\")\n\nprint(\"C\")",
+    "options": ["A\nB\nC", "A\nC", "A\nC\nB"],
+    "answer": 1,
+    "explain": "`def` 只是**登记**，函数体在被调用之前一次都不执行。这里从没写过 `f()`，所以 B 永远不会出现。"
+  },
+  {
+    "id": "d35-p2",
+    "type": "predict",
+    "title": "括号能省吗",
+    "question": "`greet` 和 `greet()` 有什么区别？",
+    "code": "def greet():\n    print(\"你好\")\n\ngreet\ngreet()",
+    "options": ["打印两次你好", "打印一次你好", "报错"],
+    "answer": 1,
+    "explain": "**括号 = 执行**。不加括号只是「提到」这个函数，什么都不会发生。只有第二句真的跑了。"
+  },
+  {
+    "id": "d35-p3",
+    "type": "predict",
+    "title": "顺序要紧吗",
+    "question": "调用写在定义前面会怎样？",
+    "code": "greet()\n\ndef greet():\n    print(\"你好\")",
+    "options": ["正常打印", "报 NameError", "什么都不发生"],
+    "answer": 1,
+    "explain": "Python 从上往下读，执行到 `greet()` 时还没登记过这个名字。**定义必须写在调用前面。**"
+  },
+  {
+    "id": "d35-b1",
+    "type": "fixbug",
+    "title": "忘了调用",
+    "question": "这段什么都没输出。修好它，让它打印「你好」。",
+    "code": "def greet():\n    print(\"你好\")",
+    "expect_contains": "你好",
+    "nudge": "定义完之后，在最下面加一行 `greet()`。",
+    "explain": "新手最常见的第一个函数错误 —— **写完不调用**。定义只是造零件，调用才是用它 ✨"
+  },
+  {
+    "id": "d35-b2",
+    "type": "fixbug",
+    "title": "缩进丢了",
+    "question": "这段报了缩进错误。修好它，让它打印「你好」。",
+    "code": "def greet():\nprint(\"你好\")\n\ngreet()",
+    "expect_contains": "你好",
+    "nudge": "冒号下面那行要往右缩进 4 个空格 —— 缩进的部分才算函数的「身体」。",
+    "explain": "跟 `if`、`for` 一样，`def` 后面的代码块靠**缩进**划定范围。这已经是老朋友了 😉"
+  },
+  {
+    "id": "d35-e1",
+    "type": "fill",
+    "title": "回响 · Day 15 的循环",
+    "echo": 15,
+    "question": "把一个循环装进函数里。补全函数体，让它打印 3 行递增的星星。",
+    "code": "def show_stars():\n    \"\"\"打印一个 3 行的星星金字塔。\"\"\"\n    ___\n        ___\n\nshow_stars()",
+    "expect_contains": "★★★",
+    "nudge": "第一行 `for i in range(3):`，第二行 `print(\"★\" * (i + 1))`（注意再缩进一层）。",
+    "explain": "函数体里可以写任何东西 —— 循环、判断、调用别的函数。**函数只是给一段代码起了个名字** ✨"
+  }
+]

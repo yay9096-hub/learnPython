@@ -1,0 +1,63 @@
+[
+  {
+    "id": "d37-p1",
+    "type": "predict",
+    "title": "print 版接得到吗",
+    "question": "这段会打印什么？",
+    "code": "def add(a, b):\n    print(a + b)\n\nx = add(3, 5)\nprint(x)",
+    "options": ["8\n8", "8\nNone", "None\n8"],
+    "answer": 1,
+    "explain": "函数里 `print` 显示了 8，但没有 `return`，所以 `x` 接到的是 `None`。**print 是说给人听，return 是交给程序。**"
+  },
+  {
+    "id": "d37-p2",
+    "type": "predict",
+    "title": "return 之后还跑吗",
+    "question": "这段会打印几行？",
+    "code": "def f():\n    print(\"A\")\n    return 1\n    print(\"B\")\n\nf()",
+    "options": ["A\nB", "A", "B"],
+    "answer": 1,
+    "explain": "`return` 一执行函数**当场结束**，后面的代码永远跑不到。这个特性可以用来「提前返回」。"
+  },
+  {
+    "id": "d37-p3",
+    "type": "predict",
+    "title": "没有 else 的分档",
+    "question": "score 是 95，这段返回什么？",
+    "code": "def grade(score):\n    if score >= 90:\n        return \"优秀\"\n    if score >= 60:\n        return \"及格\"\n    return \"待努力\"\n\nprint(grade(95))",
+    "options": ["优秀", "及格", "优秀及格"],
+    "answer": 0,
+    "explain": "第一个 `return` 一执行就结束了，第二个 `if` 根本没机会跑。**用 return 提前退出，可以省掉 else。**"
+  },
+  {
+    "id": "d37-b1",
+    "type": "fixbug",
+    "title": "该 return 却 print 了",
+    "question": "这段想把伤害拿去扣血，但结果不对。修好它，让它输出「剩余 437」。",
+    "code": "def deal(atk, defense):\n    print(atk - defense)\n\nhp = 500\nhp = hp - deal(88, 25)\nprint(f\"剩余 {hp}\")",
+    "expect_contains": "剩余 437",
+    "nudge": "函数里把 `print` 改成 `return`，值才交得回来。",
+    "explain": "`print` 版返回的是 `None`，`500 - None` 会直接报 TypeError。**要拿去算的东西必须 return** ✨"
+  },
+  {
+    "id": "d37-b2",
+    "type": "fixbug",
+    "title": "边界判错了",
+    "question": "90 分应该是「优秀」，但这段判成了「及格」。修好它。",
+    "code": "def grade(score):\n    if score > 90:\n        return \"优秀\"\n    return \"及格\"\n\nprint(grade(90))",
+    "expect_contains": "优秀",
+    "nudge": "「90 分及以上」要用 `>=`，`>` 会把 90 本身漏掉。",
+    "explain": "**边界值最容易错**。写完判断，一定拿临界数字（这里就是 90）试一遍 😉"
+  },
+  {
+    "id": "d37-e1",
+    "type": "fill",
+    "title": "回响 · Day 32 的集合",
+    "echo": 32,
+    "question": "写一个函数，返回两个列表的共同元素个数（这里应该是 2）。",
+    "code": "def common_count(a, b):\n    \"\"\"返回两个列表里共同元素的个数。\"\"\"\n    ___\n\nprint(common_count([1, 2, 3, 4], [3, 4, 5]))",
+    "expect_contains": "2",
+    "nudge": "`return len(set(a) & set(b))` —— 转成集合求交集，再数个数。",
+    "explain": "一行就返回了答案。**函数 + 集合运算**组合起来威力很大，以后处理「共同好友」「重复项」都这么写 ✨"
+  }
+]

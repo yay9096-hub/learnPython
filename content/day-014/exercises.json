@@ -1,0 +1,63 @@
+[
+  {
+    "id": "d14-p1",
+    "type": "predict",
+    "title": "循环转几圈",
+    "question": "这段会打印几行？",
+    "code": "n = 1\nwhile n <= 3:\n    print(n)\n    n += 1",
+    "options": ["2 行", "3 行", "停不下来"],
+    "answer": 1,
+    "explain": "n 从 1 到 3，条件 `n <= 3` 成立三次，所以打印 1、2、3 三行。第四圈 n 变成 4，条件不成立，退出。"
+  },
+  {
+    "id": "d14-p2",
+    "type": "predict",
+    "title": "少了一行会怎样",
+    "question": "这段少了 `n += 1`，会发生什么？",
+    "code": "n = 1\nwhile n <= 3:\n    print(n)",
+    "options": ["打印 3 行", "打印 1 行", "永远打印 1，停不下来"],
+    "answer": 2,
+    "explain": "n 永远是 1，条件永远成立 —— **死循环**。写完 while 第一件事就是检查：循环里有没有改变条件用到的那个变量？"
+  },
+  {
+    "id": "d14-p3",
+    "type": "predict",
+    "title": "恭喜写在哪",
+    "question": "n 从 1 数到 3，这段会打印几次「完成」？",
+    "code": "n = 1\nwhile n <= 3:\n    n += 1\n    print(\"完成\")",
+    "options": ["1 次", "3 次", "0 次"],
+    "answer": 1,
+    "explain": "`print` 缩进在循环**里面**，所以每转一圈打印一次。想只打印一次，要把它写在循环**外面**（顶格）。"
+  },
+  {
+    "id": "d14-b1",
+    "type": "fixbug",
+    "title": "死循环",
+    "question": "这段停不下来。加一行修好它，让它打印 1 到 3。",
+    "code": "n = 1\nwhile n <= 3:\n    print(n)\n\nprint(\"结束\")",
+    "expect_contains": "结束",
+    "nudge": "循环里要有东西能让 `n <= 3` 最终变成不成立。",
+    "explain": "加上 `n += 1` 就好。**循环三件套：初始化、条件里用它、循环里改它。**"
+  },
+  {
+    "id": "d14-b2",
+    "type": "fixbug",
+    "title": "提示反了",
+    "question": "答案是 42，猜 50 应该说「太大」，但这段说「太小」。修好它。",
+    "code": "answer = 42\nguess = 50\n\nif guess > answer:\n    print(\"太小了\")\nelse:\n    print(\"太大了\")",
+    "expect_contains": "太大了",
+    "nudge": "`guess > answer` 的意思是「猜的数比答案大」，那该提示什么？",
+    "explain": "把两句话对调就好。这个错误特别隐蔽 —— 程序不报错，但玩的人会被引到反方向，永远猜不中 😅"
+  },
+  {
+    "id": "d14-e1",
+    "type": "fill",
+    "title": "回响 · Day 13 的 and",
+    "echo": 13,
+    "question": "补全循环条件：只要「还没猜对」**而且**「次数没超过 5」，就继续问。",
+    "code": "answer = 42\nguess = 0\ncount = 0\n\n# 把下面的 ___ 换成正确的条件\nwhile ___:\n    guess = 50\n    count += 1\n\nprint(f\"循环了 {count} 次\")",
+    "expect_contains": "循环了 5 次",
+    "nudge": "两个条件用 `and` 连起来：`guess != answer and count < 5`",
+    "explain": "循环条件里也能用 `and` / `or`。这正是今天挑战关要用的招 —— 限制猜测次数 ✨"
+  }
+]

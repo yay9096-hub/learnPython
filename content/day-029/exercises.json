@@ -1,0 +1,63 @@
+[
+  {
+    "id": "d29-p1",
+    "type": "predict",
+    "title": "in 查的是键还是值",
+    "question": "这段会打印什么？",
+    "code": "role = {\"name\": \"星野樱\", \"hp\": 340}\nprint(\"星野樱\" in role)",
+    "options": ["True", "False", "报错"],
+    "answer": 1,
+    "explain": "字典的 `in` 查的是**键**。「星野樱」是值不是键，所以是 `False`。想查值要写 `in role.values()`。"
+  },
+  {
+    "id": "d29-p2",
+    "type": "predict",
+    "title": "赋值一个不存在的键",
+    "question": "字典里本来没有 mp，这样写会怎样？",
+    "code": "role = {\"hp\": 340}\nrole[\"mp\"] = 180\nprint(role)",
+    "options": ["报 KeyError", "新增一项 mp", "什么都没发生"],
+    "answer": 1,
+    "explain": "**键不存在，赋值就是新增**。这跟列表很不一样 —— 列表 `lst[10] = x` 会报 IndexError。"
+  },
+  {
+    "id": "d29-p3",
+    "type": "predict",
+    "title": "get 的默认值",
+    "question": "字典里没有 mp，这段打印什么？",
+    "code": "role = {\"hp\": 340}\nprint(role.get(\"mp\", 0))",
+    "options": ["报 KeyError", "None", "0"],
+    "answer": 2,
+    "explain": "`.get(键, 默认值)` 取不到就返回默认值。不写默认值的话返回 `None`，但**都不会报错**。"
+  },
+  {
+    "id": "d29-p4",
+    "type": "predict",
+    "title": "重复的键",
+    "question": "同一个键写了两次会怎样？",
+    "code": "role = {\"hp\": 340, \"hp\": 999}\nprint(role[\"hp\"])",
+    "options": ["340", "999", "报错"],
+    "answer": 1,
+    "explain": "**后面的把前面的顶掉**，跟变量赋值一个道理。字典的键不能重复。"
+  },
+  {
+    "id": "d29-b1",
+    "type": "fixbug",
+    "title": "查了个不存在的键",
+    "question": "这段报了 KeyError。改成安全的查法，输出「没有 mp 这一项」。",
+    "code": "role = {\"name\": \"星野樱\", \"hp\": 340}\n\nprint(role[\"mp\"])",
+    "expect_contains": "没有 mp 这一项",
+    "nudge": "用 `if \"mp\" in role:` 判断，`else` 里打印提示。",
+    "explain": "**确定该有就用 `[]`，可能没有就用 `in` 或 `.get()`** —— 这个判断以后天天要做 ✨"
+  },
+  {
+    "id": "d29-e1",
+    "type": "fill",
+    "title": "回响 · Day 25 的统计",
+    "echo": 25,
+    "question": "字典里的值也能拿来算。补全一行，算出三项属性的总和（应该是 620）。",
+    "code": "role = {\"hp\": 340, \"mp\": 180, \"atk\": 100}\n\ntotal = ___\nprint(f\"三项总和 {total}\")",
+    "expect_contains": "三项总和 620",
+    "nudge": "`role.values()` 能拿到所有的值，再用 `sum()` 加起来。",
+    "explain": "`sum(role.values())` —— 明天会详细讲 `.values()` / `.keys()` / `.items()` 这三兄弟 📖"
+  }
+]

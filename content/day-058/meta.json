@@ -1,0 +1,21 @@
+{
+  "day": 58,
+  "title": "一整支队伍",
+  "hook": "再造一个 Team 类 —— 对象里装着一堆对象",
+  "stage": 6,
+  "concepts": ["类的组合", "对象列表", "委托"],
+  "estimated_minutes": 45,
+  "needs_stdin": false,
+  "uses_turtle": false,
+  "uses_files": false,
+  "next_teaser": "明天让角色分职业 —— 战士和法师，继承登场 🧙",
+  "challenge": {
+    "title": "自动战斗",
+    "desc": "写 Team.auto_battle(other)，两队轮流让第一个活着的成员互相攻击，直到一方全灭。"
+  },
+  "cheatsheet": [
+    { "name": "类里装列表", "desc": "属性可以是一堆对象", "code": "self.members = []" },
+    { "name": "委托", "desc": "Team 的方法里调成员的方法", "code": "for m in self.members:\n    m.heal(20)" },
+    { "name": "组合", "desc": "一个类用另一个类", "code": "team.add(Role(\"樱\"))" }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "day": 69,
+  "title": "个人学习仪表盘",
+  "hook": "把你这 70 天的一切汇成一页 —— 图 + 文字 + 存档",
+  "stage": 7,
+  "concepts": ["综合项目", "数据分析", "报告生成"],
+  "estimated_minutes": 55,
+  "needs_stdin": false,
+  "uses_turtle": false,
+  "uses_files": true,
+  "uses_plot": true,
+  "uses_my_data": true,
+  "next_teaser": "明天是毕业作品 —— 你自己决定做什么 🎓",
+  "challenge": {
+    "title": "成长指数",
+    "desc": "定义一个你自己的「成长指数」公式（比如时长×0.3 + 完成天数×2 - 提示次数×0.5），画出它的变化曲线。"
+  },
+  "cheatsheet": []
+}

@@ -1,0 +1,63 @@
+[
+  {
+    "id": "d63-p1",
+    "type": "predict",
+    "title": "classmethod 的第一个参数",
+    "question": "@classmethod 的第一个参数是什么？",
+    "code": "class P:\n    @classmethod\n    def make(cls):\n        return cls.__name__\n\nprint(P.make())",
+    "options": ["self", "P", "报错"],
+    "answer": 1,
+    "explain": "`cls` 指的是**类本身**，所以 `cls.__name__` 就是 `\"P\"`。而且调用时用**类名**，不需要先造对象。"
+  },
+  {
+    "id": "d63-p2",
+    "type": "predict",
+    "title": "夹取的效果",
+    "question": "饥饿 50，喂 999，结果是多少？",
+    "code": "hunger = 50\nhunger = max(0, min(hunger - 999, 100))\nprint(hunger)",
+    "options": ["-949", "0", "50"],
+    "answer": 1,
+    "explain": "`min` 先确认不超上限，`max(0, ...)` 再托住下界。**极端输入是状态类必须扛住的。**"
+  },
+  {
+    "id": "d63-p3",
+    "type": "predict",
+    "title": "提前 return 的位置",
+    "question": "精力只有 10，这段之后 mood 是多少？",
+    "code": "energy = 10\nmood = 50\n\nif energy < 20:\n    print(\"玩不动\")\nelse:\n    mood = mood + 15\n\nprint(mood)",
+    "options": ["50", "65", "0"],
+    "answer": 0,
+    "explain": "条件不满足时**一个属性都不该动**。如果先加心情再判断，就会出现「玩不动却变开心了」的 bug。"
+  },
+  {
+    "id": "d63-b1",
+    "type": "fixbug",
+    "title": "对象存不进 json",
+    "question": "这段报了 TypeError。用 to_dict 修好它，让它输出含「樱」的 json。",
+    "code": "import json\n\nclass P:\n    def __init__(self, name):\n        self.name = name\n    def to_dict(self):\n        return {\"name\": self.name}\n\np = P(\"樱\")\nprint(json.dumps(p, ensure_ascii=False))",
+    "expect_contains": "樱",
+    "nudge": "`json.dumps(p.to_dict(), ensure_ascii=False)`",
+    "explain": "**json 只认字典、列表、数字、字符串** —— 对象要先转成字典。`to_dict` / `from_dict` 这一对是标准做法 ✨"
+  },
+  {
+    "id": "d63-b2",
+    "type": "fixbug",
+    "title": "老存档缺字段就崩",
+    "question": "老存档里没有 mood 字段，这段报了 KeyError。修好它，让它输出 50。",
+    "code": "data = {\"name\": \"樱\"}\n\nmood = data[\"mood\"]\nprint(mood)",
+    "expect_contains": "50",
+    "nudge": "用 `data.get(\"mood\", 50)` —— 取不到就用默认值。",
+    "explain": "**存档格式会随版本变**。用 `.get(键, 默认值)` 读，老档也能兼容 —— 这是真实项目里的常规操作 ✨"
+  },
+  {
+    "id": "d63-e1",
+    "type": "fill",
+    "title": "回响 · Day 57 的状态同步",
+    "echo": 57,
+    "question": "两个状态都归零时要标记为不健康。补全那一行（应输出 False）。",
+    "code": "mood = 0\nenergy = 0\nalive = True\n\n___\n    alive = False\n\nprint(alive)",
+    "expect_contains": "False",
+    "nudge": "`if mood <= 0 and energy <= 0:`",
+    "explain": "**关联的属性要一起维护** —— 从 Day 57 的 `alive = hp > 0` 到今天，同一个原则 ✨"
+  }
+]

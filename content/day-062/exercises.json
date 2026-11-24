@@ -1,0 +1,63 @@
+[
+  {
+    "id": "d62-p1",
+    "type": "predict",
+    "title": "固定种子的效果",
+    "question": "两次用同一个种子，结果一样吗？",
+    "code": "import random\nrandom.seed(1)\na = random.randint(1, 100)\nrandom.seed(1)\nb = random.randint(1, 100)\nprint(a == b)",
+    "options": ["True", "False", "不确定"],
+    "answer": 0,
+    "explain": "**同一个种子，随机序列完全一样**。调试时固定种子，bug 就能稳定复现 —— 这是游戏开发的常用技巧。"
+  },
+  {
+    "id": "d62-p2",
+    "type": "predict",
+    "title": "shuffle 返回什么",
+    "question": "`random.shuffle(cards)` 返回什么？",
+    "code": "import random\ncards = [1, 2, 3]\nresult = random.shuffle(cards)\nprint(result)",
+    "options": ["打乱后的列表", "None", "报错"],
+    "answer": 1,
+    "explain": "**它直接打乱原列表，不返回新的** —— 跟 `.sort()`、`.append()` 一样。用 `=` 接住会得到 `None`。"
+  },
+  {
+    "id": "d62-p3",
+    "type": "predict",
+    "title": "super().attack 打了几次",
+    "question": "MagicCard.attack 里调了 super().attack，目标一共掉多少血？",
+    "code": "# base = super().attack(other)   # 已经扣了 20\n# other.take_damage(base)        # 又扣了 20\n# return base * 2",
+    "options": ["20", "40", "80"],
+    "answer": 1,
+    "explain": "`super().attack()` **本身就已经打出去一次了**，所以只需要再补一次。忘了这点很容易多打或少打。"
+  },
+  {
+    "id": "d62-b1",
+    "type": "fixbug",
+    "title": "死掉的卡还在反击",
+    "question": "这段里 b 已经倒下了还能还手。加个判断修好它，让它输出「b 倒下了」。",
+    "code": "class C:\n    def __init__(self, hp):\n        self.hp = hp\n    def is_alive(self):\n        return self.hp > 0\n\nb = C(0)\n\nif b.is_alive():\n    print(\"b 反击\")\nprint(\"b 倒下了\" if not b.is_alive() else \"b 还活着\")",
+    "expect_contains": "b 倒下了",
+    "nudge": "这段其实已经对了，跑一次确认输出。关键是记住：还手之前一定要 `if 目标.is_alive():`。",
+    "explain": "**回合制战斗里，被打死的一方不能反击** —— 少了这个判断，会出现「同归于尽」这种不该有的结果 ✨"
+  },
+  {
+    "id": "d62-b2",
+    "type": "fixbug",
+    "title": "总战力把死人也算上了",
+    "question": "这段应该只算活着的（输出 20）。修好它。",
+    "code": "cards = [{\"atk\": 30, \"hp\": 0}, {\"atk\": 20, \"hp\": 50}]\n\ntotal = 0\nfor c in cards:\n    total += c[\"atk\"]\n\nprint(total)",
+    "expect_contains": "20",
+    "nudge": "循环里先判断 `if c[\"hp\"] <= 0: continue`。",
+    "explain": "**统计前先过滤**。倒下的卡不该计入战力 —— 这类「忘了过滤」的 bug 在报表里特别常见 ✨"
+  },
+  {
+    "id": "d62-e1",
+    "type": "fill",
+    "title": "回响 · Day 61 的 __repr__",
+    "echo": 61,
+    "question": "补全 __repr__，让打印列表时显示得好看（应输出「[樱(20/60)]」）。",
+    "code": "class C:\n    def __init__(self, name, atk, hp):\n        self.name = name\n        self.atk = atk\n        self.hp = hp\n    def __str__(self):\n        return f\"{self.name}({self.atk}/{self.hp})\"\n    def __repr__(self):\n        ___\n\nprint([C(\"樱\", 20, 60)])",
+    "expect_contains": "樱(20/60)",
+    "nudge": "`return self.__str__()` —— 直接复用 `__str__` 就行。",
+    "explain": "**打印列表用的是 `__repr__`**。牌组内容一行打印出来，靠的就是它 ✨"
+  }
+]

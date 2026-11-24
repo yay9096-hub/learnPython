@@ -1,0 +1,21 @@
+{
+  "day": 60,
+  "title": "各自的绝招",
+  "hook": "同一个方法名，每个职业表现不同 —— 这叫多态",
+  "stage": 6,
+  "concepts": ["方法重写", "super() 调用", "多态"],
+  "estimated_minutes": 45,
+  "needs_stdin": false,
+  "uses_turtle": false,
+  "uses_files": false,
+  "next_teaser": "明天让 print(角色) 直接打印出漂亮的卡片 —— 特殊方法 🎴",
+  "challenge": {
+    "title": "增益效果",
+    "desc": "给 Role 加一个 buff 属性（伤害倍率），让所有职业的 attack 都自动乘上它。"
+  },
+  "cheatsheet": [
+    { "name": "重写", "desc": "子类里写同名方法", "code": "def attack(self, target):" },
+    { "name": "扩展父类", "desc": "先调父类再加料", "code": "damage = super().attack(target)" },
+    { "name": "多态", "desc": "同一句代码，不同表现", "code": "for m in team:\n    m.attack(enemy)" }
+  ]
+}

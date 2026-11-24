@@ -1,0 +1,22 @@
+{
+  "day": 56,
+  "title": "角色的技能",
+  "hook": "把「本事」也装进类里 —— 角色自己会攻击、会治疗",
+  "stage": 6,
+  "concepts": ["方法", "self 调用", "状态改变"],
+  "estimated_minutes": 45,
+  "needs_stdin": false,
+  "uses_turtle": false,
+  "uses_files": false,
+  "next_teaser": "明天给方法加上保护 —— 血量不能超过上限，也不能变成负数 🛡",
+  "challenge": {
+    "title": "连击系统",
+    "desc": "给 Role 加一个 combo 属性，连续攻击同一个目标时伤害递增 10%。"
+  },
+  "cheatsheet": [
+    { "name": "方法", "desc": "写在类里的函数，第一个参数是 self", "code": "def attack(self, target):" },
+    { "name": "调用", "desc": "对象点方法名", "code": "sakura.attack(enemy)" },
+    { "name": "改自己", "desc": "方法里改 self 的属性", "code": "self.hp -= 10" },
+    { "name": "调自己的别的方法", "desc": "也要用 self.", "code": "self.is_alive()" }
+  ]
+}

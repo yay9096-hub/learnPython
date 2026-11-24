@@ -1,0 +1,63 @@
+[
+  {
+    "id": "d49-p1",
+    "type": "predict",
+    "title": "哪种模式会报错",
+    "question": "文件不存在时，哪种打开方式会崩？",
+    "code": "# A: open(\"x.txt\", \"w\")\n# B: open(\"x.txt\", \"a\")\n# C: open(\"x.txt\")",
+    "options": ["A", "B", "C"],
+    "answer": 2,
+    "explain": "`\"w\"` 和 `\"a\"` 都会**自动创建**文件。只有读（默认模式）会抛 `FileNotFoundError`。**所以只有读需要兜底。**"
+  },
+  {
+    "id": "d49-p2",
+    "type": "predict",
+    "title": "返回空列表还是 None",
+    "question": "load 返回 `[]` 时，这段会怎样？",
+    "code": "def load():\n    return []\n\nfor x in load():\n    print(x)\nprint(\"跑完了\")",
+    "options": ["报 TypeError", "跑完了", "什么都不打印"],
+    "answer": 1,
+    "explain": "空列表可以直接遍历（一圈都不跑）。**返回 `[]` 比返回 `None` 好用** —— 后者会让 `for` 直接报错。"
+  },
+  {
+    "id": "d49-p3",
+    "type": "predict",
+    "title": "清空和删除的区别",
+    "question": "用 \"w\" 打开又什么都不写，文件还在吗？",
+    "code": "import os\nwith open(\"t.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"内容\")\nwith open(\"t.txt\", \"w\", encoding=\"utf-8\") as f:\n    pass\nprint(os.path.exists(\"t.txt\"))",
+    "options": ["True", "False", "报错"],
+    "answer": 0,
+    "explain": "`\"w\"` 只是**清空内容**，文件本身还在。要让文件消失得用 `os.remove()`。"
+  },
+  {
+    "id": "d49-b1",
+    "type": "fixbug",
+    "title": "第一次运行就崩",
+    "question": "文件还不存在，这段直接报错。加上兜底，让它输出「还没有记录」。",
+    "code": "def load(filename):\n    with open(filename, encoding=\"utf-8\") as f:\n        return [l.strip() for l in f]\n\nnotes = load(\"根本不存在.txt\")\nif not notes:\n    print(\"还没有记录\")",
+    "expect_contains": "还没有记录",
+    "nudge": "用 `try:` 包住，`except FileNotFoundError: return []`。",
+    "explain": "**程序第一次运行时什么文件都没有** —— 这是最容易被忽略、又最容易被用户撞上的场景 ✨"
+  },
+  {
+    "id": "d49-b2",
+    "type": "fixbug",
+    "title": "追加写成了覆盖",
+    "question": "这段想记两条，结果只剩一条。修好它，让它输出 2。",
+    "code": "def add(filename, text):\n    with open(filename, \"w\", encoding=\"utf-8\") as f:\n        f.write(text + \"\n\")\n\nadd(\"n.txt\", \"第一条\")\nadd(\"n.txt\", \"第二条\")\n\nwith open(\"n.txt\", encoding=\"utf-8\") as f:\n    print(len(f.read().splitlines()))",
+    "expect_contains": "2",
+    "nudge": "把 `\"w\"` 改成 `\"a\"`。",
+    "explain": "**日志式写入永远用 `\"a\"`** —— 错题本、聊天记录、操作日志都是这个模式 ✨"
+  },
+  {
+    "id": "d49-e1",
+    "type": "fill",
+    "title": "回响 · Day 45 的 try/except",
+    "echo": 45,
+    "question": "补全兜底逻辑，让它对不存在的文件返回 0。",
+    "code": "def count(filename):\n    \"\"\"数一数有几行。文件不存在返回 0。\"\"\"\n    try:\n        with open(filename, encoding=\"utf-8\") as f:\n            return len(f.read().splitlines())\n    ___\n        return 0\n\nprint(count(\"不存在.txt\"))",
+    "expect_contains": "0",
+    "nudge": "`except FileNotFoundError:`",
+    "explain": "**接住具体的异常类型**，不要写光秃秃的 `except:` —— Day 45 的规矩今天依然适用 ✨"
+  }
+]

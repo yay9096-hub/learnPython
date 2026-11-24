@@ -1,0 +1,22 @@
+{
+  "day": 59,
+  "title": "战士与法师",
+  "hook": "共同的部分写一次，不同的部分各写各的 —— 继承",
+  "stage": 6,
+  "concepts": ["继承", "super", "子类扩展"],
+  "estimated_minutes": 45,
+  "needs_stdin": false,
+  "uses_turtle": false,
+  "uses_files": false,
+  "next_teaser": "明天让同一个技能名在不同职业里表现不同 —— 方法重写 ✨",
+  "challenge": {
+    "title": "第四个职业",
+    "desc": "再造一个「弓箭手」，有 25% 概率触发双击（打两次），用 random 实现。"
+  },
+  "cheatsheet": [
+    { "name": "继承", "desc": "括号里写父类", "code": "class Mage(Role):" },
+    { "name": "调父类的 __init__", "desc": "先把公共部分初始化好", "code": "super().__init__(name, hp)" },
+    { "name": "加自己的属性", "desc": "super 之后接着写", "code": "self.mp = mp" },
+    { "name": "isinstance", "desc": "判断是不是某个类", "code": "isinstance(x, Role)" }
+  ]
+}

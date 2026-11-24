@@ -1,0 +1,20 @@
+{
+  "day": 17,
+  "title": "十连抽",
+  "hook": "回到 Day 10 的抽卡机 —— 这次真的能十连了 🎴",
+  "stage": 2,
+  "concepts": ["break", "continue", "循环中的统计"],
+  "estimated_minutes": 45,
+  "needs_stdin": false,
+  "uses_turtle": false,
+  "next_teaser": "明天用嵌套循环生成棋盘、菱形、九九乘法表 🔲",
+  "challenge": {
+    "title": "保底机制",
+    "desc": "真实抽卡都有保底：连续 9 次没出 SSR，第 10 次必出。用一个计数器实现它。"
+  },
+  "cheatsheet": [
+    { "name": "break", "desc": "立刻跳出整个循环", "code": "if found:\n    break" },
+    { "name": "continue", "desc": "跳过这一圈剩下的，直接进下一圈", "code": "if bad:\n    continue" },
+    { "name": "统计模式", "desc": "循环外初始化，循环内累加", "code": "total = 0\nfor ...:\n    total += x" }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "day": 46,
+  "title": "主动报错",
+  "hook": "与其偷偷用错的数据，不如大声喊出来",
+  "stage": 5,
+  "concepts": ["raise", "异常传播", "输入校验"],
+  "estimated_minutes": 40,
+  "needs_stdin": true,
+  "uses_turtle": false,
+  "uses_files": false,
+  "next_teaser": "明天你的程序第一次真正「记住东西」—— 写文件 📝",
+  "challenge": {
+    "title": "自定义异常",
+    "desc": "写一个 class InvalidRoleError(Exception): pass，用它代替 ValueError，让错误类型更精确。"
+  },
+  "cheatsheet": [
+    { "name": "raise", "desc": "主动抛出一个错误", "code": "raise ValueError(\"年龄不能是负数\")" },
+    { "name": "异常会往外传", "desc": "自己不接就交给调用者", "code": "f() -> g() -> 主流程" },
+    { "name": "配合 try", "desc": "调用方决定怎么处理", "code": "try:\n    check(x)\nexcept ValueError as e:\n    print(e)" }
+  ]
+}

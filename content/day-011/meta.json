@@ -1,0 +1,20 @@
+{
+  "day": 11,
+  "title": "魔法结界",
+  "hook": "程序第一次会自己做决定 —— 口令对了才放你进去",
+  "stage": 2,
+  "concepts": ["if", "else", "缩进块"],
+  "estimated_minutes": 40,
+  "needs_stdin": true,
+  "uses_turtle": false,
+  "next_teaser": "明天学 elif，让程序在三种以上的可能里做选择 ⚔️",
+  "challenge": {
+    "title": "结界加固",
+    "desc": "口令答错时，让它显示「你还剩 2 次机会」—— 提示：再问一次。"
+  },
+  "cheatsheet": [
+    { "name": "if", "desc": "条件成立才执行下面缩进的那块", "code": "if hp > 0:\n    print(\"还活着\")" },
+    { "name": "else", "desc": "条件不成立时走这里", "code": "else:\n    print(\"倒下了\")" },
+    { "name": "==", "desc": "判断相等（两个等号！）", "code": "if name == \"樱\":" }
+  ]
+}

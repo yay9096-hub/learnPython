@@ -1,0 +1,13 @@
+{
+  "day": 44,
+  "title": "猜数字 · 函数版",
+  "hook": "第四章最终关 —— 回头重写 Day 14，看看你变强了多少",
+  "stage": 4,
+  "concepts": ["综合复习", "函数拆分", "重构"],
+  "estimated_minutes": 50,
+  "needs_stdin": true,
+  "uses_turtle": false,
+  "review": true,
+  "next_teaser": "第四章通关！第五章开始，程序要学会「记住东西」—— 关掉再打开数据还在 💾",
+  "cheatsheet": []
+}

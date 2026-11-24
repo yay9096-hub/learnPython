@@ -1,0 +1,22 @@
+{
+  "day": 26,
+  "title": "抽卡记录",
+  "hook": "一刀切出「最近 5 次」「前三名」「每隔一个」",
+  "stage": 3,
+  "concepts": ["切片", "步长", "倒序"],
+  "estimated_minutes": 40,
+  "needs_stdin": false,
+  "uses_turtle": false,
+  "next_teaser": "明天做排行榜 —— 学会给列表排序 🏆",
+  "challenge": {
+    "title": "分页显示",
+    "desc": "把 20 条记录每 5 条一页显示，用循环 + 切片实现「第 1 页 / 第 2 页」。"
+  },
+  "cheatsheet": [
+    { "name": "[a:b]", "desc": "从 a 到 b-1，不含 b", "code": "lst[0:3]" },
+    { "name": "[:n] / [n:]", "desc": "前 n 个 / 从第 n 个到最后", "code": "lst[:5]  lst[3:]" },
+    { "name": "[-n:]", "desc": "最后 n 个", "code": "lst[-5:]" },
+    { "name": "[::2]", "desc": "每隔一个取", "code": "lst[::2]" },
+    { "name": "[::-1]", "desc": "整个倒过来", "code": "lst[::-1]" }
+  ]
+}

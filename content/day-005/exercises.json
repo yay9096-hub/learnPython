@@ -1,0 +1,62 @@
+[
+  {
+    "id": "d5-p1",
+    "type": "predict",
+    "title": "方法改变原变量了吗？",
+    "question": "这段代码会打印什么？（这是新手最常踩的坑之一）",
+    "code": "word = \"fire\"\nword.upper()\nprint(word)",
+    "options": ["FIRE", "fire", "会报错"],
+    "answer": 1,
+    "explain": "`.upper()` **不会修改原变量**，它只是返回一个新的字符串。必须写 `word = word.upper()` 把结果接住。"
+  },
+  {
+    "id": "d5-p2",
+    "type": "predict",
+    "title": "文字乘法",
+    "question": "这一行会打印什么？",
+    "code": "print(\"哈\" * 3)",
+    "options": ["哈3", "哈哈哈", "会报错"],
+    "answer": 1,
+    "explain": "**文字 × 数字 = 重复**。这是 Python 特有的可爱设定，做分隔线特别方便。"
+  },
+  {
+    "id": "d5-p3",
+    "type": "predict",
+    "title": "中英文都算 1",
+    "question": "`len(\"星野樱\")` 的结果是多少？",
+    "code": "print(len(\"星野樱\"))",
+    "options": ["3", "6", "9"],
+    "answer": 0,
+    "explain": "在 Python 3 里，**一个中文字符也只算 1**，和英文字母一样。"
+  },
+  {
+    "id": "d5-b1",
+    "type": "fixbug",
+    "title": "空格没削掉",
+    "question": "这段想输出 `[星野樱]`，但左右多了空格。修好它。",
+    "code": "name = \"  星野樱  \"\nprint(f\"[{name}]\")",
+    "expect_contains": "[星野樱]",
+    "nudge": "`.strip()` 专门用来削掉首尾的空格。可以直接写在大括号里。",
+    "explain": "`{name.strip()}` 就好了。处理 `input()` 拿回来的内容时，加个 `.strip()` 几乎是标配。"
+  },
+  {
+    "id": "d5-b2",
+    "type": "fixbug",
+    "title": "乘错了东西",
+    "question": "这段想打印 5 个星星，但报了 TypeError。修好它。",
+    "code": "n = \"5\"\nprint(\"★\" * n)",
+    "expect_contains": "★★★★★",
+    "nudge": "`n` 现在是文字 `\"5\"`，不是数字。文字 × 文字 是不行的。",
+    "explain": "改成 `n = 5`，或者写 `\"★\" * int(n)`。**文字 × 数字**才是合法的组合。"
+  },
+  {
+    "id": "d5-f1",
+    "type": "fill",
+    "title": "一条龙",
+    "question": "把 `raw` 里的内容削掉空格、变成大写，然后打印出来（应该显示 WATER）。",
+    "code": "raw = \"  water  \"\n\n# 在这里写一行代码\n",
+    "expect_contains": "WATER",
+    "nudge": "方法可以串起来：`raw.strip().upper()`，从左往右依次执行。",
+    "explain": "串联调用（chaining）读起来像流水线：先削空格 → 再转大写。以后处理数据时会大量用到 ✨"
+  }
+]

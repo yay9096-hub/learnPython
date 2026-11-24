@@ -1,0 +1,17 @@
+{
+  "day": 34,
+  "title": "成绩管理系统",
+  "hook": "第三章最终关 —— 做一个你真能拿去用的东西",
+  "stage": 3,
+  "concepts": ["综合复习", "数据分析", "多维统计"],
+  "estimated_minutes": 50,
+  "needs_stdin": true,
+  "uses_turtle": false,
+  "review": true,
+  "next_teaser": "第三章通关！第四章开始学「函数」—— 把大问题切成小块 🔧",
+  "challenge": {
+    "title": "成绩单导出",
+    "desc": "用 join 把所有人的成绩拼成一行行 CSV 格式的文字（姓名,语文,数学,英语,总分）。"
+  },
+  "cheatsheet": []
+}

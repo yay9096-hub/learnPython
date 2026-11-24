@@ -1,0 +1,22 @@
+{
+  "day": 29,
+  "title": "角色档案",
+  "hook": "用「名字」当编号，而不是 0 1 2 —— 字典登场",
+  "stage": 3,
+  "concepts": ["字典", "键值对", "get"],
+  "estimated_minutes": 40,
+  "needs_stdin": true,
+  "uses_turtle": false,
+  "next_teaser": "明天做图鉴系统 —— 遍历整本字典，查询、新增、删除 📖",
+  "challenge": {
+    "title": "属性成长",
+    "desc": "写一个「升级」功能：等级 +1，HP 和 ATK 各涨 10%，用 round 取整。"
+  },
+  "cheatsheet": [
+    { "name": "字典", "desc": "大括号，键: 值", "code": "role = {\"name\": \"樱\", \"hp\": 340}" },
+    { "name": "取值", "desc": "方括号里放键名", "code": "role[\"hp\"]" },
+    { "name": ".get()", "desc": "取不到不报错，可给默认值", "code": "role.get(\"mp\", 0)" },
+    { "name": "新增/修改", "desc": "直接赋值", "code": "role[\"mp\"] = 180" },
+    { "name": "in", "desc": "有没有这个键", "code": "if \"hp\" in role:" }
+  ]
+}

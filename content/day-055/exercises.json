@@ -1,0 +1,63 @@
+[
+  {
+    "id": "d55-p1",
+    "type": "predict",
+    "title": "__init__ 什么时候跑",
+    "question": "这段会打印几次「造好了」？",
+    "code": "class A:\n    def __init__(self):\n        print(\"造好了\")\n\na = A()\nb = A()",
+    "options": ["0 次", "1 次", "2 次"],
+    "answer": 2,
+    "explain": "**每次 `A()` 都会自动执行一次 `__init__`**。造两个对象就跑两次。"
+  },
+  {
+    "id": "d55-p2",
+    "type": "predict",
+    "title": "self 少了会怎样",
+    "question": "这段会怎样？",
+    "code": "class A:\n    def __init__(name):\n        pass\n\na = A(\"樱\")",
+    "options": ["正常运行", "报 TypeError", "打印 樱"],
+    "answer": 1,
+    "explain": "`self` 必须是第一个参数。少了它，Python 把对象自己塞给了 `name`，再传「樱」就多了一个参数。"
+  },
+  {
+    "id": "d55-p3",
+    "type": "predict",
+    "title": "实例是独立的吗",
+    "question": "改了 a 的血量，b 会变吗？",
+    "code": "class R:\n    def __init__(self, hp):\n        self.hp = hp\n\na = R(100)\nb = R(100)\na.hp = 50\nprint(b.hp)",
+    "options": ["50", "100", "报错"],
+    "answer": 1,
+    "explain": "`self.hp` 存在**每个对象自己**身上，两个实例互不影响。这正是类比全局变量安全的地方。"
+  },
+  {
+    "id": "d55-b1",
+    "type": "fixbug",
+    "title": "忘了写 self.",
+    "question": "这段报了 AttributeError。修好它，让它输出「樱」。",
+    "code": "class R:\n    def __init__(self, name):\n        name = name\n\nr = R(\"樱\")\nprint(r.name)",
+    "expect_contains": "樱",
+    "nudge": "`name = name` 只是给函数里的临时变量赋值。要存进对象得写 `self.name = name`。",
+    "explain": "**`self.xxx` 才是「这个对象的 xxx」** —— 少了 `self.`，函数一结束那个值就没了 ✨"
+  },
+  {
+    "id": "d55-b2",
+    "type": "fixbug",
+    "title": "用错了取值方式",
+    "question": "这段报了 TypeError。修好它，让它输出「樱」。",
+    "code": "class R:\n    def __init__(self, name):\n        self.name = name\n\nr = R(\"樱\")\nprint(r[\"name\"])",
+    "expect_contains": "樱",
+    "nudge": "对象用点号：`r.name`。方括号是字典的写法。",
+    "explain": "**字典用 `[\"键\"]`，对象用 `.属性`** —— 从字典转到类时，这是最容易带过去的旧习惯 😉"
+  },
+  {
+    "id": "d55-e1",
+    "type": "fill",
+    "title": "回响 · Day 31 的 key=lambda",
+    "echo": 31,
+    "question": "找出血量最高的角色（应输出「凛」）。",
+    "code": "class R:\n    def __init__(self, name, hp):\n        self.name = name\n        self.hp = hp\n\nteam = [R(\"樱\", 340), R(\"凛\", 420)]\n\nbest = ___\nprint(best.name)",
+    "expect_contains": "凛",
+    "nudge": "`max(team, key=lambda r: r.hp)` —— 跟 Day 31 一模一样，只是把 `r[\"hp\"]` 换成了 `r.hp`。",
+    "explain": "**第三章学的全部数据处理本事，对对象列表原样适用** —— 换的只是取属性的写法 ✨"
+  }
+]

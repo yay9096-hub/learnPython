@@ -1,0 +1,22 @@
+services:
+  api:
+    build: ./backend
+    container_name: pyson-api
+    environment:
+      CONTENT_DIR: /app/content
+      DATA_DIR: /app/data
+    volumes:
+      # 课程内容：改完 markdown 刷新页面就生效，不用重建镜像
+      - ./content:/app/content:ro
+      # 进度库：就是宿主机上的一个 sqlite 文件，备份 = 复制文件夹
+      - ./data:/app/data
+    restart: unless-stopped
+
+  web:
+    build: ./frontend
+    container_name: pyson-web
+    ports:
+      - "8080:80"
+    depends_on:
+      - api
+    restart: unless-stopped

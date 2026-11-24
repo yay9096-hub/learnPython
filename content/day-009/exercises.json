@@ -1,0 +1,42 @@
+[
+  {
+    "id": "d9-p1",
+    "type": "predict",
+    "title": "坐标往哪边走",
+    "question": "`turtle.goto(0, -100)` 会把小海龟送到画布的哪里？",
+    "code": "import turtle\nturtle.penup()\nturtle.goto(0, -100)",
+    "options": ["正中间偏上", "正中间偏下", "正中间偏左"],
+    "answer": 1,
+    "explain": "y 是**上下**方向，往上变大、往下变小。所以 -100 是中心下方 100 的位置。x 才是左右。"
+  },
+  {
+    "id": "d9-p2",
+    "type": "predict",
+    "title": "setheading 和 right 的区别",
+    "question": "小海龟现在朝下（270 度）。执行 `setheading(90)` 之后它朝哪？",
+    "code": "import turtle\nturtle.setheading(270)\nturtle.setheading(90)",
+    "options": ["朝上", "朝下", "朝右"],
+    "answer": 0,
+    "explain": "`setheading()` 是**绝对**朝向，直接设成 90 度就是朝上，跟之前朝哪无关。而 `right(90)` 是在当前基础上转，结果会完全不同。"
+  },
+  {
+    "id": "d9-b1",
+    "type": "fixbug",
+    "title": "填充没生效",
+    "question": "这段想画一个填了色的正方形，但只有轮廓没有颜色。修好它。",
+    "code": "import turtle\nturtle.fillcolor(\"#F59E0B\")\nturtle.forward(100)\nturtle.right(90)\nturtle.forward(100)\nturtle.right(90)\nturtle.forward(100)\nturtle.right(90)\nturtle.forward(100)\nprint(\"画完了\")",
+    "expect_contains": "画完了",
+    "nudge": "光设置 `fillcolor()` 是不够的，还要用 `begin_fill()` 和 `end_fill()` 把画形状的过程夹起来。",
+    "explain": "`fillcolor()` 只是「说好用什么色」，真正触发填充的是 `begin_fill()` 到 `end_fill()` 这一对。三样缺一不可。"
+  },
+  {
+    "id": "d9-f1",
+    "type": "fill",
+    "title": "圆心对齐",
+    "question": "补一行代码，让这个半径 120 的圆的圆心正好落在画布中心。",
+    "code": "import turtle\nturtle.penup()\n\n# 在这里补一行 goto\n\nturtle.pendown()\nturtle.circle(120)\nprint(\"圆画好了\")",
+    "expect_contains": "圆画好了",
+    "nudge": "圆是从当前位置往上画的，所以起点应该在中心正下方 120 的地方。",
+    "explain": "`turtle.goto(0, -120)` —— 记住这个规律：**想让半径 r 的圆居中，就从 (0, -r) 开始画** ✨"
+  }
+]

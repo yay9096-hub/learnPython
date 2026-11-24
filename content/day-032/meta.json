@@ -1,0 +1,21 @@
+{
+  "day": 32,
+  "title": "共同好友",
+  "hook": "一行代码去重，一行代码找出共同好友 —— 集合的魔法",
+  "stage": 3,
+  "concepts": ["set", "去重", "交集并集差集"],
+  "estimated_minutes": 40,
+  "needs_stdin": false,
+  "uses_turtle": false,
+  "next_teaser": "明天学元组和解包 —— 为下周的函数打地基 📦",
+  "challenge": {
+    "title": "好友推荐",
+    "desc": "「你可能认识的人」= 好友的好友里，你还不认识的。用差集算出来。"
+  },
+  "cheatsheet": [
+    { "name": "set()", "desc": "去重，顺序会乱", "code": "set([1, 2, 2, 3])" },
+    { "name": "&", "desc": "交集：两边都有", "code": "a & b" },
+    { "name": "|", "desc": "并集：合起来去重", "code": "a | b" },
+    { "name": "-", "desc": "差集：我有你没有", "code": "a - b" }
+  ]
+}

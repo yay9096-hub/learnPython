@@ -1,0 +1,17 @@
+{
+  "day": 62,
+  "title": "卡牌对战",
+  "hook": "第六章的大项目 —— 两副牌自动对战到分出胜负",
+  "stage": 6,
+  "concepts": ["多类协作", "游戏循环", "综合应用"],
+  "estimated_minutes": 55,
+  "needs_stdin": false,
+  "uses_turtle": false,
+  "uses_files": false,
+  "next_teaser": "明天是第六章复习日 —— 宠物养成 🐣",
+  "challenge": {
+    "title": "手牌与抽牌",
+    "desc": "给 Deck 加一个 hand（手牌区），每回合先抽 1 张进手牌，从手牌里出牌。"
+  },
+  "cheatsheet": []
+}

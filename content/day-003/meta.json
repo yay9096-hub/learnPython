@@ -1,0 +1,17 @@
+{
+  "day": 3,
+  "title": "伤害计算器",
+  "hook": "让角色打起来 —— 算出这一击到底掉多少血",
+  "stage": 1,
+  "concepts": ["数字", "运算符", "整除与取余"],
+  "estimated_minutes": 40,
+  "needs_stdin": false,
+  "uses_turtle": false,
+  "next_teaser": "明天让程序开口问你问题 —— 入学登记处开张了 📝",
+  "cheatsheet": [
+    { "name": "+ - * /", "desc": "加减乘除，注意 / 的结果一定是小数", "code": "10 / 4   # 2.5" },
+    { "name": "//", "desc": "整除，砍掉小数部分", "code": "10 // 4  # 2" },
+    { "name": "%", "desc": "取余数", "code": "10 % 4   # 2" },
+    { "name": "round()", "desc": "四舍五入", "code": "round(2.567, 1)  # 2.6" }
+  ]
+}

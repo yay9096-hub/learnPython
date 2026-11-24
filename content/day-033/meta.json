@@ -1,0 +1,22 @@
+{
+  "day": 33,
+  "title": "坐标与打包",
+  "hook": "一次给好几个变量赋值 —— 元组和解包",
+  "stage": 3,
+  "concepts": ["元组", "解包", "zip"],
+  "estimated_minutes": 40,
+  "needs_stdin": false,
+  "uses_turtle": true,
+  "next_teaser": "明天是第三章复习日 —— 做一个真正能用的成绩管理系统 📊",
+  "challenge": {
+    "title": "路径绘制",
+    "desc": "把一串坐标点连成一条折线，用 turtle 画出来（先 penup goto 第一个点再 pendown）。"
+  },
+  "cheatsheet": [
+    { "name": "元组", "desc": "圆括号，建好就不能改", "code": "point = (100, 50)" },
+    { "name": "解包", "desc": "一次拆给多个变量", "code": "x, y = point" },
+    { "name": "多重赋值", "desc": "一行给多个变量", "code": "a, b = 1, 2" },
+    { "name": "交换", "desc": "一行交换两个变量", "code": "a, b = b, a" },
+    { "name": "zip()", "desc": "把两个列表配成对", "code": "zip(names, hps)" }
+  ]
+}

@@ -1,0 +1,63 @@
+[
+  {
+    "id": "d39-p1",
+    "type": "predict",
+    "title": "返回多个到底是什么",
+    "question": "不解包直接接住，拿到的是什么？",
+    "code": "def f():\n    return 1, 2, 3\n\nx = f()\nprint(type(x))",
+    "options": ["<class 'list'>", "<class 'tuple'>", "<class 'int'>"],
+    "answer": 1,
+    "explain": "「返回多个值」其实就是**返回一个元组**。所以才能用 Day 33 学的解包接住。"
+  },
+  {
+    "id": "d39-p2",
+    "type": "predict",
+    "title": "解包个数不对",
+    "question": "函数返回 3 个，只用 2 个变量接会怎样？",
+    "code": "def f():\n    return 1, 2, 3\n\na, b = f()",
+    "options": ["a=1 b=2", "报 ValueError", "a=1 b=(2,3)"],
+    "answer": 1,
+    "explain": "解包时**个数必须完全一致**。只想要一部分就用 `_` 占位：`a, _, _ = f()`。"
+  },
+  {
+    "id": "d39-p3",
+    "type": "predict",
+    "title": "边界值",
+    "question": "总和正好 400 会评成什么？",
+    "code": "def judge(t):\n    if t >= 400:\n        return \"优秀\"\n    return \"普通\"\n\nprint(judge(400))",
+    "options": ["优秀", "普通", "报错"],
+    "answer": 0,
+    "explain": "`>=` 包含 400 本身。如果写成 `>`，400 就会掉到「普通」——**边界值一定要单独试一遍**。"
+  },
+  {
+    "id": "d39-b1",
+    "type": "fixbug",
+    "title": "忘了解包",
+    "question": "这段想打印「HP 340」，但打印出了元组。修好它。",
+    "code": "def stats():\n    return 340, 180\n\nresult = stats()\nprint(f\"HP {result}\")",
+    "expect_contains": "HP 340",
+    "nudge": "把 `result = stats()` 改成 `hp, mp = stats()`，再用 `{hp}`。",
+    "explain": "不解包接到的是整个元组 `(340, 180)`。**要用哪几个值，左边就写几个变量** ✨"
+  },
+  {
+    "id": "d39-b2",
+    "type": "fixbug",
+    "title": "只返回了一个",
+    "question": "这段想同时拿到结果和原因，但报了 ValueError。修好它，让它输出「False 太短」。",
+    "code": "def check(name):\n    if len(name) < 2:\n        return False\n    return True\n\nok, msg = check(\"樱\")\nprint(ok, msg)",
+    "expect_contains": "False 太短",
+    "nudge": "两个 return 都要跟上说明文字，比如 `return False, \"太短\"`。",
+    "explain": "**只返回 True/False，出问题时不知道为什么**。带上一句原因，调用的人才能给出有用的提示 ✨"
+  },
+  {
+    "id": "d39-e1",
+    "type": "fill",
+    "title": "回响 · Day 33 的交换",
+    "echo": 33,
+    "question": "写一个函数，把两个值调换顺序后返回。补全 return 那一行。",
+    "code": "def swap(a, b):\n    \"\"\"把两个值换个位置再返回。\"\"\"\n    ___\n\nx, y = swap(1, 2)\nprint(x, y)",
+    "expect_contains": "2 1",
+    "nudge": "`return b, a` —— 一行搞定。",
+    "explain": "Day 33 的 `a, b = b, a` 和今天的 `return b, a`，背后是同一件事：**打包再解包** ✨"
+  }
+]

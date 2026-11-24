@@ -1,0 +1,20 @@
+{
+  "day": 35,
+  "title": "第一个函数",
+  "hook": "给一段代码起个名字，以后喊名字就行",
+  "stage": 4,
+  "concepts": ["def", "调用", "函数体"],
+  "estimated_minutes": 40,
+  "needs_stdin": false,
+  "uses_turtle": false,
+  "next_teaser": "明天给函数装上「参数」—— 同一个函数，喂不同的料出不同的结果 ⚙️",
+  "challenge": {
+    "title": "开场动画",
+    "desc": "再写一个 show_loading() 函数，用循环打印一条加载进度条，在开场时调用它。"
+  },
+  "cheatsheet": [
+    { "name": "def", "desc": "定义一个函数", "code": "def greet():\n    print(\"你好\")" },
+    { "name": "调用", "desc": "写函数名加括号", "code": "greet()" },
+    { "name": "先定义后调用", "desc": "定义要写在调用前面", "code": "def f(): ...\nf()" }
+  ]
+}

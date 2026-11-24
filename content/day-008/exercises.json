@@ -1,0 +1,42 @@
+[
+  {
+    "id": "d8-p1",
+    "type": "predict",
+    "title": "海龟一开始朝哪边？",
+    "question": "刚开始时小海龟头朝右。执行这两行之后，它朝哪个方向？",
+    "code": "import turtle\nturtle.forward(100)\nturtle.right(90)",
+    "options": ["朝上", "朝下", "朝左"],
+    "answer": 1,
+    "explain": "初始朝右，**右转** 90 度就变成朝下了。转弯永远是相对当前朝向的 —— 这是海龟绘图最容易绕晕的地方。"
+  },
+  {
+    "id": "d8-p2",
+    "type": "predict",
+    "title": "为什么是 144 度？",
+    "question": "画正方形每次转 90 度（360 ÷ 4）。那五角星每次该转多少度？",
+    "code": "# 五角星的笔迹会绕中心转「两圈」\n# 360 × 2 ÷ 5 = ?",
+    "options": ["72 度", "144 度", "108 度"],
+    "answer": 1,
+    "explain": "五角星的笔迹绕中心转了**两圈**才回到起点，所以是 360 × 2 ÷ 5 = 144。写 72 度的话，画出来会是一个正五边形。"
+  },
+  {
+    "id": "d8-b1",
+    "type": "fixbug",
+    "title": "多了一条不该有的线",
+    "question": "这段想在两个不同位置画线，但中间拖出了一条难看的连线。修好它（提示：加两行）。",
+    "code": "import turtle\nturtle.forward(80)\nturtle.goto(-100, -80)\nturtle.forward(80)\nprint(\"画完了\")",
+    "expect_contains": "画完了",
+    "nudge": "移动之前要 `turtle.penup()` 抬笔，到位之后再 `turtle.pendown()` 落笔。",
+    "explain": "**抬笔 → 移动 → 落笔** 是海龟绘图的标准三步。这个坑几乎每个人都会踩一次。"
+  },
+  {
+    "id": "d8-f1",
+    "type": "fill",
+    "title": "画一个等边三角形",
+    "question": "等边三角形每次转 120 度（360 ÷ 3）。补全代码，画出一个完整的三角形。",
+    "code": "import turtle\nturtle.pensize(4)\n\nturtle.forward(120)\nturtle.right(120)\n\n# 在下面补上剩下的部分\n\nprint(\"三角形画好了\")",
+    "expect_contains": "三角形画好了",
+    "nudge": "再来两组「前进 120 + 右转 120」就闭合了。",
+    "explain": "任何正多边形都是同一个套路：**转的角度 = 360 ÷ 边数**。正方形 90、三角形 120、正六边形 60 ✨"
+  }
+]

@@ -1,0 +1,23 @@
+{
+  "day": 64,
+  "title": "第一张图表",
+  "hook": "让数字变成看得见的图 —— matplotlib 登场",
+  "stage": 7,
+  "concepts": ["matplotlib", "柱状图", "标题与坐标轴"],
+  "estimated_minutes": 45,
+  "needs_stdin": false,
+  "uses_turtle": false,
+  "uses_files": false,
+  "uses_plot": true,
+  "next_teaser": "明天把你这 60 多天的真实学习记录画成图 📈",
+  "challenge": {
+    "title": "配色渐变",
+    "desc": "让柱子的颜色跟数值挂钩：越高越深。提示：给 color= 传一个颜色列表。"
+  },
+  "cheatsheet": [
+    { "name": "导入", "desc": "固定写法，plt 是约定俗成的简称", "code": "import matplotlib.pyplot as plt" },
+    { "name": "柱状图", "desc": "名字一组、数值一组", "code": "plt.bar(names, values)" },
+    { "name": "标题", "desc": "图必须有标题", "code": "plt.title(\"战力对比\")" },
+    { "name": "坐标轴", "desc": "说清楚横竖是什么", "code": "plt.xlabel(\"角色\")\nplt.ylabel(\"战力\")" }
+  ]
+}

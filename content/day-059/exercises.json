@@ -1,0 +1,63 @@
+[
+  {
+    "id": "d59-p1",
+    "type": "predict",
+    "title": "子类自动拥有什么",
+    "question": "Dog 什么方法都没写，能调 speak 吗？",
+    "code": "class Animal:\n    def speak(self):\n        return \"...\"\n\nclass Dog(Animal):\n    pass\n\nprint(Dog().speak())",
+    "options": ["报错", "...", "None"],
+    "answer": 1,
+    "explain": "**子类自动拥有父类的全部方法**。这就是继承 —— 共同的写一次就够了。"
+  },
+  {
+    "id": "d59-p2",
+    "type": "predict",
+    "title": "忘了 super 会怎样",
+    "question": "子类 __init__ 里没调 super，父类的属性还在吗？",
+    "code": "class A:\n    def __init__(self):\n        self.x = 1\n\nclass B(A):\n    def __init__(self):\n        self.y = 2\n\nprint(B().x)",
+    "options": ["1", "报 AttributeError", "None"],
+    "answer": 1,
+    "explain": "子类写了自己的 `__init__` 就**完全覆盖**了父类的。不调 `super().__init__()`，父类那句 `self.x = 1` 根本没跑。"
+  },
+  {
+    "id": "d59-p3",
+    "type": "predict",
+    "title": "子类也是父类吗",
+    "question": "`isinstance(Dog(), Animal)` 返回什么？",
+    "code": "class Animal:\n    pass\n\nclass Dog(Animal):\n    pass\n\nprint(isinstance(Dog(), Animal))",
+    "options": ["True", "False", "报错"],
+    "answer": 0,
+    "explain": "**「Dog 是一种 Animal」** —— 这正是继承想表达的关系。所以子类实例也算父类的实例。"
+  },
+  {
+    "id": "d59-b1",
+    "type": "fixbug",
+    "title": "少了 super",
+    "question": "这段报了 AttributeError。修好它，让它输出「樱」。",
+    "code": "class Role:\n    def __init__(self, name):\n        self.name = name\n\nclass Mage(Role):\n    def __init__(self, name, mp=100):\n        self.mp = mp\n\nprint(Mage(\"樱\").name)",
+    "expect_contains": "樱",
+    "nudge": "在 `self.mp = mp` **前面**加一句 `super().__init__(name)`。",
+    "explain": "**子类 `__init__` 的第一句永远是 `super().__init__(...)`** —— 先让父类把公共部分建好，再加自己的 ✨"
+  },
+  {
+    "id": "d59-b2",
+    "type": "fixbug",
+    "title": "背刺伤害成了小数",
+    "question": "伤害应该是整数 70，但输出了 70.0。修好它。",
+    "code": "atk = 35\ncrit = 2.0\ndamage = atk * crit\nprint(damage)",
+    "expect_contains": "70",
+    "nudge": "用 `int(atk * crit)` 取整。",
+    "explain": "只要参与运算的有一个是小数，结果就是小数。**伤害、血量这类应该是整数的东西记得 `int()`** ✨"
+  },
+  {
+    "id": "d59-e1",
+    "type": "fill",
+    "title": "回响 · Day 29 的 get",
+    "echo": 29,
+    "question": "按职业统计人数（Warrior 应该是 2）。",
+    "code": "kinds = [\"Warrior\", \"Mage\", \"Warrior\"]\ncounts = {}\n\nfor k in kinds:\n    ___\n\nprint(counts[\"Warrior\"])",
+    "expect_contains": "2",
+    "nudge": "`counts[k] = counts.get(k, 0) + 1`",
+    "explain": "`.get(键, 默认值)` 让「第一次出现」和「已经有了」两种情况用同一行搞定 —— 计数器的经典写法 ✨"
+  }
+]

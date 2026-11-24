@@ -1,0 +1,63 @@
+[
+  {
+    "id": "d58-p1",
+    "type": "predict",
+    "title": "属性可以是列表吗",
+    "question": "这段会打印什么？",
+    "code": "class T:\n    def __init__(self):\n        self.members = []\n\nt = T()\nt.members.append(\"樱\")\nprint(len(t.members))",
+    "options": ["0", "1", "报错"],
+    "answer": 1,
+    "explain": "**属性可以是任何东西**，包括列表。`self.members = []` 让每个队伍有自己的成员名单。"
+  },
+  {
+    "id": "d58-p2",
+    "type": "predict",
+    "title": "方法返回对象还能接着点",
+    "question": "这段会打印什么？",
+    "code": "class R:\n    def __init__(self, name):\n        self.name = name\n\nclass T:\n    def __init__(self):\n        self.members = [R(\"樱\"), R(\"凛\")]\n    def first(self):\n        return self.members[0]\n\nprint(T().first().name)",
+    "options": ["樱", "凛", "报错"],
+    "answer": 0,
+    "explain": "`first()` 返回一个对象，**可以接着点属性**。`T().first().name` 一路读下去就行。"
+  },
+  {
+    "id": "d58-p3",
+    "type": "predict",
+    "title": "委托的意义",
+    "question": "Role.heal 有「不超过上限」的保护。Team 直接改 hp 会怎样？",
+    "code": "# A: total += m.heal(amount)\n# B: m.hp = m.hp + amount",
+    "options": ["两个一样", "B 会绕过上限保护", "B 更快所以更好"],
+    "answer": 1,
+    "explain": "**直接改属性等于绕过所有规则**。治疗溢出、倒下不能治这些保护全没了 —— 这正是委托存在的理由。"
+  },
+  {
+    "id": "d58-b1",
+    "type": "fixbug",
+    "title": "总量算成了请求值",
+    "question": "两人各治 30，但一个已满血。修好它，让它输出实际总量 30。",
+    "code": "class R:\n    def __init__(self, hp, mx):\n        self.hp = hp\n        self.max_hp = mx\n    def heal(self, n):\n        before = self.hp\n        self.hp = min(self.max_hp, self.hp + n)\n        return self.hp - before\n\nteam = [R(100, 100), R(70, 100)]\n\ntotal = 0\nfor m in team:\n    m.heal(30)\n    total = total + 30\n\nprint(total)",
+    "expect_contains": "30",
+    "nudge": "把 `total = total + 30` 改成累加 `m.heal(30)` 的**返回值**。",
+    "explain": "**要累加实际发生的量，不是你请求的量** —— 满血的那个其实一点都没回 ✨"
+  },
+  {
+    "id": "d58-b2",
+    "type": "fixbug",
+    "title": "空队伍求平均崩了",
+    "question": "这段对空队伍报了 ZeroDivisionError。修好它，让它输出 0。",
+    "code": "class T:\n    def __init__(self):\n        self.members = []\n    def avg(self):\n        total = sum(m for m in self.members)\n        return total / len(self.members)\n\nprint(T().avg())",
+    "expect_contains": "0",
+    "nudge": "方法开头加 `if len(self.members) == 0: return 0`。",
+    "explain": "**空集合是每个统计方法都要单独处理的边界** —— 从 Day 41 到今天，这个坑反复出现 ✨"
+  },
+  {
+    "id": "d58-e1",
+    "type": "fill",
+    "title": "回响 · Day 55 的 max(key=...)",
+    "echo": 55,
+    "question": "找出攻击力最高的成员（应输出「凛」）。",
+    "code": "class R:\n    def __init__(self, name, atk):\n        self.name = name\n        self.atk = atk\n\nmembers = [R(\"樱\", 88), R(\"凛\", 110)]\n\nbest = ___\nprint(best.name)",
+    "expect_contains": "凛",
+    "nudge": "`max(members, key=lambda m: m.atk)`",
+    "explain": "**对象列表和字典列表，处理方式完全一样** —— 只是 `m[\"atk\"]` 变成了 `m.atk` ✨"
+  }
+]

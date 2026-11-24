@@ -1,0 +1,21 @@
+{
+  "day": 45,
+  "title": "防呆输入",
+  "hook": "让程序在用户乱输时也不崩 —— try / except 登场",
+  "stage": 5,
+  "concepts": ["try", "except", "异常类型"],
+  "estimated_minutes": 40,
+  "needs_stdin": true,
+  "uses_turtle": false,
+  "uses_files": false,
+  "next_teaser": "明天学会主动抛错，把校验逻辑做得更专业 🚨",
+  "challenge": {
+    "title": "重试三次",
+    "desc": "输入错误时允许重试，最多 3 次，用完还不对就用默认值继续。"
+  },
+  "cheatsheet": [
+    { "name": "try / except", "desc": "试着跑，出错就走 except", "code": "try:\n    n = int(s)\nexcept ValueError:\n    n = 0" },
+    { "name": "指定异常类型", "desc": "只接住你预期的那种", "code": "except ZeroDivisionError:" },
+    { "name": "else / finally", "desc": "没出错走 else，最后一定走 finally", "code": "try: ...\nexcept: ...\nelse: ...\nfinally: ..." }
+  ]
+}

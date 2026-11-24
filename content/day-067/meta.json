@@ -1,0 +1,22 @@
+{
+  "day": 67,
+  "title": "科赫雪花",
+  "hook": "一条直线，重复四次就变成了雪花 —— 分形的魔法",
+  "stage": 7,
+  "concepts": ["递归进阶", "分形", "几何"],
+  "estimated_minutes": 45,
+  "needs_stdin": false,
+  "uses_turtle": true,
+  "uses_files": false,
+  "uses_plot": false,
+  "next_teaser": "明天做文字版五子棋 —— 二维列表登场 ⚫️⚪️",
+  "challenge": {
+    "title": "谢尔宾斯基三角",
+    "desc": "另一个经典分形：一个三角形分成三个小三角，递归下去。提示：画一个三角形 + 三次递归。"
+  },
+  "cheatsheet": [
+    { "name": "科赫曲线", "desc": "一段线拆成四段", "code": "前进 / 左转60 / 前进 / 右转120 / 前进 / 左转60 / 前进" },
+    { "name": "递归出口", "desc": "深度归零就画直线", "code": "if depth == 0:\n    turtle.forward(length)\n    return" },
+    { "name": "每段变短", "desc": "分成三份", "code": "koch(length / 3, depth - 1)" }
+  ]
+}

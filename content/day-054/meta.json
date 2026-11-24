@@ -1,0 +1,14 @@
+{
+  "day": 54,
+  "title": "带存档的冒险",
+  "hook": "第五章最终关 —— 关掉浏览器，明天回来接着玩",
+  "stage": 5,
+  "concepts": ["综合复习", "存档读档", "状态机"],
+  "estimated_minutes": 50,
+  "needs_stdin": true,
+  "uses_turtle": false,
+  "uses_files": true,
+  "review": true,
+  "next_teaser": "第五章通关！第六章开始造你自己的「类型」—— 面向对象登场 🏗",
+  "cheatsheet": []
+}

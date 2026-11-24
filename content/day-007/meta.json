@@ -1,0 +1,13 @@
+{
+  "day": 7,
+  "title": "RPG 开场白系统",
+  "hook": "复习作品日 —— 把前六天全串起来，做一个完整的游戏开场",
+  "stage": 1,
+  "concepts": ["综合复习", "input", "f-string", "排版"],
+  "estimated_minutes": 45,
+  "needs_stdin": true,
+  "uses_turtle": false,
+  "review": true,
+  "next_teaser": "明天解锁画笔 —— 小海龟要出场了，我们来画一颗魔法星星 🌟",
+  "cheatsheet": []
+}

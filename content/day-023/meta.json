@@ -1,0 +1,21 @@
+{
+  "day": 23,
+  "title": "队伍名单",
+  "hook": "一个变量装一堆东西 —— 列表登场",
+  "stage": 3,
+  "concepts": ["列表", "索引", "len"],
+  "estimated_minutes": 40,
+  "needs_stdin": false,
+  "uses_turtle": false,
+  "next_teaser": "明天做背包系统 —— 学会往列表里加东西、扔东西 🎒",
+  "challenge": {
+    "title": "随机点名",
+    "desc": "用 random.choice 从队伍里随机抽一个人当队长，再用 random.randint 抽一个位置。"
+  },
+  "cheatsheet": [
+    { "name": "列表", "desc": "方括号加逗号，装一串东西", "code": "team = [\"樱\", \"琉璃\", \"灯\"]" },
+    { "name": "索引", "desc": "从 0 开始数", "code": "team[0]   # 第一个" },
+    { "name": "负索引", "desc": "-1 是最后一个", "code": "team[-1]" },
+    { "name": "len()", "desc": "有几个成员", "code": "len(team)" }
+  ]
+}

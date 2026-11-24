@@ -1,0 +1,21 @@
+{
+  "day": 40,
+  "title": "血量陷阱",
+  "hook": "为什么函数里改了，外面却没变？",
+  "stage": 4,
+  "concepts": ["作用域", "局部变量", "可变对象"],
+  "estimated_minutes": 40,
+  "needs_stdin": false,
+  "uses_turtle": false,
+  "next_teaser": "明天把这些零件组成一个完整的队伍管理函数库 🧰",
+  "challenge": {
+    "title": "只读的副本",
+    "desc": "写一个 snapshot(team) 返回队伍的「快照」副本，之后改原队伍不影响快照。提示：用切片 [:]。"
+  },
+  "cheatsheet": [
+    { "name": "局部变量", "desc": "函数里造的，出去就没了", "code": "def f():\n    x = 1  # 只在函数内存在" },
+    { "name": "改不动外面", "desc": "数字/文字改了不影响外面", "code": "hp = hp - 10  # 外面的 hp 没变" },
+    { "name": "列表字典能改动", "desc": "改内容会影响外面", "code": "team.append(x)  # 外面真的变了" },
+    { "name": "最佳做法", "desc": "用 return 交回来", "code": "return hp - 10" }
+  ]
+}

@@ -1,0 +1,63 @@
+[
+  {
+    "id": "d69-p1",
+    "type": "predict",
+    "title": "savefig 和 show 的顺序",
+    "question": "先 show 再 savefig 会存出什么？",
+    "code": "# plt.show()\n# plt.savefig(\"x.png\")",
+    "options": ["正常的图", "一张白图", "报错"],
+    "answer": 1,
+    "explain": "`plt.show()` 之后当前图就被清空了。**savefig 必须写在 show 之前。**"
+  },
+  {
+    "id": "d69-p2",
+    "type": "predict",
+    "title": "为什么 build_report 要 return",
+    "question": "如果它自己 print，还能写进文件吗？",
+    "code": "# 方案 A: def build_report(): print(...)\n# 方案 B: def build_report(): return \"...\"",
+    "options": ["都能", "只有 B 能", "只有 A 能"],
+    "answer": 1,
+    "explain": "**返回字符串才能同时打印和写文件**。这就是 Day 37 那句「print 是说给人听，return 是交给程序」的实战意义。"
+  },
+  {
+    "id": "d69-p3",
+    "type": "predict",
+    "title": "总数要不要算没完成的",
+    "question": "第 1 章有 10 天，完成了 3 天。进度条应该显示多少？",
+    "code": "# bar(3, ?, 10)",
+    "options": ["bar(3, 3)，100%", "bar(3, 10)，30%", "看情况"],
+    "answer": 1,
+    "explain": "**分母是这一章的总天数**，不是已完成数。只用完成数当分母的话，永远显示 100% —— 那就没意义了。"
+  },
+  {
+    "id": "d69-b1",
+    "type": "fixbug",
+    "title": "进度条超出宽度",
+    "question": "value 比 total 还大时，条会画得超长。修好它，让它输出 10。",
+    "code": "def bar(value, total, width=10):\n    filled = int(value / total * width)\n    return \"█\" * filled\n\nprint(len(bar(20, 10)))",
+    "expect_contains": "10",
+    "nudge": "用 `filled = max(0, min(filled, width))` 夹一下。",
+    "explain": "**任何要画成条的东西都要夹取** —— 数据里出现意外值时才不会把界面撑爆（Day 57 的老规矩）✨"
+  },
+  {
+    "id": "d69-b2",
+    "type": "fixbug",
+    "title": "报告拼接效率低",
+    "question": "这段用 += 一路拼字符串。改成 list + join，让它输出三行。",
+    "code": "text = \"\"\ntext += \"第一行\n\"\ntext += \"第二行\n\"\ntext += \"第三行\"\n\nprint(len(text.splitlines()))",
+    "expect_contains": "3",
+    "nudge": "`lines = []` 一路 `append`，最后 `\"\n\".join(lines)`。",
+    "explain": "字符串是不可变的，每次 `+=` 都在造一个新字符串。**先收集进列表、最后 join 一次**，又快又好读 ✨"
+  },
+  {
+    "id": "d69-e1",
+    "type": "fill",
+    "title": "回响 · Day 29 的 get 默认值",
+    "echo": 29,
+    "question": "分章累加时，第一次遇到某章要从 0 开始。补全那一行（应输出 (1, 1)）。",
+    "code": "result = {}\nstage = 1\n\ndone, total = ___\ntotal += 1\ndone += 1\nresult[stage] = (done, total)\n\nprint(result[1])",
+    "expect_contains": "(1, 1)",
+    "nudge": "`result.get(stage, (0, 0))`",
+    "explain": "`.get(键, 默认值)` 让「第一次」和「已经有了」用同一行代码处理 —— 分组累加的标准写法 ✨"
+  }
+]

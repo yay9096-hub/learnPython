@@ -1,0 +1,20 @@
+{
+  "day": 19,
+  "title": "星空生成器",
+  "hook": "循环 + 随机 + 画笔 —— 每次运行都是一片全新的夜空",
+  "stage": 2,
+  "concepts": ["循环+随机", "随机坐标", "随机颜色"],
+  "estimated_minutes": 40,
+  "needs_stdin": false,
+  "uses_turtle": true,
+  "next_teaser": "明天做回合制战斗模拟 —— 两个角色自动打到一方倒下 ⚔️",
+  "challenge": {
+    "title": "流星雨",
+    "desc": "让几颗星星拖出一条尾巴（画一条短斜线），角度随机。"
+  },
+  "cheatsheet": [
+    { "name": "随机坐标", "desc": "在画布范围内随便挑一个点", "code": "x = random.randint(-250, 250)" },
+    { "name": "随机颜色", "desc": "RGB 三个随机数", "code": "t.pencolor(r, g, b)" },
+    { "name": "随机大小", "desc": "让画面有层次", "code": "t.dot(random.randint(2, 10))" }
+  ]
+}

@@ -1,0 +1,63 @@
+[
+  {
+    "id": "d51-p1",
+    "type": "predict",
+    "title": "两个日期相减得到什么",
+    "question": "date 减 date 的结果是什么类型？",
+    "code": "from datetime import date\na = date(2026, 9, 2)\nb = date(2026, 9, 10)\nprint(type(b - a))",
+    "options": ["<class 'int'>", "<class 'datetime.timedelta'>", "<class 'datetime.date'>"],
+    "answer": 1,
+    "explain": "相减得到 `timedelta`（一段时间）。要拿天数得再取 `.days`，也就是 `(b - a).days`。"
+  },
+  {
+    "id": "d51-p2",
+    "type": "predict",
+    "title": "日期文字排序对不对",
+    "question": "按字符串直接排 YYYY-MM-DD 格式的日期，顺序对吗？",
+    "code": "days = [\"2026-09-10\", \"2026-09-02\"]\nprint(sorted(days)[0])",
+    "options": ["2026-09-02", "2026-09-10", "顺序不确定"],
+    "answer": 0,
+    "explain": "**`YYYY-MM-DD` 格式按文字排序，正好就是按时间排序** —— 因为年在最前、位数固定。这也是它成为国际标准的原因。"
+  },
+  {
+    "id": "d51-p3",
+    "type": "predict",
+    "title": "strftime 还是 strptime",
+    "question": "把日期变成好看的文字，用哪个？",
+    "code": "from datetime import date\nd = date(2026, 9, 2)\n# A: d.strftime(\"%Y年%m月%d日\")\n# B: d.strptime(\"%Y年%m月%d日\")",
+    "options": ["A", "B", "两个都行"],
+    "answer": 0,
+    "explain": "**`strftime` 是 format（日期 → 文字），`strptime` 是 parse（文字 → 日期）**。方向别搞反。"
+  },
+  {
+    "id": "d51-b1",
+    "type": "fixbug",
+    "title": "忘了去重",
+    "question": "同一天打了两次卡，最长连续算成了 2。修好它，让它输出 1。",
+    "code": "from datetime import date\n\nrecords = [\"2026-09-01\", \"2026-09-01\"]\ndays = sorted(date.fromisoformat(t) for t in records)\n\nlongest = 1\ncurrent = 1\nfor i in range(1, len(days)):\n    if (days[i] - days[i-1]).days == 1:\n        current += 1\n    else:\n        current = 1\n    longest = max(longest, current)\n\nprint(longest)",
+    "expect_contains": "1",
+    "nudge": "转日期之前先 `set(records)` 去重。",
+    "explain": "同一天的两条记录相差 0 天，虽然不会被算成连续，但列表里有两个相同日期本身就是脏数据。**统计前先去重**是好习惯 ✨"
+  },
+  {
+    "id": "d51-b2",
+    "type": "fixbug",
+    "title": "空列表算出了 1",
+    "question": "没有任何记录时应该是 0，但输出 1。修好它。",
+    "code": "def longest(days):\n    best = 1\n    cur = 1\n    for i in range(1, len(days)):\n        cur = cur + 1 if days[i] - days[i-1] == 1 else 1\n        best = max(best, cur)\n    return best\n\nprint(longest([]))",
+    "expect_contains": "0",
+    "nudge": "函数一开始加一句 `if len(days) == 0: return 0`。",
+    "explain": "**初始值 `best = 1` 假设了「至少有一天」**。空数据是每个统计函数都要单独处理的边界情况 ✨"
+  },
+  {
+    "id": "d51-e1",
+    "type": "fill",
+    "title": "回响 · Day 50 的 json",
+    "echo": 50,
+    "question": "日期对象不能直接存进 json。补全这一行，让它能存（输出应含今天的日期文字）。",
+    "code": "import json\nfrom datetime import date\n\nrecord = {\"date\": ___, \"minutes\": 40}\nprint(json.dumps(record, ensure_ascii=False))",
+    "expect_contains": "minutes",
+    "nudge": "`date.today().isoformat()` —— 转成 `\"2026-09-02\"` 这样的文字。",
+    "explain": "**json 只认字符串、数字、列表、字典**。日期存之前要 `.isoformat()`，读回来再 `fromisoformat()` 转回去 ✨"
+  }
+]

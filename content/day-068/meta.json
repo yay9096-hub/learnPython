@@ -1,0 +1,23 @@
+{
+  "day": 68,
+  "title": "文字版五子棋",
+  "hook": "二维列表登场 —— 做一个真能下的棋盘",
+  "stage": 7,
+  "concepts": ["二维列表", "坐标遍历", "胜负判定"],
+  "estimated_minutes": 55,
+  "needs_stdin": true,
+  "uses_turtle": false,
+  "uses_files": false,
+  "uses_plot": false,
+  "next_teaser": "明天做个人仪表盘 —— 把这 60 多天的一切汇成一页 📋",
+  "challenge": {
+    "title": "简单 AI",
+    "desc": "让电脑随机下一步，但优先堵住玩家已经连成 3 个的位置。"
+  },
+  "cheatsheet": [
+    { "name": "二维列表", "desc": "列表里装列表", "code": "board = [[\".\"] * 9 for _ in range(9)]" },
+    { "name": "取值", "desc": "先行后列", "code": "board[row][col]" },
+    { "name": "遍历", "desc": "两层循环", "code": "for r in range(9):\n    for c in range(9):" },
+    { "name": "四个方向", "desc": "横 竖 斜 反斜", "code": "[(0,1), (1,0), (1,1), (1,-1)]" }
+  ]
+}

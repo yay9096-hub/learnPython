@@ -1,0 +1,24 @@
+{
+  "day": 65,
+  "title": "我的学习曲线",
+  "hook": "这次的数据不是编的 —— 是你这 60 多天真实的学习记录",
+  "stage": 7,
+  "concepts": ["折线图", "饼图", "真实数据分析"],
+  "estimated_minutes": 50,
+  "needs_stdin": false,
+  "uses_turtle": false,
+  "uses_files": true,
+  "uses_plot": true,
+  "uses_my_data": true,
+  "next_teaser": "明天学正则 —— 从一大段文字里精准揪出想要的东西 🔍",
+  "challenge": {
+    "title": "预测未来",
+    "desc": "按目前的平均速度，算出照这个进度还有几天能学完 70 天，画一条虚线延伸出去。"
+  },
+  "cheatsheet": [
+    { "name": "折线图", "desc": "看趋势", "code": "plt.plot(x, y, marker=\"o\")" },
+    { "name": "饼图", "desc": "看构成", "code": "plt.pie(values, labels=names, autopct=\"%1.0f%%\")" },
+    { "name": "图例", "desc": "多条线要标清楚", "code": "plt.plot(x, y, label=\"用时\")\nplt.legend()" },
+    { "name": "累计", "desc": "一路加过去", "code": "total += x" }
+  ]
+}

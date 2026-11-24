@@ -1,0 +1,63 @@
+[
+  {
+    "id": "d50-p1",
+    "type": "predict",
+    "title": "读回来是什么类型",
+    "question": "存进去是字典，读出来是什么？",
+    "code": "import json\ndata = {\"level\": 12}\nwith open(\"s.json\", \"w\", encoding=\"utf-8\") as f:\n    json.dump(data, f)\nwith open(\"s.json\", encoding=\"utf-8\") as f:\n    back = json.load(f)\nprint(type(back[\"level\"]))",
+    "options": ["<class 'str'>", "<class 'int'>", "<class 'dict'>"],
+    "answer": 1,
+    "explain": "**json 会保留类型** —— 数字读回来还是数字。这正是它比自己拼字符串强的地方：一次 `int()` 转换都不用写。"
+  },
+  {
+    "id": "d50-p2",
+    "type": "predict",
+    "title": "不加 ensure_ascii",
+    "question": "不写 `ensure_ascii=False`，文件里的中文长什么样？",
+    "code": "import json\nprint(json.dumps({\"n\": \"樱\"}))",
+    "options": ["{\"n\": \"樱\"}", "{\"n\": \"(反斜杠)u6a31\"}", "报错"],
+    "answer": 1,
+    "explain": "默认会把非 ASCII 转成 `(反斜杠)uXXXX`。程序读得懂，但人打开文件一看全是天书。**中文必写 `ensure_ascii=False`。**"
+  },
+  {
+    "id": "d50-p3",
+    "type": "predict",
+    "title": "json 存不了什么",
+    "question": "集合能直接存进 json 吗？",
+    "code": "import json\nprint(json.dumps({\"s\": {1, 2}}))",
+    "options": ["正常输出", "报 TypeError", "输出 null"],
+    "answer": 1,
+    "explain": "json 只认字典、列表、字符串、数字、True/False/None。**集合存不了**，要先 `list(...)` 转成列表。"
+  },
+  {
+    "id": "d50-b1",
+    "type": "fixbug",
+    "title": "道具被覆盖了",
+    "question": "药水加 3 再加 2 应该是 5，但输出 2。修好它。",
+    "code": "items = {}\n\ndef add(item, count):\n    items[item] = count\n\nadd(\"药水\", 3)\nadd(\"药水\", 2)\nprint(items[\"药水\"])",
+    "expect_contains": "5",
+    "nudge": "先 `if item in items:` 判断，已有就 `items[item] += count`。",
+    "explain": "字典赋值是**覆盖**不是累加。「已有就加、没有就设」是背包、计数器的标准写法 ✨"
+  },
+  {
+    "id": "d50-b2",
+    "type": "fixbug",
+    "title": "只接住了一种错误",
+    "question": "存档文件损坏时这段还是崩。加一个 except，让它输出 None。",
+    "code": "import json\n\nwith open(\"bad.json\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"坏掉的内容{{{\")\n\ndef load(fn):\n    try:\n        with open(fn, encoding=\"utf-8\") as f:\n            return json.load(f)\n    except FileNotFoundError:\n        return None\n\nprint(load(\"bad.json\"))",
+    "expect_contains": "None",
+    "nudge": "再加一个 `except json.JSONDecodeError: return None`。",
+    "explain": "**文件存在但内容坏了**是另一种错。存档被手动改过、写到一半断电，都会遇到 ✨"
+  },
+  {
+    "id": "d50-e1",
+    "type": "fill",
+    "title": "回响 · Day 31 的嵌套结构",
+    "echo": 31,
+    "question": "从读回来的存档里取出第二个队员的名字（应输出「琉璃」）。",
+    "code": "import json\ndata = {\"team\": [{\"name\": \"樱\"}, {\"name\": \"琉璃\"}]}\nwith open(\"s.json\", \"w\", encoding=\"utf-8\") as f:\n    json.dump(data, f, ensure_ascii=False)\nwith open(\"s.json\", encoding=\"utf-8\") as f:\n    back = json.load(f)\n\nprint(___)",
+    "expect_contains": "琉璃",
+    "nudge": "`back[\"team\"][1][\"name\"]` —— 从左往右一层层剥。",
+    "explain": "**列表套字典存进 json 再读回来，结构一模一样** —— 取值方式跟 Day 31 完全相同 ✨"
+  }
+]

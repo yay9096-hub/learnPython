@@ -1,0 +1,14 @@
+{
+  "day": 63,
+  "title": "宠物养成",
+  "hook": "第六章最终关 —— 一只会饿、会困、会长大的电子宠物",
+  "stage": 6,
+  "concepts": ["综合复习", "状态机", "类 + 存档"],
+  "estimated_minutes": 55,
+  "needs_stdin": true,
+  "uses_turtle": false,
+  "uses_files": true,
+  "review": true,
+  "next_teaser": "第六章通关！第七章开始 —— 让你的数据变成真正的图表 📊",
+  "cheatsheet": []
+}

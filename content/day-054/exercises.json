@@ -1,0 +1,63 @@
+[
+  {
+    "id": "d54-p1",
+    "type": "predict",
+    "title": "复习：get 和方括号",
+    "question": "场景里没有 item 这个键，哪种写法不会崩？",
+    "code": "scene = {\"text\": \"森林\"}\n# A: scene[\"item\"]\n# B: scene.get(\"item\")",
+    "options": ["A", "B", "两个都行"],
+    "answer": 1,
+    "explain": "`.get()` 取不到返回 `None`，**不报错**。取「可能不存在的字段」永远用它。"
+  },
+  {
+    "id": "d54-p2",
+    "type": "predict",
+    "title": "复习：continue 跳过了什么",
+    "question": "走错路时用 continue，后面的存档还会执行吗？",
+    "code": "n = 0\nfor x in [1, 2]:\n    if x == 1:\n        continue\n    n += 1\nprint(n)",
+    "options": ["2", "1", "0"],
+    "answer": 1,
+    "explain": "`continue` 直接跳到下一轮，**后面的代码全部跳过**。所以输错选项时既不存档也不记步数。"
+  },
+  {
+    "id": "d54-p3",
+    "type": "predict",
+    "title": "复习：字典的 keys",
+    "question": "`\" / \".join(d.keys())` 会得到什么？",
+    "code": "d = {\"进去\": \"森林\", \"回头\": \"村庄\"}\nprint(\" / \".join(d.keys()))",
+    "options": ["森林 / 村庄", "进去 / 回头", "报错"],
+    "answer": 1,
+    "explain": "`.keys()` 拿到的是**键**，也就是玩家要输入的那几个词。值是目的地，玩家看不到。"
+  },
+  {
+    "id": "d54-b1",
+    "type": "fixbug",
+    "title": "道具被重复捡了",
+    "question": "来回走了两趟，同一件道具捡了两次。修好它，让它输出 1。",
+    "code": "items = []\n\ndef pick(item):\n    items.append(item)\n\npick(\"月光石\")\npick(\"月光石\")\n\nprint(items.count(\"月光石\"))",
+    "expect_contains": "1",
+    "nudge": "加之前先 `if item not in items:` 判断。",
+    "explain": "**「加进列表之前先检查在不在」** 这个套路，从 Day 28 去重用到今天捡道具，反复出现 ✨"
+  },
+  {
+    "id": "d54-b2",
+    "type": "fixbug",
+    "title": "走错路也扣了步数",
+    "question": "输错选项不该消耗步数。调整顺序修好它，让它输出 0。",
+    "code": "options = {\"进去\": \"森林\"}\nsteps = 0\nchoice = \"飞过去\"\n\ntry:\n    steps = steps + 1\n    if choice not in options:\n        raise ValueError(\"没有这条路\")\nexcept ValueError:\n    pass\n\nprint(steps)",
+    "expect_contains": "0",
+    "nudge": "把 `steps = steps + 1` 挪到 `raise` 那个 if **后面**。",
+    "explain": "**校验永远放在改状态之前** —— 这跟 Day 44 猜数字「非法输入不扣次数」是同一条原则 ✨"
+  },
+  {
+    "id": "d54-e1",
+    "type": "fill",
+    "title": "回响 · Day 50 的存档",
+    "echo": 50,
+    "question": "补全存档函数的两个必要参数。",
+    "code": "import json\nsave = {\"scene\": \"小溪\", \"items\": [\"月光石\"]}\n\nwith open(\"s.json\", \"w\", encoding=\"utf-8\") as f:\n    json.dump(save, f, ___)\n\nwith open(\"s.json\", encoding=\"utf-8\") as f:\n    print(f.read())",
+    "expect_contains": "月光石",
+    "nudge": "`ensure_ascii=False, indent=2`",
+    "explain": "少了 `ensure_ascii=False`，存档里的中文场景名会变成一串转义码 —— 玩家想手动改存档都改不了 😄"
+  }
+]

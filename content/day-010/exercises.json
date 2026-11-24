@@ -1,0 +1,42 @@
+[
+  {
+    "id": "d10-p1",
+    "type": "predict",
+    "title": "randint 包含端点吗？",
+    "question": "`random.randint(1, 3)` 可能抽到哪些数？",
+    "code": "import random\nprint(random.randint(1, 3))",
+    "options": ["只有 1 和 2", "1、2、3 都有可能", "只有 2"],
+    "answer": 1,
+    "explain": "`randint(a, b)` **两端都包含**。这一点和后面要学的 `range()` 不一样（那个不包含右端），很容易记混。"
+  },
+  {
+    "id": "d10-p2",
+    "type": "predict",
+    "title": "怎么让 SSR 稀有",
+    "question": "这样写，抽中 SSR 的概率是多少？",
+    "code": "import random\nprint(random.choice([\"SSR\", \"SR\", \"SR\", \"R\"]))",
+    "options": ["1/2", "1/3", "1/4"],
+    "answer": 2,
+    "explain": "清单里一共 4 个，SSR 只占 1 个，所以是 1/4。**想调概率，就多放几份常见的** —— 土办法，但很好用。"
+  },
+  {
+    "id": "d10-b1",
+    "type": "fixbug",
+    "title": "忘了搬工具箱",
+    "question": "这段报了 NameError，说不认识 random。修好它。",
+    "code": "n = random.randint(1, 10)\nprint(f\"抽到了 {n}\")",
+    "expect_contains": "抽到了",
+    "nudge": "工具箱要先搬进来才能用。第一行该写什么？",
+    "explain": "加上 `import random` 就好了。**用别人的工具箱之前一定要先 import**，这是 Python 的铁律。"
+  },
+  {
+    "id": "d10-f1",
+    "type": "fill",
+    "title": "随机组一个称号",
+    "question": "用两次 `random.choice` 和一个 f-string，随机拼出一个称号，比如「暗之剑圣」。",
+    "code": "import random\n\n# 前缀备选：火 水 风 雷 光 暗\n# 后缀备选：剑圣 贤者 魔导士 咏唱者\n\n# 在下面写你的代码，最后 print 出来\n",
+    "expect_contains": "之",
+    "nudge": "`prefix = random.choice([...])`，`suffix = random.choice([...])`，然后 `print(f\"{prefix}之{suffix}\")`",
+    "explain": "两个 4 选 1 组合起来，就有 16 种可能。**随机 + 组合**是所有随机生成器的基本原理 —— 抽卡、地牢生成、名字生成器，全是这个套路 ✨"
+  }
+]

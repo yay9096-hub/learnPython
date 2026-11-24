@@ -1,0 +1,89 @@
+[
+  {
+    "id": "d66-p1",
+    "type": "predict",
+    "title": "+ 和单个的区别",
+    "question": "`re.findall(r\"\\d\", \"有 42 个\")` 返回什么？",
+    "code": "import re\nprint(re.findall(r\"\\d\", \"有 42 个\"))",
+    "options": [
+      "['42']",
+      "['4', '2']",
+      "[42]"
+    ],
+    "answer": 1,
+    "explain": "`\\d` 只匹配**一个**数字，所以 4 和 2 被拆开了。想要连着的整数得写 `\\d+`。"
+  },
+  {
+    "id": "d66-p2",
+    "type": "predict",
+    "title": "findall 返回什么类型",
+    "question": "抓出来的数字能直接做加法吗？",
+    "code": "import re\nnums = re.findall(r\"\\d+\", \"3 和 4\")\nprint(nums[0] + nums[1])",
+    "options": [
+      "7",
+      "34",
+      "报错"
+    ],
+    "answer": 1,
+    "explain": "`re.findall` 返回的**全是字符串**，`\"3\" + \"4\"` 是拼接。要算数必须先 `int()` —— 又是 Day 4 那个坑 😄"
+  },
+  {
+    "id": "d66-p3",
+    "type": "predict",
+    "title": "括号的作用",
+    "question": "加了一个括号，findall 返回什么？",
+    "code": "import re\nprint(re.findall(r\"Day (\\d+)\", \"Day 65 和 Day 66\"))",
+    "options": [
+      "['Day 65', 'Day 66']",
+      "['65', '66']",
+      "['Day', 'Day']"
+    ],
+    "answer": 1,
+    "explain": "**括号标记「我只要这部分」**。有括号时 `findall` 只返回括号里匹配到的内容。"
+  },
+  {
+    "id": "d66-p4",
+    "type": "predict",
+    "title": "问号是什么意思",
+    "question": "`https?://` 能匹配 http:// 吗？",
+    "code": "import re\nprint(len(re.findall(r\"https?://\", \"http:// 和 https://\")))",
+    "options": [
+      "1",
+      "2",
+      "0"
+    ],
+    "answer": 1,
+    "explain": "`?` 表示**前面那个字符可有可无**，所以 `s?` 让 http 和 https 都能匹配。两个都抓到了。"
+  },
+  {
+    "id": "d66-b1",
+    "type": "fixbug",
+    "title": "search 找不到就崩",
+    "question": "文本里没有日期，这段报了 AttributeError。加个判断，让它输出「没有日期」。",
+    "code": "import re\n\ntext = \"今天没写日期\"\nm = re.search(r\"\\d{4}-\\d{2}-\\d{2}\", text)\nprint(m.group(0))",
+    "expect_contains": "没有日期",
+    "nudge": "`if m:` 才 `.group(0)`，`else` 里打印「没有日期」。",
+    "explain": "`re.search` 找不到返回 `None`，而 `None` 没有 `.group()`。**用之前必须判断** ✨"
+  },
+  {
+    "id": "d66-b2",
+    "type": "fixbug",
+    "title": "替换字符串忘了加 r",
+    "question": "这段想输出 138****5678，但结果不对。修好它。",
+    "code": "import re\n\ntext = \"13812345678\"\nprint(re.sub(r\"(\\d{3})\\d{4}(\\d{4})\", \"\\1****\\2\", text))",
+    "expect_contains": "138****5678",
+    "nudge": "替换字符串前面也要加 `r`，写成 r\"...\" 的形式。",
+    "explain": "不加 `r` 的话 `\\1` 会被 Python 当成转义字符（八进制），根本到不了正则那一层。**正则相关的字符串一律加 r** ✨"
+  },
+  {
+    "id": "d66-e1",
+    "type": "fill",
+    "title": "回响 · Day 33 的解包",
+    "echo": 33,
+    "question": "遍历分组结果并打印（应输出「樱 88」）。",
+    "code": "import re\n\ntext = \"樱 88 分，琉璃 95 分\"\npairs = re.findall(r\"(\\w+) (\\d+) 分\", text)\n\nfor ___ in pairs:\n    print(name, score)\n    break",
+    "expect_contains": "樱 88",
+    "nudge": "`for name, score in pairs:` —— 每一项是个两元素元组。",
+    "explain": "**多个括号 → 元组的列表 → 直接解包遍历**，这套组合在解析日志、配置、表格时天天用 ✨"
+  }
+]

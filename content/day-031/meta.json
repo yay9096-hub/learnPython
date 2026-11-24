@@ -1,0 +1,20 @@
+{
+  "day": 31,
+  "title": "队伍数据库",
+  "hook": "列表里装字典 —— 真实世界的数据长这样",
+  "stage": 3,
+  "concepts": ["嵌套结构", "列表套字典", "多字段排序"],
+  "estimated_minutes": 45,
+  "needs_stdin": true,
+  "uses_turtle": false,
+  "next_teaser": "明天学集合 set —— 一行代码搞定去重和「共同好友」🔗",
+  "challenge": {
+    "title": "多条件筛选",
+    "desc": "让玩家同时按属性和战力下限筛选，比如「火属性且战力 800 以上」。"
+  },
+  "cheatsheet": [
+    { "name": "列表套字典", "desc": "最常见的数据结构", "code": "team = [{\"name\": \"樱\"}, {\"name\": \"灯\"}]" },
+    { "name": "逐层取值", "desc": "一层一层剥", "code": "team[0][\"name\"]" },
+    { "name": "遍历", "desc": "每一项都是字典", "code": "for m in team:\n    print(m[\"name\"])" }
+  ]
+}

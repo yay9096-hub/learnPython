@@ -1,0 +1,21 @@
+{
+  "day": 13,
+  "title": "入学资格审查",
+  "hook": "把好几个条件拼在一起：年龄够 而且 魔力够 而且 没有黑历史",
+  "stage": 2,
+  "concepts": ["and", "or", "not", "in"],
+  "estimated_minutes": 40,
+  "needs_stdin": true,
+  "uses_turtle": false,
+  "next_teaser": "明天做猜数字游戏 —— 程序会一直问到你猜对为止 🎯",
+  "challenge": {
+    "title": "特招通道",
+    "desc": "加一条规则：如果魔力超过 200，年龄不够也能破格录取。"
+  },
+  "cheatsheet": [
+    { "name": "and", "desc": "两个条件都要成立", "code": "if age >= 15 and mp >= 50:" },
+    { "name": "or", "desc": "任意一个成立就行", "code": "if vip or score >= 90:" },
+    { "name": "not", "desc": "反过来", "code": "if not banned:" },
+    { "name": "in", "desc": "在不在这一串里面", "code": "if element in [\"火\", \"水\", \"风\"]:" }
+  ]
+}

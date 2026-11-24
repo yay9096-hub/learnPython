@@ -1,0 +1,65 @@
+[
+  {
+    "id": "d16-p1",
+    "type": "predict",
+    "title": "正六边形转几度",
+    "question": "画一个正六边形，每次要转多少度？",
+    "code": "# 转的角度 = 360 ÷ 边数\n# 六边形有 6 条边，所以是 ?",
+    "options": [
+      "30 度",
+      "60 度",
+      "120 度"
+    ],
+    "answer": 1,
+    "explain": "360 ÷ 6 = 60。这个公式对**所有正多边形**都成立：三角形 120、正方形 90、六边形 60、十二边形 30。"
+  },
+  {
+    "id": "d16-p2",
+    "type": "predict",
+    "title": "取余在轮流取什么",
+    "question": "i 从 0 数到 5，`i % 4` 依次是什么？",
+    "code": "for i in range(6):\n    print(i % 4)",
+    "options": [
+      "0 1 2 3 4 5",
+      "0 1 2 3 0 1",
+      "0 0 0 0 0 0"
+    ],
+    "answer": 1,
+    "explain": "余数永远在 0~3 之间循环。所以 `colors[i % 4]` 就能让四种颜色**轮流**出现，i 再大也不会越界。"
+  },
+  {
+    "id": "d16-p3",
+    "type": "predict",
+    "title": "嵌套循环转几圈",
+    "question": "这段一共会打印几行？",
+    "code": "for i in range(3):\n    for j in range(4):\n        print(\"★\")",
+    "options": [
+      "7 行",
+      "12 行",
+      "3 行"
+    ],
+    "answer": 1,
+    "explain": "外层每转 1 圈，内层要转完整的 4 圈。所以是 **3 × 4 = 12**。嵌套循环的次数是**相乘**的。"
+  },
+  {
+    "id": "d16-b1",
+    "type": "fixbug",
+    "title": "缩进错了一层",
+    "question": "这段想画 3 个正方形（每个 4 条边，共 12 笔）。但转弯的位置错了，只画出 3 笔就跑偏了。把缩进修好。",
+    "code": "steps = 0\n\nfor i in range(3):\n    for j in range(4):\n        steps += 1\n    turn = 1\n\nprint(f\"一共走了 {steps} 笔\")",
+    "expect_contains": "一共走了 12 笔",
+    "nudge": "内层循环 `range(4)` 每转一圈算一笔，外层 3 圈 —— 数一数一共该是几笔？",
+    "explain": "嵌套循环的总次数是**相乘**的：3 × 4 = 12。想清楚「哪句话该在哪一层」，是写嵌套循环唯一的难点。"
+  },
+  {
+    "id": "d16-e1",
+    "type": "fill",
+    "title": "回响 · Day 15 的 range",
+    "echo": 15,
+    "question": "补全循环，画一个正八边形（用变量算角度，别写死 45）。",
+    "code": "import turtle\nturtle.speed(0)\n\nsides = 8\n\n# 补全下面两行\nfor i in range(___):\n    turtle.forward(60)\n    turtle.right(___)\n\nprint(\"画完了\")",
+    "expect_contains": "画完了",
+    "nudge": "次数就是 `sides`，角度是 `360 / sides`。",
+    "explain": "把边数抽成变量之后，改一个数字就换一个图形 —— 这叫**参数化**，是写代码最重要的习惯之一 ✨"
+  }
+]

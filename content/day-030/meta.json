@@ -1,0 +1,21 @@
+{
+  "day": 30,
+  "title": "图鉴系统",
+  "hook": "遍历整本字典 —— keys / values / items 三兄弟",
+  "stage": 3,
+  "concepts": ["items", "keys", "values", "字典遍历"],
+  "estimated_minutes": 40,
+  "needs_stdin": true,
+  "uses_turtle": false,
+  "next_teaser": "明天把字典塞进列表 —— 做一个真正的队伍数据库 🗃",
+  "challenge": {
+    "title": "图鉴排序",
+    "desc": "把图鉴按战力从高到低显示。提示：先把 items() 转成列表再排（Day 27 的打包排序）。"
+  },
+  "cheatsheet": [
+    { "name": ".items()", "desc": "同时拿键和值", "code": "for k, v in d.items():" },
+    { "name": ".keys()", "desc": "只要键", "code": "for k in d.keys():" },
+    { "name": ".values()", "desc": "只要值", "code": "sum(d.values())" },
+    { "name": "直接遍历", "desc": "for x in d 拿到的是键", "code": "for k in d:" }
+  ]
+}

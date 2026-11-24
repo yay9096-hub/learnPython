@@ -1,0 +1,63 @@
+[
+  {
+    "id": "d44-p1",
+    "type": "predict",
+    "title": "复习：continue 跳过什么",
+    "question": "这段会打印几次「计数」？",
+    "code": "n = 0\nfor x in [\"a\", \"1\", \"2\"]:\n    if not x.isdigit():\n        continue\n    n += 1\n    print(\"计数\", n)",
+    "options": ["3 次", "2 次", "1 次"],
+    "answer": 1,
+    "explain": "`\"a\"` 被 `continue` 跳过了，`n += 1` 那行根本没执行。**这正是「非法输入不扣次数」的实现方式。**"
+  },
+  {
+    "id": "d44-p2",
+    "type": "predict",
+    "title": "复习：字典代替一串 if",
+    "question": "这段返回什么？",
+    "code": "D = {\"简单\": (50, 8), \"普通\": (100, 7)}\n\ndef get(name):\n    if name in D:\n        return D[name]\n    return D[\"普通\"]\n\nprint(get(\"乱写的\"))",
+    "options": ["(50, 8)", "(100, 7)", "None"],
+    "answer": 1,
+    "explain": "不认识的名字走了兜底分支。**用字典存对应关系，比写五个 elif 好读也好扩展。**"
+  },
+  {
+    "id": "d44-p3",
+    "type": "predict",
+    "title": "复习：isdigit 判断",
+    "question": "`\"-5\".isdigit()` 返回什么？",
+    "code": "print(\"-5\".isdigit())",
+    "options": ["True", "False", "报错"],
+    "answer": 1,
+    "explain": "`isdigit()` 只认纯数字，负号会让它返回 False。这对我们正好 —— 猜数字本来也不该输负数 😉"
+  },
+  {
+    "id": "d44-b1",
+    "type": "fixbug",
+    "title": "次数扣错位置",
+    "question": "这段里非法输入也被扣了次数。调整顺序修好它，让它输出「用了 1 次」。",
+    "code": "used = 0\nfor text in [\"abc\", \"42\"]:\n    used = used + 1\n    if not text.isdigit():\n        continue\n\nprint(f\"用了 {used} 次\")",
+    "expect_contains": "用了 1 次",
+    "nudge": "把 `used = used + 1` 挪到 `continue` 那个 if **后面**。",
+    "explain": "**校验通过之后再扣次数**，顺序反了玩家就白白损失机会。这类「顺序决定行为」的 bug 特别隐蔽 ✨"
+  },
+  {
+    "id": "d44-b2",
+    "type": "fixbug",
+    "title": "忘了返回结果",
+    "question": "这段打印「没赢」，但明明赢了。修好它。",
+    "code": "def play():\n    won = True\n\nresult = play()\nif result:\n    print(\"赢了\")\nelse:\n    print(\"没赢\")",
+    "expect_contains": "赢了",
+    "nudge": "函数里算出了 `won`，但没有 `return won`。",
+    "explain": "**算了不返回等于白算** —— 从 Day 37 到今天，这个坑出现了第四次 😄"
+  },
+  {
+    "id": "d44-e1",
+    "type": "fill",
+    "title": "回响 · Day 39 的多返回值解包",
+    "echo": 39,
+    "question": "接住 get_difficulty 返回的两个值并打印（应该输出 100 7）。",
+    "code": "def get_difficulty(name):\n    return 100, 7\n\n___\nprint(high, chances)",
+    "expect_contains": "100 7",
+    "nudge": "`high, chances = get_difficulty(\"普通\")` —— 左边写两个变量。",
+    "explain": "返回多个 + 解包接住，是把「一组相关数据」在函数之间传递的最顺手方式 ✨"
+  }
+]

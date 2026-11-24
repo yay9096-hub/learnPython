@@ -1,0 +1,63 @@
+[
+  {
+    "id": "d33-p1",
+    "type": "predict",
+    "title": "元组能改吗",
+    "question": "这段会怎样？",
+    "code": "point = (100, 50)\npoint[0] = 999\nprint(point)",
+    "options": ["打印 (999, 50)", "报 TypeError", "打印 (100, 50)"],
+    "answer": 1,
+    "explain": "元组**建好就不能改**。这是它和列表唯一的实质区别。想改就得造一个新的。"
+  },
+  {
+    "id": "d33-p2",
+    "type": "predict",
+    "title": "解包个数要对上",
+    "question": "这段会怎样？",
+    "code": "point = (100, 50, 30)\nx, y = point\nprint(x, y)",
+    "options": ["打印 100 50", "报 ValueError", "打印 100 50 30"],
+    "answer": 1,
+    "explain": "左边 2 个变量、右边 3 个值，**对不上就报错**。解包时个数必须完全一致。"
+  },
+  {
+    "id": "d33-p3",
+    "type": "predict",
+    "title": "一行交换",
+    "question": "这段之后 a 和 b 分别是多少？",
+    "code": "a = 1\nb = 2\na, b = b, a\nprint(a, b)",
+    "options": ["1 2", "2 1", "2 2"],
+    "answer": 1,
+    "explain": "右边先打包成 `(2, 1)`，再解包给左边 —— 所以交换成功。别的语言要借临时变量，Python 一行搞定。"
+  },
+  {
+    "id": "d33-p4",
+    "type": "predict",
+    "title": "zip 长度不一样",
+    "question": "两个列表长度不同，zip 出来几对？",
+    "code": "a = [1, 2, 3, 4]\nb = [\"x\", \"y\"]\nprint(len(list(zip(a, b))))",
+    "options": ["4", "2", "报错"],
+    "answer": 1,
+    "explain": "`zip` 按**最短的**来，多出来的直接丢掉，不会报错。这一点有时候会悄悄吃掉数据，要留意。"
+  },
+  {
+    "id": "d33-b1",
+    "type": "fixbug",
+    "title": "忘了解包",
+    "question": "这段想打印 `x=0 y=0`，但打印出了元组。修好它。",
+    "code": "path = [(0, 0), (10, 20)]\n\nfor p in path:\n    print(f\"x={p} y={p}\")",
+    "expect_contains": "x=0 y=0",
+    "nudge": "把循环变量写成 `for x, y in path:`，每个元组就会被自动拆成两个。",
+    "explain": "边遍历边解包是最常见的写法。也可以写 `p[0]` 和 `p[1]`，但解包更好读 ✨"
+  },
+  {
+    "id": "d33-e1",
+    "type": "fill",
+    "title": "回响 · Day 25 的配对遍历",
+    "echo": 25,
+    "question": "用 zip 改写这段（原来用的是 range + 编号），输出「樱 340」。",
+    "code": "names = [\"樱\", \"琉璃\"]\nhps = [340, 280]\n\n# 原来的写法：\n# for i in range(len(names)):\n#     print(names[i], hps[i])\n\n# 用 zip 改写，写在下面：\n",
+    "expect_contains": "樱 340",
+    "nudge": "`for name, hp in zip(names, hps):` 然后缩进 `print(name, hp)`",
+    "explain": "`zip` 版不用管编号，也不会数错。**Day 25 的平行列表配对，从今天起都可以用 zip 写** ✨"
+  }
+]

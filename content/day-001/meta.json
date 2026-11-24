@@ -1,0 +1,16 @@
+{
+  "day": 1,
+  "title": "角色出场卡",
+  "hook": "第一行代码，让一个角色帅气登场",
+  "stage": 1,
+  "concepts": ["print", "字符串", "注释"],
+  "estimated_minutes": 40,
+  "needs_stdin": false,
+  "uses_turtle": false,
+  "next_teaser": "明天学会用「变量」记住角色的属性，出场卡就能自动生成啦 ✨",
+  "cheatsheet": [
+    { "name": "print()", "desc": "把括号里的东西显示出来", "code": "print(\"你好\")" },
+    { "name": "字符串", "desc": "用引号包起来的一段文字", "code": "\"我是派森酱\"" },
+    { "name": "#", "desc": "注释，写给人看的，Python 会跳过", "code": "# 这里是说明" }
+  ]
+}

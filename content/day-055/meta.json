@@ -1,0 +1,23 @@
+{
+  "day": 55,
+  "title": "你的第一个类",
+  "hook": "字典能装数据，但装不了「本事」—— 类可以",
+  "stage": 6,
+  "concepts": ["class", "__init__", "self"],
+  "estimated_minutes": 45,
+  "needs_stdin": false,
+  "uses_turtle": false,
+  "uses_files": false,
+  "next_teaser": "明天给角色装上技能 —— 会攻击、会治疗、会升级 ⚔️",
+  "challenge": {
+    "title": "属性成长",
+    "desc": "给 Role 加一个 level_up() 方法：等级 +1，HP 和 ATK 各涨 10%（用 round 取整）。"
+  },
+  "cheatsheet": [
+    { "name": "定义类", "desc": "首字母大写", "code": "class Role:" },
+    { "name": "__init__", "desc": "造对象时自动跑", "code": "def __init__(self, name):" },
+    { "name": "self", "desc": "指「这个对象自己」", "code": "self.name = name" },
+    { "name": "造一个", "desc": "类名加括号", "code": "r = Role(\"星野樱\")" },
+    { "name": "取属性", "desc": "点号", "code": "r.name" }
+  ]
+}

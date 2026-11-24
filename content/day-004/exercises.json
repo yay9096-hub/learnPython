@@ -1,0 +1,52 @@
+[
+  {
+    "id": "d4-p1",
+    "type": "predict",
+    "title": "input 拿回来的是什么？",
+    "question": "假设用户输入了 16，这段代码会打印什么？",
+    "code": "age = input(\"年龄：\")\nprint(type(age))",
+    "options": ["<class 'int'>", "<class 'str'>", "16"],
+    "answer": 1,
+    "explain": "**`input()` 拿回来的永远是文字（str）**，哪怕输入的看起来是数字。这是本节课最重要的一句话。"
+  },
+  {
+    "id": "d4-p2",
+    "type": "predict",
+    "title": "文字的加法",
+    "question": "用户输入 5，这段会打印什么？",
+    "code": "n = input(\"数字：\")\nprint(n + n)",
+    "options": ["10", "55", "会报错"],
+    "answer": 1,
+    "explain": "两边都是**文字**，`+` 就变成了「拼接」，把两个 `\"5\"` 粘成 `\"55\"`。想得到 10，得先 `int()`。"
+  },
+  {
+    "id": "d4-b1",
+    "type": "fixbug",
+    "title": "经典报错",
+    "question": "这段想算「明年几岁」，但报了 TypeError。修好它，让它输出 17。",
+    "code": "age = \"16\"\nprint(age + 1)",
+    "expect_contains": "17",
+    "nudge": "`age` 现在是文字。要让它能做加法，得先用 `int()` 转一下。",
+    "explain": "`int(age) + 1` 就对了。这个报错你以后还会遇到无数次 —— 看到 TypeError 提到 str 和 int，八成就是忘了转换。"
+  },
+  {
+    "id": "d4-b2",
+    "type": "fixbug",
+    "title": "int 挑食了",
+    "question": "这段想把身高转成数字，但报了 ValueError。想办法让它输出 1.62 附近的数。",
+    "code": "h = \"1.62\"\nprint(int(h))",
+    "expect_contains": "1",
+    "nudge": "`int()` 只吃「看起来是整数」的文字。小数得先交给 `float()`。",
+    "explain": "改成 `float(h)` 就能得到 1.62；如果确实想要整数，得写 `int(float(h))`，结果是 1。"
+  },
+  {
+    "id": "d4-f1",
+    "type": "fill",
+    "title": "问一句，答一句",
+    "question": "写两行代码：问「你最喜欢的角色是谁？」，然后打印「我也喜欢 XXX！」。",
+    "code": "# 第一行：用 input 问问题，存进 who\n\n# 第二行：用 f-string 打印回应\n",
+    "expect_contains": "我也喜欢",
+    "nudge": "第一行 `who = input(\"...\")`，第二行 `print(f\"我也喜欢 {who}！\")`",
+    "explain": "「问 → 存 → 用」这个三步套路，是几乎所有交互式程序的骨架 ✨"
+  }
+]

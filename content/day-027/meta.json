@@ -1,0 +1,21 @@
+{
+  "day": 27,
+  "title": "战力排行榜",
+  "hook": "给列表排序 —— 从高到低排出一张真正的排行榜",
+  "stage": 3,
+  "concepts": ["sort", "sorted", "reverse", "index"],
+  "estimated_minutes": 40,
+  "needs_stdin": true,
+  "uses_turtle": false,
+  "next_teaser": "明天做弹幕分析器 —— 把一整句话拆成词再统计 💬",
+  "challenge": {
+    "title": "并列名次",
+    "desc": "战力相同的人应该并列同一名次。想想怎么判断「跟上一个一样」。"
+  },
+  "cheatsheet": [
+    { "name": ".sort()", "desc": "原地排序，不返回", "code": "nums.sort()" },
+    { "name": "sorted()", "desc": "返回新的，原来的不动", "code": "new = sorted(nums)" },
+    { "name": "reverse=True", "desc": "从大到小", "code": "nums.sort(reverse=True)" },
+    { "name": ".index(x)", "desc": "查 x 排在第几个", "code": "names.index(\"樱\")" }
+  ]
+}

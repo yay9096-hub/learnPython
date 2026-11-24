@@ -1,0 +1,63 @@
+[
+  {
+    "id": "d11-p1",
+    "type": "predict",
+    "title": "缩进决定了谁归谁管",
+    "question": "hp 是 0，这段会打印出什么？",
+    "code": "hp = 0\n\nif hp > 0:\n    print(\"活着\")\n    print(\"继续\")\nprint(\"结束\")",
+    "options": ["活着\n继续\n结束", "结束", "什么都不打印"],
+    "answer": 1,
+    "explain": "前两个 print **缩进了**，归 `if` 管，条件不成立就跳过。最后一行顶格，不归 if 管，一定会执行。**缩进在 Python 里是语法，不是排版。**"
+  },
+  {
+    "id": "d11-p2",
+    "type": "predict",
+    "title": "一个等号还是两个",
+    "question": "`hp = 100` 之后，`print(hp == 100)` 会打印什么？",
+    "code": "hp = 100\nprint(hp == 100)",
+    "options": ["100", "True", "False"],
+    "answer": 1,
+    "explain": "`=` 是赋值（装进去），`==` 是比较（问一句「是不是」）。比较的结果是布尔值 `True` 或 `False`。"
+  },
+  {
+    "id": "d11-p3",
+    "type": "predict",
+    "title": "文字比较区分大小写吗",
+    "question": "这两行分别打印什么？",
+    "code": "print(\"fire\" == \"fire\")\nprint(\"fire\" == \"Fire\")",
+    "options": ["True\nTrue", "True\nFalse", "False\nFalse"],
+    "answer": 1,
+    "explain": "文字要**一模一样**才相等，大小写也算。所以处理 `input()` 的时候常配一个 `.lower()` 让判断更宽容。"
+  },
+  {
+    "id": "d11-b1",
+    "type": "fixbug",
+    "title": "少了个等号",
+    "question": "这段报了语法错误。修好它，让它打印「及格」。",
+    "code": "score = 80\nif score = 80:\n    print(\"及格\")",
+    "expect_contains": "及格",
+    "nudge": "`if` 后面要的是「问一句」，不是「装进去」。",
+    "explain": "`if` 后面必须用 `==`。这是新手最经典的错误之一，Python 甚至会专门提示你「是不是想用 ==？」"
+  },
+  {
+    "id": "d11-b2",
+    "type": "fixbug",
+    "title": "else 站错了位置",
+    "question": "这段报了缩进错误。把 else 放回正确的位置。",
+    "code": "hp = 0\nif hp > 0:\n    print(\"活着\")\n    else:\n        print(\"倒下\")",
+    "expect_contains": "倒下",
+    "nudge": "`else` 要和 `if` **左边对齐**，不能缩进。",
+    "explain": "`if` 和 `else` 是一对，必须在同一层。缩进了就变成「归 if 管」，Python 就懵了。"
+  },
+  {
+    "id": "d11-e1",
+    "type": "fill",
+    "title": "回响 · Day 5 的字符串方法",
+    "echo": 5,
+    "question": "让判断宽容一点：不管她输入 SAKURA 还是 Sakura 都算对。补全这一行。",
+    "code": "answer = \"SAKURA\"\n\n# 把 answer 变成全小写再比较，让下面打印「通过」\nif ___ == \"sakura\":\n    print(\"通过\")",
+    "expect_contains": "通过",
+    "nudge": "Day 5 学过 `.lower()`，把 `___` 换成 `answer.lower()`。",
+    "explain": "真实的程序里，处理用户输入几乎总要先 `.strip().lower()` 一下 —— 人打字太随意了 ✨"
+  }
+]

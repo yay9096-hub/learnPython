@@ -1,0 +1,63 @@
+[
+  {
+    "id": "d46-p1",
+    "type": "predict",
+    "title": "raise 之后还跑吗",
+    "question": "这段会打印什么？",
+    "code": "def f(x):\n    if x < 0:\n        raise ValueError(\"负数\")\n        print(\"A\")\n    return \"B\"\n\ntry:\n    print(f(-1))\nexcept ValueError as e:\n    print(e)",
+    "options": ["A\n负数", "负数", "B"],
+    "answer": 1,
+    "explain": "`raise` 跟 `return` 一样**立刻结束函数**，后面的 `print(\"A\")` 永远跑不到。异常传到外面被接住，打印出说明文字。"
+  },
+  {
+    "id": "d46-p2",
+    "type": "predict",
+    "title": "异常会穿过中间层吗",
+    "question": "内层抛的错，中间层没管，会怎样？",
+    "code": "def inner():\n    raise ValueError(\"里面出错了\")\n\ndef middle():\n    return inner()\n\ntry:\n    middle()\nexcept ValueError as e:\n    print(e)",
+    "options": ["里面出错了", "程序崩溃", "什么都不打印"],
+    "answer": 0,
+    "explain": "**异常会一层层往外传**，直到有人接住。中间层什么都不用写。这正是「里层 raise、外层 try」能成立的原因。"
+  },
+  {
+    "id": "d46-p3",
+    "type": "predict",
+    "title": "一次接住两种",
+    "question": "`except (ValueError, TypeError)` 能接住 TypeError 吗？",
+    "code": "try:\n    raise TypeError(\"类型不对\")\nexcept (ValueError, TypeError) as e:\n    print(f\"接住了：{e}\")",
+    "options": ["接住了：类型不对", "程序崩溃", "什么都不打印"],
+    "answer": 0,
+    "explain": "括号里可以写多个类型，**任意一种都能接住**。比写两个 except 分支简洁。"
+  },
+  {
+    "id": "d46-b1",
+    "type": "fixbug",
+    "title": "错误信息太敷衍",
+    "question": "这个错误信息看不出毛病在哪。改好它，让信息里出现实际收到的值 -5。",
+    "code": "def check(age):\n    if age < 0:\n        raise ValueError(\"错误\")\n\ntry:\n    check(-5)\nexcept ValueError as e:\n    print(e)",
+    "expect_contains": "-5",
+    "nudge": "用 f-string：`raise ValueError(f\"年龄不能是负数（收到的是 {age}）\")`",
+    "explain": "好的错误信息包含三样：**哪里错了、期望什么、实际收到了什么**。少了第三样，排查时还得回去打印一遍 ✨"
+  },
+  {
+    "id": "d46-b2",
+    "type": "fixbug",
+    "title": "校验函数里不该有 try",
+    "question": "这个校验函数自己把错吞了，调用方根本不知道出过问题。改成 raise，让外面能接住并打印「负数」。",
+    "code": "def check(age):\n    try:\n        if age < 0:\n            raise ValueError(\"负数\")\n    except ValueError:\n        return 0\n    return age\n\ntry:\n    check(-5)\n    print(\"没问题\")\nexcept ValueError as e:\n    print(e)",
+    "expect_contains": "负数",
+    "nudge": "把函数里的 `try` / `except` 两行删掉，只留 `if age < 0: raise ValueError(\"负数\")`。",
+    "explain": "**里层自己把错吞了，外层就永远发现不了问题**。谁该处理错误，只有调用方知道 —— 所以里层只管喊 ✨"
+  },
+  {
+    "id": "d46-e1",
+    "type": "fill",
+    "title": "回响 · Day 39 的多返回值",
+    "echo": 39,
+    "question": "补全 try_register 的失败分支，让它返回 (False, 错误信息)。",
+    "code": "def create(x):\n    if x < 0:\n        raise ValueError(\"不能是负数\")\n    return {\"v\": x}\n\ndef try_create(x):\n    try:\n        return True, create(x)\n    except ValueError as e:\n        ___\n\nok, msg = try_create(-1)\nprint(ok, msg)",
+    "expect_contains": "False 不能是负数",
+    "nudge": "`return False, str(e)` —— 把异常对象转成它携带的说明文字。",
+    "explain": "「(成功?, 结果或原因)」这个返回形状，是把异常转成普通返回值的标准做法，调用方用起来特别顺手 ✨"
+  }
+]

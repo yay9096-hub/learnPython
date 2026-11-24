@@ -1,0 +1,63 @@
+[
+  {
+    "id": "d56-p1",
+    "type": "predict",
+    "title": "self 是谁",
+    "question": "`a.greet()` 里的 self 是什么？",
+    "code": "class R:\n    def __init__(self, name):\n        self.name = name\n    def greet(self):\n        print(self.name)\n\na = R(\"樱\")\nb = R(\"凛\")\na.greet()",
+    "options": ["樱", "凛", "R"],
+    "answer": 0,
+    "explain": "**`self` 就是点号前面那个对象**。`a.greet()` 相当于 `R.greet(a)`，所以 self 是 a。"
+  },
+  {
+    "id": "d56-p2",
+    "type": "predict",
+    "title": "方法改属性会留下吗",
+    "question": "方法里改了 self.hp，函数结束后还在吗？",
+    "code": "class R:\n    def __init__(self, hp):\n        self.hp = hp\n    def hurt(self, n):\n        self.hp = self.hp - n\n\nr = R(100)\nr.hurt(30)\nprint(r.hp)",
+    "options": ["100", "70", "报错"],
+    "answer": 1,
+    "explain": "**改的是对象本身的属性，所以留得下来**。对比 Day 40 —— 那时候改数字参数改不动外面，现在不用操心了。"
+  },
+  {
+    "id": "d56-p3",
+    "type": "predict",
+    "title": "调自己的方法",
+    "question": "这段会怎样？",
+    "code": "class R:\n    def a(self):\n        return 1\n    def b(self):\n        return a() + 1\n\nprint(R().b())",
+    "options": ["2", "报 NameError", "1"],
+    "answer": 1,
+    "explain": "**调用自己的方法必须写 `self.a()`**。光写 `a()` 时 Python 会去找一个叫 a 的普通函数，找不到就报错。"
+  },
+  {
+    "id": "d56-b1",
+    "type": "fixbug",
+    "title": "攻击打到了自己",
+    "question": "这段攻击之后掉血的是攻击者。修好它，让敌人剩 160。",
+    "code": "class R:\n    def __init__(self, name, hp, atk):\n        self.name = name\n        self.hp = hp\n        self.atk = atk\n    def attack(self, target):\n        self.hp = self.hp - self.atk\n\na = R(\"甲\", 200, 40)\nb = R(\"乙\", 200, 30)\na.attack(b)\nprint(b.hp)",
+    "expect_contains": "160",
+    "nudge": "扣血的应该是 `target.hp`，不是 `self.hp`。",
+    "explain": "**`self` 是攻击者、`target` 是挨打的** —— 这两个搞混，战斗系统就完全反了 😅"
+  },
+  {
+    "id": "d56-b2",
+    "type": "fixbug",
+    "title": "方法忘了 self 参数",
+    "question": "这段报了 TypeError。修好它，让它输出 100。",
+    "code": "class R:\n    def __init__(self, hp):\n        self.hp = hp\n    def show():\n        return 100\n\nprint(R(50).show())",
+    "expect_contains": "100",
+    "nudge": "方法的第一个参数必须是 `self`，写成 `def show(self):`。",
+    "explain": "调用 `r.show()` 时 Python 会自动把 r 塞进第一个参数。方法不写 `self`，那个对象就没地方放了 ✨"
+  },
+  {
+    "id": "d56-e1",
+    "type": "fill",
+    "title": "回响 · Day 37 的 return",
+    "echo": 37,
+    "question": "让 heal 返回实际回复量，主流程才能累加（应输出 30）。",
+    "code": "class R:\n    def __init__(self, hp):\n        self.hp = hp\n    def heal(self, n):\n        self.hp = self.hp + n\n        ___\n\nr = R(50)\ntotal = r.heal(30)\nprint(total)",
+    "expect_contains": "30",
+    "nudge": "`return n`",
+    "explain": "**方法不 return，调用方就拿不到结果** —— Day 37 的规矩在类里一模一样 ✨"
+  }
+]

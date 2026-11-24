@@ -1,0 +1,19 @@
+{
+  "day": 18,
+  "title": "图案生成器",
+  "hook": "循环里再套一个循环 —— 棋盘、菱形、乘法表全都能画",
+  "stage": 2,
+  "concepts": ["嵌套循环", "行与列", "end 参数"],
+  "estimated_minutes": 45,
+  "needs_stdin": false,
+  "uses_turtle": false,
+  "next_teaser": "明天用循环 + 随机 + turtle，画一整片星空 ✨",
+  "challenge": {
+    "title": "空心菱形",
+    "desc": "把菱形改成只有边框、中间是空的。提示：只在第一列和最后一列画星星。"
+  },
+  "cheatsheet": [
+    { "name": "嵌套循环", "desc": "外层管行，内层管列", "code": "for row in range(3):\n    for col in range(4):\n        ..." },
+    { "name": "同行输出", "desc": "内层不换行，外层换一次", "code": "print(\"★\", end=\"\")\nprint()" }
+  ]
+}

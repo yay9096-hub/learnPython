@@ -1,0 +1,23 @@
+{
+  "day": 51,
+  "title": "学习打卡",
+  "hook": "给记录盖上时间戳，还能算出连续打卡了几天",
+  "stage": 5,
+  "concepts": ["datetime", "timedelta", "strftime"],
+  "estimated_minutes": 45,
+  "needs_stdin": true,
+  "uses_turtle": false,
+  "uses_files": true,
+  "next_teaser": "明天处理真实的表格数据 —— CSV 成绩单 📊",
+  "challenge": {
+    "title": "打卡热力图",
+    "desc": "用文字画一个「最近 14 天」的方格图，打过卡的画 ■，没打的画 □。"
+  },
+  "cheatsheet": [
+    { "name": "今天", "desc": "拿到今天的日期", "code": "date.today()" },
+    { "name": "此刻", "desc": "拿到当前时间", "code": "datetime.now()" },
+    { "name": "格式化", "desc": "变成好看的文字", "code": "d.strftime(\"%Y-%m-%d\")" },
+    { "name": "解析", "desc": "文字变回日期", "code": "date.fromisoformat(\"2026-09-02\")" },
+    { "name": "日期加减", "desc": "算几天前/后", "code": "d - timedelta(days=1)" }
+  ]
+}

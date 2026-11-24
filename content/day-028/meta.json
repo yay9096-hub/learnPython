@@ -1,0 +1,21 @@
+{
+  "day": 28,
+  "title": "弹幕分析器",
+  "hook": "把一整段话拆成词，数出谁刷得最多",
+  "stage": 3,
+  "concepts": ["split", "join", "字符串与列表互转"],
+  "estimated_minutes": 45,
+  "needs_stdin": false,
+  "uses_turtle": false,
+  "next_teaser": "明天字典登场 —— 用「名字」当编号，而不是 0 1 2 🗂",
+  "challenge": {
+    "title": "屏蔽词过滤",
+    "desc": "准备一个屏蔽词列表，把弹幕里的这些词替换成「***」再输出。"
+  },
+  "cheatsheet": [
+    { "name": ".split()", "desc": "把字符串拆成列表", "code": "\"a b c\".split()" },
+    { "name": ".split(\",\")", "desc": "按指定符号拆", "code": "\"a,b,c\".split(\",\")" },
+    { "name": ".join()", "desc": "把列表拼回字符串", "code": "\", \".join(lst)" },
+    { "name": ".count(x)", "desc": "数出现几次", "code": "lst.count(\"666\")" }
+  ]
+}

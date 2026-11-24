@@ -1,0 +1,63 @@
+[
+  {
+    "id": "d64-p1",
+    "type": "predict",
+    "title": "为什么都写 plt",
+    "question": "`import matplotlib.pyplot as plt` 里的 as plt 是什么意思？",
+    "code": "import matplotlib.pyplot as plt\n# 之后就能写 plt.bar(...)",
+    "options": ["必须叫 plt，否则报错", "起个简称，全世界都这么写", "plt 是另一个库"],
+    "answer": 1,
+    "explain": "`as` 只是**起个短名字**。理论上叫什么都行，但**全世界的 Python 代码都用 plt** —— 跟着惯例走，别人看你的代码才顺。"
+  },
+  {
+    "id": "d64-p2",
+    "type": "predict",
+    "title": "subplot 的三个数字",
+    "question": "`plt.subplot(2, 3, 4)` 是第几格？",
+    "code": "# plt.subplot(行数, 列数, 第几个)",
+    "options": ["第 2 行第 1 格", "第 1 行第 4 格", "第 4 行"],
+    "answer": 0,
+    "explain": "2 行 3 列共 6 格，编号从左上开始横着数。第 4 格就是**第 2 行的第 1 个**。"
+  },
+  {
+    "id": "d64-p3",
+    "type": "predict",
+    "title": "bar 和 barh",
+    "question": "名字很长的时候该用哪个？",
+    "code": "# plt.bar(names, values)\n# plt.barh(names, values)",
+    "options": ["bar", "barh", "都一样"],
+    "answer": 1,
+    "explain": "`barh` 是**横**着画（h = horizontal），名字排在左边一列，再长也不会挤。**名字长就横着画**是个实用经验。"
+  },
+  {
+    "id": "d64-b1",
+    "type": "fixbug",
+    "title": "figure 写晚了",
+    "question": "这段的 figsize 没生效。调整顺序修好它，输出「画完了」。",
+    "code": "import matplotlib.pyplot as plt\n\nplt.bar([\"a\", \"b\"], [1, 2])\nplt.figure(figsize=(8, 3))\n\nprint(\"画完了\")",
+    "expect_contains": "画完了",
+    "nudge": "`plt.figure(...)` 要写在**画图之前**，不然它开的是一张新的空白图。",
+    "explain": "`plt.figure()` 是「新建一张画布」。画完了才建，等于在旁边开了张空白纸 —— 顺序错了图就丢了 ✨"
+  },
+  {
+    "id": "d64-b2",
+    "type": "fixbug",
+    "title": "数字顶出图外",
+    "question": "柱子高 110，标注写在 113 的位置就看不见了。加一行修好它，输出「调好了」。",
+    "code": "import matplotlib.pyplot as plt\n\nvalues = [88, 110]\nplt.bar([\"a\", \"b\"], values)\n\nfor i in range(len(values)):\n    plt.text(i, values[i] + 3, str(values[i]), ha=\"center\")\n\nprint(\"调好了\")",
+    "expect_contains": "调好了",
+    "nudge": "在 `plt.bar` 后面加一句 `plt.ylim(0, 130)`，把竖轴上限拉高。",
+    "explain": "默认竖轴刚好到最高的柱子，标注就被挤出去了。**加标注就要留天花板** ✨"
+  },
+  {
+    "id": "d64-e1",
+    "type": "fill",
+    "title": "回响 · Day 25 的 index",
+    "echo": 25,
+    "question": "找出攻击力最高的人是谁（应输出「凛」）。",
+    "code": "names = [\"樱\", \"琉璃\", \"凛\"]\natk = [88, 95, 110]\n\nbest = ___\nprint(names[best])",
+    "expect_contains": "凛",
+    "nudge": "`atk.index(max(atk))` —— 先找最大值，再问它在第几个位置。",
+    "explain": "`max()` 只给数值，`index()` 才给位置。**两个配合才能从一个列表跳到另一个列表** ✨"
+  }
+]

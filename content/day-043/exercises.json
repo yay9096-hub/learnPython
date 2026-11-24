@@ -1,0 +1,63 @@
+[
+  {
+    "id": "d43-p1",
+    "type": "predict",
+    "title": "没有出口会怎样",
+    "question": "这段会发生什么？",
+    "code": "def f(n):\n    print(n)\n    f(n - 1)\n\nf(3)",
+    "options": ["打印 3 2 1 然后停", "打印很多然后报 RecursionError", "什么都不打印"],
+    "answer": 1,
+    "explain": "**没有出口条件**，它会一直往下调用。Python 到了递归深度上限就抛 `RecursionError`。**出口是递归的第一要件。**"
+  },
+  {
+    "id": "d43-p2",
+    "type": "predict",
+    "title": "递归的执行顺序",
+    "question": "这段的打印顺序是什么？",
+    "code": "def f(n):\n    if n <= 0:\n        return\n    f(n - 1)\n    print(n)\n\nf(3)",
+    "options": ["3 2 1", "1 2 3", "3 2 1 0"],
+    "answer": 1,
+    "explain": "`print` 写在递归调用**后面**，所以要先一层层进到底，再一层层回来打印 —— 顺序反过来了。**递归调用的位置决定了执行顺序。**"
+  },
+  {
+    "id": "d43-p3",
+    "type": "predict",
+    "title": "阶乘的边界",
+    "question": "`factorial(0)` 返回什么？",
+    "code": "def factorial(n):\n    if n <= 1:\n        return 1\n    return n * factorial(n - 1)\n\nprint(factorial(0))",
+    "options": ["0", "1", "报错"],
+    "answer": 1,
+    "explain": "出口写的是 `n <= 1`，所以 0 直接返回 1（数学上 0! 确实等于 1）。如果写成 `n == 1`，`factorial(0)` 会无限递归下去 😅"
+  },
+  {
+    "id": "d43-b1",
+    "type": "fixbug",
+    "title": "参数没变小",
+    "question": "这段停不下来。修好它，让它打印 3 2 1。",
+    "code": "def f(n):\n    if n <= 0:\n        return\n    print(n)\n    f(n)",
+    "expect_contains": "1",
+    "nudge": "递归调用要**朝出口靠近**：`f(n - 1)`，不是 `f(n)`。",
+    "explain": "有出口还不够，**参数必须每次都往出口方向变**，否则永远到不了出口 ✨"
+  },
+  {
+    "id": "d43-b2",
+    "type": "fixbug",
+    "title": "忘了返回",
+    "question": "这段打印 None。修好它，让它输出 120。",
+    "code": "def factorial(n):\n    if n <= 1:\n        return 1\n    n * factorial(n - 1)\n\nprint(factorial(5))",
+    "expect_contains": "120",
+    "nudge": "倒数第二行算完了却没交回去，前面加 `return`。",
+    "explain": "又是 Day 37 的老问题 —— **算了不 return 等于白算**。递归里尤其致命，因为一层丢了整条链都断 ✨"
+  },
+  {
+    "id": "d43-e1",
+    "type": "fill",
+    "title": "回响 · Day 25 的求和",
+    "echo": 25,
+    "question": "用递归算 1+2+...+n（这里应该是 55）。补全出口那两行。",
+    "code": "def total(n):\n    \"\"\"1 + 2 + ... + n\"\"\"\n    ___\n        ___\n    return n + total(n - 1)\n\nprint(total(10))",
+    "expect_contains": "55",
+    "nudge": "出口是 `if n <= 0:` 然后 `return 0`。",
+    "explain": "同一件事，Day 25 用循环、今天用递归。**递归不一定更好**，但树、文件夹这类「自己套自己」的结构，递归写起来短得多 ✨"
+  }
+]

@@ -1,0 +1,17 @@
+{
+  "day": 21,
+  "title": "文字冒险游戏",
+  "hook": "复习作品日 —— 做一个真正能给同学玩的分支剧情游戏",
+  "stage": 2,
+  "concepts": ["综合复习", "分支剧情", "游戏循环"],
+  "estimated_minutes": 50,
+  "needs_stdin": true,
+  "uses_turtle": false,
+  "review": true,
+  "next_teaser": "明天是第二章最后一关 —— 猜数字进化版，限次数、选难度、出战报 🎯",
+  "challenge": {
+    "title": "隐藏结局",
+    "desc": "加一个只有满足特殊条件才能触发的第四种结局，比如「三个选择全选 1」。"
+  },
+  "cheatsheet": []
+}

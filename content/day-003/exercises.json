@@ -1,0 +1,62 @@
+[
+  {
+    "id": "d3-p1",
+    "type": "predict",
+    "title": "除法的小陷阱",
+    "question": "10 除以 2 明明除得尽，Python 会打印什么？",
+    "code": "print(10 / 2)",
+    "options": ["5", "5.0", "5.00"],
+    "answer": 1,
+    "explain": "`/` 的结果**永远是小数**，所以是 `5.0`。想要整数 `5`，得用整除 `10 // 2`。"
+  },
+  {
+    "id": "d3-p2",
+    "type": "predict",
+    "title": "// 是四舍五入吗？",
+    "question": "17 // 5 的结果是多少？",
+    "code": "print(17 // 5)",
+    "options": ["3", "4", "3.4"],
+    "answer": 0,
+    "explain": "`//` 是**直接砍掉**小数部分，不是四舍五入。17 ÷ 5 = 3.4，砍掉 .4 就是 3。"
+  },
+  {
+    "id": "d3-p3",
+    "type": "predict",
+    "title": "括号改变了什么",
+    "question": "这两行的结果一样吗？",
+    "code": "print(10 + 2 * 3)\nprint((10 + 2) * 3)",
+    "options": ["16\n36", "36\n36", "16\n16"],
+    "answer": 0,
+    "explain": "第一行先算 `2 * 3 = 6`，再加 10，得 16。第二行括号强制先算加法。**先乘除后加减**这条规则和数学课一样。"
+  },
+  {
+    "id": "d3-p4",
+    "type": "predict",
+    "title": "自己加自己",
+    "question": "`level = level + 1` 这种写法看着像废话，它到底做了什么？",
+    "code": "level = 12\nlevel = level + 1\nprint(level)",
+    "options": ["12", "13", "会报错"],
+    "answer": 1,
+    "explain": "**先算右边**（12 + 1 = 13），**再装进左边**。这一招以后写循环时会天天用到。"
+  },
+  {
+    "id": "d3-b1",
+    "type": "fixbug",
+    "title": "伤害算错了",
+    "question": "这段想算「(攻击 - 防御) × 2」，但结果不对。修好它。",
+    "code": "atk = 100\ndefense = 20\ndamage = atk - defense * 2\nprint(damage)",
+    "expect_contains": "160",
+    "nudge": "Python 会先算乘法。现在它算的是 `100 - 40`，而不是 `80 × 2`。",
+    "explain": "正确写法是 `(atk - defense) * 2`。**括号是用来强行改变计算顺序的**，该加就加，别怕丑。"
+  },
+  {
+    "id": "d3-f1",
+    "type": "fill",
+    "title": "还差多少经验",
+    "question": "每 100 点经验升一级。当前 340 点经验，用一行代码算出「还差多少点到下一级」并打印（答案应该是 60）。",
+    "code": "exp = 340\n\n# 在这里写一行代码\n",
+    "expect_contains": "60",
+    "nudge": "先用 `exp % 100` 算出这一级已经攒了多少，再用 100 减掉它。",
+    "explain": "`%` 取余在游戏逻辑里超常用：进度条、冷却时间、循环关卡都靠它。"
+  }
+]

@@ -1,0 +1,16 @@
+{
+  "day": 10,
+  "title": "命运抽卡机",
+  "hook": "第一章最终关 —— 每次运行结果都不一样，看你能不能抽到 SSR",
+  "stage": 1,
+  "concepts": ["random", "randint", "choice"],
+  "estimated_minutes": 45,
+  "needs_stdin": true,
+  "uses_turtle": true,
+  "next_teaser": "第一章通关！第二章要教你「判断」和「循环」—— 程序终于能自己做决定了 ⚡",
+  "cheatsheet": [
+    { "name": "random.randint(a, b)", "desc": "随机整数，a 和 b 都可能抽到", "code": "random.randint(1, 6)" },
+    { "name": "random.choice([...])", "desc": "从一串备选里随便挑一个", "code": "random.choice([\"SSR\", \"SR\", \"R\"])" },
+    { "name": "random.random()", "desc": "0 到 1 之间的随机小数", "code": "random.random()" }
+  ]
+}

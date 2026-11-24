@@ -1,0 +1,15 @@
+{
+  "day": 2,
+  "title": "角色属性面板",
+  "hook": "用变量记住角色的一切，改一个字全卡自动更新",
+  "stage": 1,
+  "concepts": ["变量", "赋值", "f-string"],
+  "estimated_minutes": 40,
+  "needs_stdin": false,
+  "uses_turtle": false,
+  "next_teaser": "明天让角色打起来 —— 写一个伤害计算器 ⚔️",
+  "cheatsheet": [
+    { "name": "变量", "desc": "给一个值起名字，之后用名字就能取到它", "code": "name = \"星野樱\"" },
+    { "name": "f-string", "desc": "在字符串里直接插变量", "code": "print(f\"我是{name}\")" }
+  ]
+}

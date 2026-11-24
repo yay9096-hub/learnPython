@@ -1,0 +1,63 @@
+[
+  {
+    "id": "d17-p1",
+    "type": "predict",
+    "title": "归零写错地方",
+    "question": "这段想统计 1~5 的总和（应该是 15），实际会打印什么？",
+    "code": "for i in range(1, 6):\n    total = 0\n    total += i\n\nprint(total)",
+    "options": ["15", "5", "0"],
+    "answer": 1,
+    "explain": "`total = 0` 写在循环**里面**，每圈都归零。最后一圈 i 是 5，归零后加 5，所以是 5。**归零必须在循环外面。**"
+  },
+  {
+    "id": "d17-p2",
+    "type": "predict",
+    "title": "break 跳出多少",
+    "question": "这段会打印几行？",
+    "code": "for i in range(10):\n    print(i)\n    if i == 2:\n        break",
+    "options": ["3 行", "10 行", "2 行"],
+    "answer": 0,
+    "explain": "打印 0、1、2 之后遇到 `break`，**整个循环立刻结束**。所以是 3 行。"
+  },
+  {
+    "id": "d17-p3",
+    "type": "predict",
+    "title": "continue 跳过什么",
+    "question": "这段会打印哪些数字？",
+    "code": "for i in range(5):\n    if i == 2:\n        continue\n    print(i)",
+    "options": ["0 1 2 3 4", "0 1 3 4", "0 1"],
+    "answer": 1,
+    "explain": "`continue` 只跳过**这一圈剩下的部分**，循环继续。所以 2 没被打印，但 3、4 照常。"
+  },
+  {
+    "id": "d17-p4",
+    "type": "predict",
+    "title": "找最大值的初始值",
+    "question": "为什么 `best` 要先设成 0，而不是随便一个数？",
+    "code": "best = 0\nfor power in [120, 340, 210]:\n    if power > best:\n        best = power\nprint(best)",
+    "options": ["340", "120", "0"],
+    "answer": 0,
+    "explain": "初始值必须**小到肯定会被超过**，第一个数才能顺利成为「当前最大」。如果设成 9999，那一个都比不过它，结果永远是 9999。"
+  },
+  {
+    "id": "d17-b1",
+    "type": "fixbug",
+    "title": "统计不动",
+    "question": "这段想数出列表里有几个 SSR（答案是 2），但打印出 0。修好它。",
+    "code": "cards = [\"R\", \"SSR\", \"R\", \"SSR\", \"R\"]\ncount = 0\n\nfor c in cards:\n    if c == \"SSR\":\n        count = 0\n        count += 1\n\nprint(count)",
+    "expect_contains": "2",
+    "nudge": "循环里那句 `count = 0` 是多余的 —— 它每次都把之前数的清空了。",
+    "explain": "删掉循环里的 `count = 0` 就好。**归零只该发生一次，在循环开始之前。**"
+  },
+  {
+    "id": "d17-e1",
+    "type": "fill",
+    "title": "回响 · Day 16 的取余",
+    "echo": 16,
+    "question": "用 continue 只打印偶数（0 2 4 6 8）。补全那个条件。",
+    "code": "for i in range(10):\n    if ___:\n        continue\n    print(i)",
+    "expect_contains": "8",
+    "nudge": "奇数就是「除以 2 余 1」：`i % 2 == 1`。遇到奇数就 continue 跳过。",
+    "explain": "`%` 判断奇偶是最常用的技巧之一：`i % 2 == 0` 是偶数，`== 1` 是奇数 ✨"
+  }
+]

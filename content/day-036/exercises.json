@@ -1,0 +1,63 @@
+[
+  {
+    "id": "d36-p1",
+    "type": "predict",
+    "title": "参数按什么对应",
+    "question": "这段会打印什么？",
+    "code": "def f(a, b):\n    print(a, b)\n\nf(\"x\", \"y\")",
+    "options": ["x y", "y x", "a b"],
+    "answer": 0,
+    "explain": "调用时的值**按顺序**塞进参数：第一个给 `a`，第二个给 `b`。"
+  },
+  {
+    "id": "d36-p2",
+    "type": "predict",
+    "title": "顺序写反会报错吗",
+    "question": "参数顺序反了，Python 会拦住你吗？",
+    "code": "def attack(who, dmg):\n    print(f\"{who} 造成 {dmg} 点\")\n\nattack(63, \"星野樱\")",
+    "options": ["报 TypeError", "正常打印，但意思反了", "什么都不发生"],
+    "answer": 1,
+    "explain": "**不会报错**！Python 只按位置塞，塞完照常执行。这种 bug 最难找 —— 所以参数顺序要格外小心。"
+  },
+  {
+    "id": "d36-p3",
+    "type": "predict",
+    "title": "参数出了函数还在吗",
+    "question": "这段会怎样？",
+    "code": "def show(hp):\n    print(hp)\n\nshow(340)\nprint(hp)",
+    "options": ["打印 340 两次", "打印 340 后报 NameError", "报 TypeError"],
+    "answer": 1,
+    "explain": "参数是**函数内部的临时变量**，函数一结束就没了。第 40 天会专门讲这个「作用域」。"
+  },
+  {
+    "id": "d36-b1",
+    "type": "fixbug",
+    "title": "参数个数不对",
+    "question": "这段报了 TypeError。修好它，让它打印「星野樱 造成 63 点」。",
+    "code": "def attack(who, dmg):\n    print(f\"{who} 造成 {dmg} 点\")\n\nattack(\"星野樱\")",
+    "expect_contains": "星野樱 造成 63 点",
+    "nudge": "函数要两个参数，你只给了一个。补上伤害值 63。",
+    "explain": "参数**个数必须完全对上**，少给多给都会报错。报错信息会写明缺了哪个 ✨"
+  },
+  {
+    "id": "d36-b2",
+    "type": "fixbug",
+    "title": "写死了人数",
+    "question": "这段传了 2 个人却说 4 人。修好它，让它输出「共 2 人」。",
+    "code": "def show_team(team):\n    print(f\"共 4 人\")\n    for n in team:\n        print(n)\n\nshow_team([\"甲\", \"乙\"])",
+    "expect_contains": "共 2 人",
+    "nudge": "人数要用 `len(team)` 现算，不能写死。",
+    "explain": "函数的意义就是**对任何输入都成立**。写死数字等于没用参数 —— 换个列表就错了 😉"
+  },
+  {
+    "id": "d36-e1",
+    "type": "fill",
+    "title": "回响 · Day 3 的伤害公式",
+    "echo": 3,
+    "question": "把 Day 3 的暴击公式做成函数。补全函数体，让它打印 94.5。",
+    "code": "def crit(atk, defense, rate):\n    \"\"\"暴击伤害 =（攻击 - 防御）× 倍率。\"\"\"\n    ___\n    print(damage)\n\ncrit(88, 25, 1.5)",
+    "expect_contains": "94.5",
+    "nudge": "`damage = (atk - defense) * rate` —— 括号不能省。",
+    "explain": "Day 3 你要为每次计算重写一遍公式，现在一个函数管所有情况。**这就是「拆分问题」带来的复利** ✨"
+  }
+]

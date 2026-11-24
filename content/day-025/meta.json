@@ -1,0 +1,21 @@
+{
+  "day": 25,
+  "title": "队伍属性统计",
+  "hook": "遍历一整个列表，算总和、平均、最强最弱",
+  "stage": 3,
+  "concepts": ["列表遍历", "sum/max/min", "平均值"],
+  "estimated_minutes": 40,
+  "needs_stdin": false,
+  "uses_turtle": false,
+  "next_teaser": "明天学切片 —— 一刀切出「最近 5 次抽卡」🔪",
+  "challenge": {
+    "title": "战力雷达",
+    "desc": "用 turtle 把每个成员的血量画成一根柱子，做一个柱状图。"
+  },
+  "cheatsheet": [
+    { "name": "sum()", "desc": "求和", "code": "sum([340, 280])" },
+    { "name": "max() / min()", "desc": "最大 / 最小", "code": "max(hps)" },
+    { "name": "平均", "desc": "求和除以个数", "code": "sum(hps) / len(hps)" },
+    { "name": "两列表配对", "desc": "用编号对齐", "code": "for i in range(len(names)):\n    names[i], hps[i]" }
+  ]
+}

@@ -1,0 +1,64 @@
+[
+  {
+    "id": "d70-p1",
+    "type": "predict",
+    "title": "该怎么开始",
+    "question": "写一个几百行的程序，最好的第一步是什么？",
+    "code": "# A: 先把所有功能设计完整再动手\n# B: 先写一个 30 行能跑的最小版本\n# C: 先把界面做漂亮",
+    "options": ["A", "B", "C"],
+    "answer": 1,
+    "explain": "**先做能跑的最小版本，再一个个加功能** —— 这叫迭代。没有人能一次写对几百行，包括写了二十年的人。"
+  },
+  {
+    "id": "d70-p2",
+    "type": "predict",
+    "title": "多久跑一次",
+    "question": "加功能的时候，多久运行一次比较好？",
+    "code": "# A: 全部写完再跑\n# B: 每加一个功能跑一次\n# C: 每写一行跑一次",
+    "options": ["A", "B", "C"],
+    "answer": 1,
+    "explain": "**每加一个功能跑一次**。出错了立刻知道是刚才那几行的问题；攒到最后再跑，就得从几百行里大海捞针了。"
+  },
+  {
+    "id": "d70-p3",
+    "type": "predict",
+    "title": "命名是给谁看的",
+    "question": "为什么要把 `f(a, b)` 改成 `deal_damage(atk, defense)`？",
+    "code": "# 反正电脑两个都能跑",
+    "options": ["电脑跑得更快", "写给一个月后的自己看", "老师要求的"],
+    "answer": 1,
+    "explain": "电脑不在乎名字，**人在乎**。一个月后回来改代码的那个人是你自己 —— 好名字是写给她的 ✨"
+  },
+  {
+    "id": "d70-b1",
+    "type": "fixbug",
+    "title": "类定义了却没用",
+    "question": "这段定义了类但从没用过。造一个对象并打印它，输出「小圆 10/10」。",
+    "code": "class Item:\n    \"\"\"一条收藏记录。\"\"\"\n    def __init__(self, name, score):\n        self.name = name\n        self.score = score\n    def __str__(self):\n        return f\"{self.name} {self.score}/10\"\n\n# 在下面造一个对象并打印\n",
+    "expect_contains": "小圆 10/10",
+    "nudge": "`print(Item(\"小圆\", 10))`",
+    "explain": "**类定义了不用等于没写**。判题也会检查这一点 —— 主流程里要真的造出对象来 ✨"
+  },
+  {
+    "id": "d70-e1",
+    "type": "fill",
+    "title": "回响 · Day 50 的存档",
+    "echo": 50,
+    "question": "把对象列表存进 json（应输出含「小圆」的 json）。",
+    "code": "import json\n\nclass Item:\n    def __init__(self, name):\n        self.name = name\n    def to_dict(self):\n        return {\"name\": self.name}\n\nitems = [Item(\"小圆\")]\n\nprint(json.dumps(___, ensure_ascii=False))",
+    "expect_contains": "小圆",
+    "nudge": "`[i.to_dict() for i in items]` —— 对象存不进 json，要先转成字典。",
+    "explain": "**对象 → to_dict → json** 是让作品「记住东西」的标准路径。你的毕业作品也要用它 ✨"
+  },
+  {
+    "id": "d70-e2",
+    "type": "fill",
+    "title": "回响 · Day 27 的排序",
+    "echo": 27,
+    "question": "按评分从高到低取前 2 名（应输出「小圆」）。",
+    "code": "class Item:\n    def __init__(self, name, score):\n        self.name = name\n        self.score = score\n\nitems = [Item(\"孤独摇滚\", 9), Item(\"小圆\", 10)]\n\ntop = ___\nprint(top[0].name)",
+    "expect_contains": "小圆",
+    "nudge": "`sorted(items, key=lambda i: i.score, reverse=True)[:2]`",
+    "explain": "**排序 + 切片**做排行榜，从 Day 27 一路用到毕业作品 —— 你已经很熟了 ✨"
+  }
+]

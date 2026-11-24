@@ -1,0 +1,20 @@
+{
+  "day": 38,
+  "title": "角色生成器",
+  "hook": "常用的值可以省着不写 —— 默认参数",
+  "stage": 4,
+  "concepts": ["默认参数", "关键字参数", "参数顺序"],
+  "estimated_minutes": 40,
+  "needs_stdin": false,
+  "uses_turtle": false,
+  "next_teaser": "明天让函数一次返回好几个值 —— 属性生成器 📦",
+  "challenge": {
+    "title": "职业模板",
+    "desc": "写 make_warrior() / make_mage()，内部调用 create_role 但预设好各职业的属性。"
+  },
+  "cheatsheet": [
+    { "name": "默认值", "desc": "定义时给个默认，调用时可省略", "code": "def f(name, hp=100):" },
+    { "name": "关键字参数", "desc": "调用时点名给值", "code": "f(\"樱\", hp=340)" },
+    { "name": "顺序规则", "desc": "有默认值的必须放后面", "code": "def f(a, b=1):  # 对" }
+  ]
+}

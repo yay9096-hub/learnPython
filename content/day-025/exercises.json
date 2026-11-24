@@ -1,0 +1,63 @@
+[
+  {
+    "id": "d25-p1",
+    "type": "predict",
+    "title": "sum 和平均",
+    "question": "这段会打印什么？",
+    "code": "nums = [10, 20, 30]\nprint(sum(nums) / len(nums))",
+    "options": ["20", "20.0", "60"],
+    "answer": 1,
+    "explain": "`/` 的结果**永远是小数**（Day 3 学的），所以是 `20.0`。想好看点就 `round(..., 1)`。"
+  },
+  {
+    "id": "d25-p2",
+    "type": "predict",
+    "title": "max 给的是什么",
+    "question": "`max()` 会告诉你最大值在哪个位置吗？",
+    "code": "hps = [340, 280, 420]\nprint(max(hps))",
+    "options": ["420", "2（位置）", "两个都给"],
+    "answer": 0,
+    "explain": "`max()` 只给**数值**。想知道是第几个，要再用 `hps.index(max(hps))`。"
+  },
+  {
+    "id": "d25-p3",
+    "type": "predict",
+    "title": "index 返回什么",
+    "question": "`.index()` 返回的是什么？",
+    "code": "names = [\"樱\", \"琉璃\", \"灯\"]\nprint(names.index(\"灯\"))",
+    "options": ["灯", "2", "3"],
+    "answer": 1,
+    "explain": "返回的是**编号**（从 0 开始数），「灯」排第三个，编号是 2。"
+  },
+  {
+    "id": "d25-b1",
+    "type": "fixbug",
+    "title": "空列表除以零",
+    "question": "这段在列表为空时会崩。加上检查，让它输出「队伍是空的」。",
+    "code": "hps = []\n\nprint(sum(hps) / len(hps))",
+    "expect_contains": "队伍是空的",
+    "nudge": "先 `if len(hps) > 0:` 再算，`else` 里打印提示。",
+    "explain": "空列表的长度是 0，除以 0 直接报 ZeroDivisionError。**算平均值之前先检查非空**，这是标配。"
+  },
+  {
+    "id": "d25-b2",
+    "type": "fixbug",
+    "title": "两个列表没对齐",
+    "question": "这段想显示「樱 340」「琉璃 280」，但对不上号。修好它。",
+    "code": "names = [\"樱\", \"琉璃\"]\nhps = [340, 280]\n\nfor name in names:\n    for hp in hps:\n        print(name, hp)",
+    "expect_contains": "樱 340",
+    "nudge": "用 `for i in range(len(names)):`，然后 `names[i]` 和 `hps[i]`。嵌套循环会把每个人配上每个血量。",
+    "explain": "嵌套循环会产生 2×2=4 种组合，而不是一一对应。**平行列表要用同一个编号对齐**，不是套两层循环 😅"
+  },
+  {
+    "id": "d25-e1",
+    "type": "fill",
+    "title": "回响 · Day 20 的找最值",
+    "echo": 20,
+    "question": "找出最高血量对应的名字。补全 if 里那两行。",
+    "code": "names = [\"樱\", \"琉璃\", \"灯\"]\nhps = [340, 280, 420]\n\nbest_name = \"\"\nbest_hp = 0\n\nfor i in range(len(names)):\n    if hps[i] > best_hp:\n        ___\n        ___\n\nprint(f\"最强：{best_name} {best_hp}\")",
+    "expect_contains": "最强：灯 420",
+    "nudge": "两个变量要**一起**更新：`best_hp = hps[i]` 和 `best_name = names[i]`",
+    "explain": "找最值时，**跟它相关的信息要一起记下来**，否则事后就找不回来了。这个套路在排行榜、战报、评分系统里到处都是 ✨"
+  }
+]

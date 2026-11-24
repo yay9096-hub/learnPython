@@ -1,0 +1,53 @@
+[
+  {
+    "id": "d24-p1",
+    "type": "predict",
+    "title": "append 返回什么",
+    "question": "这段会打印什么？（这是个大坑）",
+    "code": "bag = [\"木剑\"]\nbag = bag.append(\"药水\")\nprint(bag)",
+    "options": ["['木剑', '药水']", "None", "['药水']"],
+    "answer": 1,
+    "explain": "`.append()` **不返回任何东西**，它直接改原列表。用 `=` 接住它，反而把背包变成了 `None`。**列表方法别接。**"
+  },
+  {
+    "id": "d24-p2",
+    "type": "predict",
+    "title": "remove 删几个",
+    "question": "列表里有两个红药水，remove 之后剩几个？",
+    "code": "bag = [\"红药水\", \"木剑\", \"红药水\"]\nbag.remove(\"红药水\")\nprint(len(bag))",
+    "options": ["1", "2", "0"],
+    "answer": 1,
+    "explain": "`.remove()` **只删第一个匹配的**，所以从 3 件变成 2 件，还剩一瓶红药水。"
+  },
+  {
+    "id": "d24-p3",
+    "type": "predict",
+    "title": "pop 给不给你",
+    "question": "这段会打印什么？",
+    "code": "bag = [\"木剑\", \"面包\"]\nx = bag.pop()\nprint(x)",
+    "options": ["木剑", "面包", "None"],
+    "answer": 1,
+    "explain": "`.pop()` 默认弹出**最后一个**，而且会把它返回给你。这是它和 `.remove()` 最大的区别。"
+  },
+  {
+    "id": "d24-b1",
+    "type": "fixbug",
+    "title": "删了个不存在的",
+    "question": "这段报了 ValueError。加上检查，让它输出「背包里没有 屠龙刀」。",
+    "code": "bag = [\"木剑\", \"面包\"]\nitem = \"屠龙刀\"\n\nbag.remove(item)\nprint(\"删掉了\")",
+    "expect_contains": "背包里没有 屠龙刀",
+    "nudge": "用 `if item in bag:` 先检查，`else` 里打印提示。",
+    "explain": "删一个不存在的东西会直接报错。**先检查再操作**是处理列表的基本功 ✨"
+  },
+  {
+    "id": "d24-e1",
+    "type": "fixbug",
+    "title": "回响 · Day 5 的方法差异",
+    "echo": 5,
+    "question": "这段想把名字变大写，但打印出 None。修好它。",
+    "code": "name = \"fire\"\nname = name.upper\nprint(name)",
+    "expect_contains": "FIRE",
+    "nudge": "少了一对括号 —— `.upper` 是方法本身，`.upper()` 才是调用它。",
+    "explain": "**字符串方法要接住结果**（`name = name.upper()`），**列表方法不用接**（`bag.append(x)`）。这两条正好相反，容易混，多写几次就分清了 😉"
+  }
+]

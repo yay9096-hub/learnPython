@@ -1,0 +1,63 @@
+[
+  {
+    "id": "d27-p1",
+    "type": "predict",
+    "title": "sort 返回什么",
+    "question": "这段会打印什么？",
+    "code": "nums = [3, 1, 2]\nnums = nums.sort()\nprint(nums)",
+    "options": ["[1, 2, 3]", "None", "[3, 1, 2]"],
+    "answer": 1,
+    "explain": "又是这个坑 —— `.sort()` 直接改原列表，**不返回东西**。用 `=` 接住就变成 `None` 了。跟 Day 24 的 `.append()` 一模一样。"
+  },
+  {
+    "id": "d27-p2",
+    "type": "predict",
+    "title": "sorted 动不动原来的",
+    "question": "`sorted()` 之后，原列表变了吗？",
+    "code": "nums = [3, 1, 2]\nnew = sorted(nums)\nprint(nums)",
+    "options": ["[1, 2, 3]", "[3, 1, 2]", "None"],
+    "answer": 1,
+    "explain": "`sorted()` **不动原列表**，只返回一个排好的新列表。`.sort()` 是动手术，`sorted()` 是照相。"
+  },
+  {
+    "id": "d27-p3",
+    "type": "predict",
+    "title": "打包之后按谁排",
+    "question": "这段按什么排序？",
+    "code": "pairs = [[820, \"樱\"], [995, \"琉璃\"], [640, \"灯\"]]\npairs.sort(reverse=True)\nprint(pairs[0])",
+    "options": ["[995, '琉璃']", "[640, '灯']", "[820, '樱']"],
+    "answer": 0,
+    "explain": "排序默认比**第一个元素**，也就是战力。所以打包时要把想排的那个放前面。"
+  },
+  {
+    "id": "d27-p4",
+    "type": "predict",
+    "title": "reverse 和 sort 的区别",
+    "question": "`.reverse()` 会排序吗？",
+    "code": "nums = [3, 1, 2]\nnums.reverse()\nprint(nums)",
+    "options": ["[3, 2, 1]", "[2, 1, 3]", "[1, 2, 3]"],
+    "answer": 1,
+    "explain": "`.reverse()` 只是把**当前顺序颠倒**，不排序。`[3,1,2]` 倒过来是 `[2,1,3]`。想排序要用 `.sort(reverse=True)`。"
+  },
+  {
+    "id": "d27-b1",
+    "type": "fixbug",
+    "title": "排序拆散了配对",
+    "question": "这段排完之后名字和战力对不上了。修好它，让第一行输出「琉璃 995」。",
+    "code": "names = [\"樱\", \"琉璃\", \"灯\"]\npowers = [820, 995, 640]\n\npowers.sort(reverse=True)\n\nprint(names[0], powers[0])",
+    "expect_contains": "琉璃 995",
+    "nudge": "把名字和战力打包成 `[[820, \"樱\"], ...]` 再排，两个才会一起动。",
+    "explain": "只排一个列表，另一个纹丝不动 —— 数据就错位了。**要排的东西必须绑在一起排**，这是处理表格数据的铁律 ✨"
+  },
+  {
+    "id": "d27-e1",
+    "type": "fill",
+    "title": "回响 · Day 26 的切片",
+    "echo": 26,
+    "question": "取出排行榜的前三名。",
+    "code": "ranked = [\"水城凛\", \"月见琉璃\", \"风见幽香\", \"星野樱\", \"夜刀神澪\"]\n\ntop3 = ___\nprint(top3)",
+    "expect_contains": "['水城凛', '月见琉璃', '风见幽香']",
+    "nudge": "前三个用 `ranked[:3]`。",
+    "explain": "**排序 + 切片**是做排行榜的黄金组合：先排好，再切出你要的那一段 🏆"
+  }
+]

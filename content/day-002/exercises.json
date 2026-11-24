@@ -1,0 +1,52 @@
+[
+  {
+    "id": "d2-p1",
+    "type": "predict",
+    "title": "引号加在哪，结果差很多",
+    "question": "猜猜这两行分别显示什么？",
+    "code": "name = \"小樱\"\nprint(name)\nprint(\"name\")",
+    "options": ["小樱\n小樱", "小樱\nname", "name\nname"],
+    "answer": 1,
+    "explain": "**没引号** = 打开盒子看里面装的东西；**有引号** = 把 `name` 这四个字母原样显示出来。"
+  },
+  {
+    "id": "d2-p2",
+    "type": "predict",
+    "title": "盒子被换过一次",
+    "question": "Python 是从上往下执行的，那这段会打印什么？",
+    "code": "hp = 100\nhp = 250\nprint(hp)",
+    "options": ["100", "250", "100\n250"],
+    "answer": 1,
+    "explain": "第二次赋值把旧值**顶掉**了，盒子里现在只有 250。而且只有一个 `print`，所以只显示一行。"
+  },
+  {
+    "id": "d2-p3",
+    "type": "predict",
+    "title": "少写了一个 f",
+    "question": "这一行忘了在引号前加 f，会显示什么？",
+    "code": "level = 9\nprint(\"等级：{level}\")",
+    "options": ["等级：9", "等级：{level}", "会报错"],
+    "answer": 1,
+    "explain": "没有 `f`，Python 就不知道 `{}` 有特殊含义，会把它原样打印出来。这是新手最常见的小失误之一。"
+  },
+  {
+    "id": "d2-b1",
+    "type": "fixbug",
+    "title": "名字对不上",
+    "question": "这段代码想打印角色名，但是报了 NameError。修好它。",
+    "code": "name = \"星野樱\"\nprint(f\"我是{Name}\")",
+    "expect_contains": "星野樱",
+    "nudge": "仔细对比一下上下两行的 `n`。Python 里大小写是**严格区分**的。",
+    "explain": "`name` 和 `Name` 是两个完全不同的盒子。Python 只找到了 `name`，没找到 `Name`，所以说「不认识这个名字」。"
+  },
+  {
+    "id": "d2-f1",
+    "type": "fill",
+    "title": "拼一句自我介绍",
+    "question": "下面两个变量已经准备好了。用一行 f-string，打印出「星野樱 今年 16 岁」。",
+    "code": "name = \"星野樱\"\nage = 16\n\n# 在这里写一行代码\n",
+    "expect_contains": ["星野樱", "16"],
+    "nudge": "一句话里可以放**两对**大括号：`f\"{a} 和 {b}\"`",
+    "explain": "一个 f-string 里想放几个变量都行，这就是它比 `+` 好用的地方 ✨"
+  }
+]

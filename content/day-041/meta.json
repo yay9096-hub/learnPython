@@ -1,0 +1,20 @@
+{
+  "day": 41,
+  "title": "队伍管理函数库",
+  "hook": "把 Day 31 那一大坨代码，拆成一套好用的零件",
+  "stage": 4,
+  "concepts": ["函数+列表", "筛选函数", "单一职责"],
+  "estimated_minutes": 45,
+  "needs_stdin": true,
+  "uses_turtle": false,
+  "next_teaser": "明天学怎么把工具箱整理干净 —— 文档、命名、组织 🧹",
+  "challenge": {
+    "title": "组合查询",
+    "desc": "写 query(team, element=None, min_atk=None)，两个条件都可选，能任意组合筛选。"
+  },
+  "cheatsheet": [
+    { "name": "筛选套路", "desc": "建空列表 → 遍历 → 符合就 append → return", "code": "def filt(lst):\n    out = []\n    ...\n    return out" },
+    { "name": "单一职责", "desc": "一个函数只做一件事", "code": "算的只算，打印的只打印" },
+    { "name": "函数拼函数", "desc": "大函数调用小函数", "code": "def report():\n    show_all(sort_by(...))" }
+  ]
+}

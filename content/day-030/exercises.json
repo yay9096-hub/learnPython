@@ -1,0 +1,63 @@
+[
+  {
+    "id": "d30-p1",
+    "type": "predict",
+    "title": "直接遍历拿到什么",
+    "question": "这段会打印什么？",
+    "code": "book = {\"樱\": 820, \"琉璃\": 995}\nfor x in book:\n    print(x)",
+    "options": ["820\n995", "樱\n琉璃", "('樱', 820)"],
+    "answer": 1,
+    "explain": "直接 `for x in 字典` 拿到的是**键**。想同时要值，用 `.items()`。"
+  },
+  {
+    "id": "d30-p2",
+    "type": "predict",
+    "title": "items 一次给几个",
+    "question": "`for k, v in book.items():` 里 v 是什么？",
+    "code": "book = {\"樱\": 820}\nfor k, v in book.items():\n    print(v)",
+    "options": ["樱", "820", "('樱', 820)"],
+    "answer": 1,
+    "explain": "`.items()` 一次给出**一对**，前面接键、后面接值。所以 `k` 是「樱」，`v` 是 820。"
+  },
+  {
+    "id": "d30-p3",
+    "type": "predict",
+    "title": "values 拿去求和",
+    "question": "这段会打印什么？",
+    "code": "book = {\"樱\": 820, \"琉璃\": 995}\nprint(sum(book.values()))",
+    "options": ["1815", "2", "报错"],
+    "answer": 0,
+    "explain": "`.values()` 给出所有的值，`sum()` 把它们加起来：820 + 995 = 1815。"
+  },
+  {
+    "id": "d30-b1",
+    "type": "fixbug",
+    "title": "解包搞反了",
+    "question": "这段想打印战力，但打印出了名字。修好它。",
+    "code": "book = {\"樱\": 820, \"琉璃\": 995}\n\nfor power, name in book.items():\n    print(power)",
+    "expect_contains": "820",
+    "nudge": "`.items()` 的顺序是**先键后值**。把两个变量名换个位置。",
+    "explain": "写成 `for name, power in book.items():` 就对了。变量名本身不影响，重要的是**位置**：第一个永远是键。"
+  },
+  {
+    "id": "d30-b2",
+    "type": "fixbug",
+    "title": "对 values 做切片",
+    "question": "这段报了 TypeError。修好它，打印出前两个值。",
+    "code": "book = {\"樱\": 820, \"琉璃\": 995, \"灯\": 640}\n\nprint(book.values()[:2])",
+    "expect_contains": "[820, 995]",
+    "nudge": "`.values()` 返回的不是真列表，要先用 `list(...)` 包一下才能切片。",
+    "explain": "`list(book.values())[:2]`。遍历和 `sum()` 可以直接用，但**切片和排序要先转成 list**。"
+  },
+  {
+    "id": "d30-e1",
+    "type": "fill",
+    "title": "回响 · Day 27 的排序",
+    "echo": 27,
+    "question": "把图鉴按战力从高到低排好，打印第一名的名字。",
+    "code": "book = {\"樱\": 820, \"琉璃\": 995, \"灯\": 640}\n\npairs = []\nfor name, power in book.items():\n    pairs.append([power, name])\n\n___\nprint(f\"第一名：{pairs[0][1]}\")",
+    "expect_contains": "第一名：琉璃",
+    "nudge": "`pairs.sort(reverse=True)`",
+    "explain": "**字典本身不好排序，转成「值在前」的列表再排**是标准做法。这正是今天挑战关要用的招 ✨"
+  }
+]

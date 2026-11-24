@@ -1,0 +1,63 @@
+[
+  {
+    "id": "d40-p1",
+    "type": "predict",
+    "title": "函数里改数字",
+    "question": "这段最后打印什么？",
+    "code": "hp = 500\n\ndef f(hp):\n    hp = hp - 63\n\nf(hp)\nprint(hp)",
+    "options": ["437", "500", "报错"],
+    "answer": 1,
+    "explain": "数字传进函数是**一份复制**，改复制品原件不变。想改外面必须 `return` 再接住。"
+  },
+  {
+    "id": "d40-p2",
+    "type": "predict",
+    "title": "函数里改列表",
+    "question": "换成列表呢？",
+    "code": "team = [\"樱\"]\n\ndef f(team):\n    team.append(\"琉璃\")\n\nf(team)\nprint(len(team))",
+    "options": ["1", "2", "报错"],
+    "answer": 1,
+    "explain": "**列表是可变对象**，传进去的是同一个东西，`append` 改的就是外面那个。这跟数字完全不同。"
+  },
+  {
+    "id": "d40-p3",
+    "type": "predict",
+    "title": "整个换掉 vs 改内容",
+    "question": "这次用的是赋值而不是 append，结果如何？",
+    "code": "team = [\"樱\"]\n\ndef f(team):\n    team = [\"全新阵容\"]\n\nf(team)\nprint(team)",
+    "options": ["['全新阵容']", "['樱']", "[]"],
+    "answer": 1,
+    "explain": "`team = [...]` 只是**把局部名字指向一个新列表**，原来那个没动。**改内容才有效，重新赋值无效。**"
+  },
+  {
+    "id": "d40-p4",
+    "type": "predict",
+    "title": "读得到吗",
+    "question": "函数里能读到外面的变量吗？",
+    "code": "hp = 500\n\ndef show():\n    print(hp)\n\nshow()",
+    "options": ["打印 500", "报 NameError", "打印 None"],
+    "answer": 0,
+    "explain": "**读是可以的** —— 找不到局部的就往外找。只有「写」才会出问题。"
+  },
+  {
+    "id": "d40-b1",
+    "type": "fixbug",
+    "title": "忘了接住返回值",
+    "question": "这段想扣血，但血量没变。修好它，让它输出 437。",
+    "code": "def damage(hp, dmg):\n    return hp - dmg\n\nhp = 500\ndamage(hp, 63)\nprint(hp)",
+    "expect_contains": "437",
+    "nudge": "函数返回了新血量，但没人接住。改成 `hp = damage(hp, 63)`。",
+    "explain": "**光调用不接住等于白算**。这是用 return 时最常见的疏漏 ✨"
+  },
+  {
+    "id": "d40-e1",
+    "type": "fill",
+    "title": "回响 · Day 38 的可变默认值",
+    "echo": 38,
+    "question": "现在你知道 Day 38 那个坑的真正原因了。补全成安全的写法，让两次调用互不影响。",
+    "code": "def add(x, lst=None):\n    ___\n    lst.append(x)\n    return lst\n\nprint(add(1))\nprint(add(2))",
+    "expect_contains": "[2]",
+    "nudge": "`if lst is None: lst = []` —— 每次调用都造一个新的。",
+    "explain": "默认的 `[]` 是**同一个可变对象**，所有调用共用它。今天学的「可变 vs 不可变」正是它的根源 ✨"
+  }
+]

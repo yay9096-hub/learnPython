@@ -1,0 +1,55 @@
+[
+  {
+    "id": "d21-p1",
+    "type": "predict",
+    "title": "输入校验循环怎么转",
+    "question": "玩家依次输入 9、x、1，这个循环会问几次？",
+    "code": "choice = \"\"\nwhile choice not in [\"1\", \"2\"]:\n    choice = input(\"选择：\")\nprint(\"确定了\")",
+    "options": ["1 次", "3 次", "永远问下去"],
+    "answer": 1,
+    "explain": "9 和 x 都不在列表里，条件成立就继续问；输入 1 之后条件不成立，退出。**这就是「输错重问」的实现方式。**"
+  },
+  {
+    "id": "d21-p2",
+    "type": "predict",
+    "title": "回响 · Day 17 的 break",
+    "echo": 17,
+    "question": "这段会打印几行？",
+    "code": "for i in range(5):\n    if i == 3:\n        break\n    print(i)",
+    "options": ["3 行", "5 行", "4 行"],
+    "answer": 0,
+    "explain": "打印 0、1、2 之后 i 变成 3，`break` 立刻跳出整个循环。所以是 3 行。"
+  },
+  {
+    "id": "d21-p3",
+    "type": "predict",
+    "title": "回响 · Day 13 的 not in",
+    "echo": 13,
+    "question": "`\"3\" not in [\"1\", \"2\"]` 的结果是什么？",
+    "code": "print(\"3\" not in [\"1\", \"2\"])",
+    "options": ["True", "False", "会报错"],
+    "answer": 0,
+    "explain": "「3」确实不在这个列表里，所以 `not in` 成立，结果是 `True`。这正是输入校验循环的条件。"
+  },
+  {
+    "id": "d21-b1",
+    "type": "fixbug",
+    "title": "校验循环转不起来",
+    "question": "这段想「输错重问」，但直接报了 NameError。修好它。",
+    "code": "while choice not in [\"1\", \"2\"]:\n    choice = \"1\"\n\nprint(\"确定了\")",
+    "expect_contains": "确定了",
+    "nudge": "循环条件第一次检查时，`choice` 还不存在。在循环**前面**先给它一个值。",
+    "explain": "在循环前加一行 `choice = \"\"` 就好。**循环条件里用到的变量，进循环之前必须先存在** —— Day 14 的循环三件套第一条。"
+  },
+  {
+    "id": "d21-e1",
+    "type": "fill",
+    "title": "回响 · Day 5 的 strip",
+    "echo": 5,
+    "question": "玩家输入时手滑多打了空格，校验就过不了了。补上处理，让它输出「确定了」。",
+    "code": "raw = \"  1  \"\n\n# 把 raw 处理一下再比较\nchoice = ___\n\nif choice in [\"1\", \"2\"]:\n    print(\"确定了\")\nelse:\n    print(\"无效输入\")",
+    "expect_contains": "确定了",
+    "nudge": "`raw.strip()` 削掉首尾空格。",
+    "explain": "处理 `input()` 几乎总要 `.strip()` 一下。人打字太随意了，程序得宽容一点 ✨"
+  }
+]

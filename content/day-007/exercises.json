@@ -1,0 +1,52 @@
+[
+  {
+    "id": "d7-p1",
+    "type": "predict",
+    "title": "复习：忘了转换会怎样",
+    "question": "用户输入 16，这段会打印什么？",
+    "code": "age = input(\"年龄：\")\nprint(f\"明年 {age} 岁\")",
+    "options": ["明年 17 岁", "明年 16 岁", "会报错"],
+    "answer": 1,
+    "explain": "这段**不会报错**，但也没做加法 —— 因为代码里压根没写 `+ 1`。想让它变 17，得写 `int(age) + 1`。"
+  },
+  {
+    "id": "d7-p2",
+    "type": "predict",
+    "title": "复习：strip 的重要性",
+    "question": "如果用户输入了「  樱  」（前后各两个空格），len 是多少？",
+    "code": "name = \"  樱  \"\nprint(len(name))",
+    "options": ["1", "5", "3"],
+    "answer": 1,
+    "explain": "空格也算字符！4 个空格 + 1 个字 = 5。所以处理 `input()` 时 `.strip()` 几乎是必写的。"
+  },
+  {
+    "id": "d7-p3",
+    "type": "predict",
+    "title": "复习：运算顺序",
+    "question": "16 * 10 + 7 * 2 等于多少？",
+    "code": "print(16 * 10 + 7 * 2)",
+    "options": ["334", "174", "1740"],
+    "answer": 1,
+    "explain": "先算两个乘法（160 和 14），再相加 = 174。**先乘除后加减**，和数学课一样。"
+  },
+  {
+    "id": "d7-b1",
+    "type": "fixbug",
+    "title": "综合排错",
+    "question": "这段代码有 **两个** 问题，让它成功打印出 FIRE 之子 · 3 阶。",
+    "code": "name = \"星野樱\"\nelement = \"fire\"\nelement.upper()\nprint(\"{element.upper()} 之子 · {len(name)} 阶\")",
+    "expect_contains": ["FIRE", "3"],
+    "nudge": "问题一：第 3 行算完的结果没被接住。问题二：最后一行的引号前面少了个东西。",
+    "explain": "① 第 3 行其实可以直接删掉；② `print` 的引号前要加 `f`，否则大括号不会被替换。这两个坑加起来占了新手报错的一大半。"
+  },
+  {
+    "id": "d7-f1",
+    "type": "fill",
+    "title": "一句话搞定角色卡的一行",
+    "question": "三个变量已经准备好了，用**一行** f-string 打印出：【FIRE 之子】星野樱 · 3 阶魔导士",
+    "code": "name = \"星野樱\"\ntitle = \"FIRE\"\nrank = 3\n\n# 在这里写一行代码\n",
+    "expect_contains": ["FIRE", "星野樱", "3"],
+    "nudge": "一个 f-string 里可以放任意多对大括号，中间的固定文字照写就行。",
+    "explain": "`print(f\"【{title} 之子】{name} · {rank} 阶魔导士\")` —— 这就是你今天要写的角色卡核心那一行 ✨"
+  }
+]

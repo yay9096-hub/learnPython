@@ -1,0 +1,63 @@
+[
+  {
+    "id": "d60-p1",
+    "type": "predict",
+    "title": "同名方法谁说了算",
+    "question": "子类和父类都有 speak，调的是哪个？",
+    "code": "class A:\n    def speak(self):\n        return \"A\"\n\nclass B(A):\n    def speak(self):\n        return \"B\"\n\nprint(B().speak())",
+    "options": ["A", "B", "AB"],
+    "answer": 1,
+    "explain": "**子类的覆盖父类的**。Python 先在对象自己的类里找，找到就用，不再往上找。"
+  },
+  {
+    "id": "d60-p2",
+    "type": "predict",
+    "title": "super 调的是谁",
+    "question": "这段返回什么？",
+    "code": "class A:\n    def f(self):\n        return 10\n\nclass B(A):\n    def f(self):\n        return super().f() * 2\n\nprint(B().f())",
+    "options": ["10", "20", "无限递归"],
+    "answer": 1,
+    "explain": "`super().f()` 调的是**父类**的版本（10），再乘 2 得 20。**在父类结果上加工**是最常用的重写方式。"
+  },
+  {
+    "id": "d60-p3",
+    "type": "predict",
+    "title": "写成 self 会怎样",
+    "question": "把 super() 写成 self 会发生什么？",
+    "code": "class A:\n    def f(self):\n        return 10\n\nclass B(A):\n    def f(self):\n        return self.f() + 1\n\n# print(B().f())",
+    "options": ["返回 11", "无限递归直到报错", "返回 10"],
+    "answer": 1,
+    "explain": "`self.f()` 调的是**自己**，自己又调自己……直接 `RecursionError`。想调父类必须写 `super()`。"
+  },
+  {
+    "id": "d60-b1",
+    "type": "fixbug",
+    "title": "抄了父类的逻辑",
+    "question": "这段把父类的实现抄了一遍。改成用 super()，让它输出 60。",
+    "code": "class A:\n    def __init__(self, atk):\n        self.atk = atk\n    def hit(self):\n        return self.atk\n\nclass B(A):\n    def hit(self):\n        base = self.atk\n        return base + self.atk // 2\n\nprint(B(40).hit())",
+    "expect_contains": "60",
+    "nudge": "把 `base = self.atk` 换成 `base = super().hit()`。",
+    "explain": "抄一遍的问题是：父类以后改了公式（比如加暴击），子类不会跟着变。**用 super() 才能自动同步** ✨"
+  },
+  {
+    "id": "d60-b2",
+    "type": "fixbug",
+    "title": "多态被 isinstance 毁了",
+    "question": "这段用 isinstance 分派，加一个职业就要改一次。改成直接调 attack，让它输出 60。",
+    "code": "class A:\n    def attack(self):\n        return 30\n\nclass B(A):\n    def attack(self):\n        return 60\n\nteam = [B()]\nfor m in team:\n    if isinstance(m, B):\n        print(m.attack())\n    else:\n        print(m.attack())",
+    "expect_contains": "60",
+    "nudge": "两个分支干的是同一件事。直接写 `print(m.attack())` 就够了。",
+    "explain": "**多态的意义就是让 if 消失** —— 每个对象自己知道该干什么，主流程不用认识它们 ✨"
+  },
+  {
+    "id": "d60-e1",
+    "type": "fill",
+    "title": "回响 · Day 59 的 super().__init__",
+    "echo": 59,
+    "question": "`__init__` 其实也是重写。补全它，让它输出「樱 100」。",
+    "code": "class A:\n    def __init__(self, name):\n        self.name = name\n\nclass B(A):\n    def __init__(self, name, mp=100):\n        ___\n        self.mp = mp\n\nb = B(\"樱\")\nprint(b.name, b.mp)",
+    "expect_contains": "樱 100",
+    "nudge": "`super().__init__(name)`",
+    "explain": "昨天写的 `super().__init__(...)`，本质就是今天学的「重写 + 用 super 复用父类」—— 只不过重写的是 `__init__` ✨"
+  }
+]

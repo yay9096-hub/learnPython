@@ -1,0 +1,63 @@
+[
+  {
+    "id": "d15-p1",
+    "type": "predict",
+    "title": "range 从哪开始到哪结束",
+    "question": "这段会打印哪些数字？",
+    "code": "for i in range(3):\n    print(i)",
+    "options": ["1 2 3", "0 1 2", "0 1 2 3"],
+    "answer": 1,
+    "explain": "`range(3)` 从 **0** 开始，给 3 个数：0、1、2。**个数对，但没有 3**。这是新手最常记混的地方。"
+  },
+  {
+    "id": "d15-p2",
+    "type": "predict",
+    "title": "两个参数的 range",
+    "question": "`range(1, 5)` 会给出哪些数？",
+    "code": "for i in range(1, 5):\n    print(i)",
+    "options": ["1 2 3 4 5", "1 2 3 4", "0 1 2 3 4"],
+    "answer": 1,
+    "explain": "起点**包含**，终点**不包含**。想数到 5，要写 `range(1, 6)`。"
+  },
+  {
+    "id": "d15-p3",
+    "type": "predict",
+    "title": "缩进决定了打印几次",
+    "question": "这段会打印几次「完成」？",
+    "code": "for i in range(3):\n    print(i)\nprint(\"完成\")",
+    "options": ["1 次", "3 次", "0 次"],
+    "answer": 0,
+    "explain": "`print(\"完成\")` **顶格**写，不归 for 管，所以循环结束后才执行一次。缩进进去就会打印 3 次。"
+  },
+  {
+    "id": "d15-b1",
+    "type": "fixbug",
+    "title": "少数了一个",
+    "question": "这段想打印 1 到 5，但只到 4。修好它。",
+    "code": "for i in range(1, 5):\n    print(i)",
+    "expect_contains": "5",
+    "nudge": "终点是**不包含**的。想要 5 出现，终点该写几？",
+    "explain": "改成 `range(1, 6)`。这个「差一个」的错误有个专门的名字叫 off-by-one error，是编程界最经典的 bug 类型 😅"
+  },
+  {
+    "id": "d15-b2",
+    "type": "fixbug",
+    "title": "金字塔歪了",
+    "question": "这段想画居中的金字塔，但星星都靠左了。加上空格修好它。",
+    "code": "for i in range(1, 4):\n    print(\"★\" * (2 * i - 1))",
+    "expect_contains": "  ★",
+    "nudge": "每行前面补 `(3 - i)` 个空格：`\" \" * (3 - i) + ...`",
+    "explain": "居中的秘诀就是**左边补空格**，而且行号越大补得越少。ASCII 图案基本都是这个套路 ✨"
+  },
+  {
+    "id": "d15-e1",
+    "type": "fill",
+    "title": "回响 · Day 14 的 while 对比",
+    "echo": 14,
+    "question": "把这个 while 循环改写成 for 循环，效果一样（打印 0 1 2）。",
+    "code": "# 原来的 while 版本：\n# n = 0\n# while n < 3:\n#     print(n)\n#     n += 1\n\n# 用 for 改写，写在下面：\n",
+    "expect_contains": "0",
+    "nudge": "`for i in range(3):` 然后缩进 `print(i)` —— 两行搞定。",
+    "explain": "同样的事，`while` 要 4 行、`for` 只要 2 行。**知道次数就用 for**，能少写一半代码还不会死循环 ✨"
+  }
+]

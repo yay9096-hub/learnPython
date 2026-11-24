@@ -1,0 +1,63 @@
+[
+  {
+    "id": "d13-p1",
+    "type": "predict",
+    "title": "and 有多严格",
+    "question": "age 是 16 但 mp 只有 30，会打印什么？",
+    "code": "age = 16\nmp = 30\n\nif age >= 15 and mp >= 50:\n    print(\"通过\")\nelse:\n    print(\"不通过\")",
+    "options": ["通过", "不通过", "会报错"],
+    "answer": 1,
+    "explain": "`and` 要求**两边都成立**。魔力 30 不到 50，一票否决。条件用 and 串得越多，越难通过。"
+  },
+  {
+    "id": "d13-p2",
+    "type": "predict",
+    "title": "or 有多宽容",
+    "question": "is_vip 是 False，但 score 是 95，会打印什么？",
+    "code": "is_vip = False\nscore = 95\n\nif is_vip or score >= 90:\n    print(\"VIP 通道\")\nelse:\n    print(\"普通通道\")",
+    "options": ["VIP 通道", "普通通道", "两个都打印"],
+    "answer": 0,
+    "explain": "`or` 只要**有一个**成立就通过。VIP 身份没有，但分数够了，照样进。"
+  },
+  {
+    "id": "d13-p3",
+    "type": "predict",
+    "title": "经典陷阱",
+    "question": "level 是 5，这段会打印什么？（这是个坑）",
+    "code": "level = 5\n\nif level == 1 or 2:\n    print(\"新手\")\nelse:\n    print(\"老手\")",
+    "options": ["新手", "老手", "会报错"],
+    "answer": 0,
+    "explain": "Python 把它读成 `(level == 1) or (2)`。非零数字 `2` 本身就算 True，所以条件**永远成立**。正确写法是 `level == 1 or level == 2`，或者 `level in [1, 2]`。"
+  },
+  {
+    "id": "d13-p4",
+    "type": "predict",
+    "title": "in 在查什么",
+    "question": "这两行分别打印什么？",
+    "code": "name = \"星野樱\"\nprint(\"樱\" in name)\nprint(\"月\" in name)",
+    "options": ["True\nTrue", "True\nFalse", "False\nFalse"],
+    "answer": 1,
+    "explain": "`in` 用在文字上，问的是「这几个字在不在里面」。「樱」在「星野樱」里，「月」不在。"
+  },
+  {
+    "id": "d13-b1",
+    "type": "fixbug",
+    "title": "and 写成了 or",
+    "question": "规则是「年龄够**而且**魔力够」，但这段 16 岁 30 魔力也通过了。修好它。",
+    "code": "age = 16\nmp = 30\n\nif age >= 15 or mp >= 50:\n    print(\"通过\")\nelse:\n    print(\"不通过\")",
+    "expect_contains": "不通过",
+    "nudge": "「而且」对应哪个词？",
+    "explain": "「而且」是 `and`，「或者」是 `or`。写条件之前先用中文念一遍，就不容易搞混。"
+  },
+  {
+    "id": "d13-e1",
+    "type": "fixbug",
+    "title": "回响 · Day 12 的分支顺序",
+    "echo": 12,
+    "question": "hp 是 100，这段却说「重伤」。调整顺序修好它，让它输出「健康」。",
+    "code": "hp = 100\n\nif hp < 150:\n    print(\"重伤\")\nelif hp >= 100:\n    print(\"健康\")",
+    "expect_contains": "健康",
+    "nudge": "最严格的条件放最上面。",
+    "explain": "又是分支顺序。这个坑会反复出现，直到形成肌肉记忆：**从严格写到宽松**。"
+  }
+]

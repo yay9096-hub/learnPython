@@ -1,0 +1,22 @@
+{
+  "day": 52,
+  "title": "CSV 成绩单",
+  "hook": "处理真实世界最常见的数据格式 —— Excel 也认它",
+  "stage": 5,
+  "concepts": ["csv 格式", "表头", "类型转换"],
+  "estimated_minutes": 45,
+  "needs_stdin": true,
+  "uses_turtle": false,
+  "uses_files": true,
+  "next_teaser": "明天做记账本 —— 把这一章学的全串起来 💰",
+  "challenge": {
+    "title": "导出排名榜",
+    "desc": "把按总分排序的结果写成一个新的 CSV，多加一列「名次」。"
+  },
+  "cheatsheet": [
+    { "name": "csv 长什么样", "desc": "第一行表头，后面每行一条", "code": "姓名,语文,数学\n星野樱,88,92" },
+    { "name": "拆一行", "desc": "按逗号分开", "code": "line.strip().split(\",\")" },
+    { "name": "拼一行", "desc": "join 回去", "code": "\",\".join(values)" },
+    { "name": "数字要转", "desc": "读出来都是文字", "code": "int(parts[1])" }
+  ]
+}

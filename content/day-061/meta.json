@@ -1,0 +1,22 @@
+{
+  "day": 61,
+  "title": "让它好看点",
+  "hook": "print(角色) 直接打印出漂亮卡片 —— 特殊方法",
+  "stage": 6,
+  "concepts": ["__str__", "__len__", "__eq__", "运算符重载"],
+  "estimated_minutes": 45,
+  "needs_stdin": false,
+  "uses_turtle": false,
+  "uses_files": false,
+  "next_teaser": "明天做卡牌对战 —— 第六章的大项目 🎴",
+  "challenge": {
+    "title": "让队伍可以相加",
+    "desc": "实现 Team.__add__，让 team_a + team_b 合并成一支新队伍。"
+  },
+  "cheatsheet": [
+    { "name": "__str__", "desc": "print(对象) 时调用", "code": "def __str__(self):\n    return f\"...\"" },
+    { "name": "__len__", "desc": "len(对象) 时调用", "code": "def __len__(self):\n    return len(self.members)" },
+    { "name": "__eq__", "desc": "== 比较时调用", "code": "def __eq__(self, other):" },
+    { "name": "__contains__", "desc": "in 判断时调用", "code": "def __contains__(self, name):" }
+  ]
+}

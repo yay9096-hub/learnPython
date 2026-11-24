@@ -1,0 +1,16 @@
+{
+  "day": 22,
+  "title": "猜数字 · 进化版",
+  "hook": "第二章最终关 —— 难度选择、限次数、战绩统计，做一个完整的游戏",
+  "stage": 2,
+  "concepts": ["综合挑战", "游戏循环", "多局统计"],
+  "estimated_minutes": 50,
+  "needs_stdin": true,
+  "uses_turtle": false,
+  "next_teaser": "第二章通关！第三章要教你「一个变量装一堆东西」—— 列表和字典登场 📦",
+  "challenge": {
+    "title": "智能提示",
+    "desc": "差距很大时提示「差得远呢」，差距在 5 以内时提示「就差一点点！」。"
+  },
+  "cheatsheet": []
+}

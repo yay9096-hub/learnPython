@@ -1,0 +1,22 @@
+{
+  "day": 50,
+  "title": "游戏存档",
+  "hook": "把整个字典、整个列表原样存进文件 —— 不用再自己拆字符串了",
+  "stage": 5,
+  "concepts": ["json.dump", "json.load", "序列化"],
+  "estimated_minutes": 45,
+  "needs_stdin": true,
+  "uses_turtle": false,
+  "uses_files": true,
+  "next_teaser": "明天学 datetime —— 让存档带上时间戳，还能算连续打卡 ⏰",
+  "challenge": {
+    "title": "多存档位",
+    "desc": "支持三个存档位（存档1.json / 存档2.json / 存档3.json），读档前先列出每个位子的角色和等级。"
+  },
+  "cheatsheet": [
+    { "name": "存", "desc": "字典/列表直接写进文件", "code": "json.dump(data, f, ensure_ascii=False, indent=2)" },
+    { "name": "读", "desc": "读回来还是字典/列表", "code": "data = json.load(f)" },
+    { "name": "中文", "desc": "必须加这个参数", "code": "ensure_ascii=False" },
+    { "name": "好看", "desc": "缩进两格", "code": "indent=2" }
+  ]
+}

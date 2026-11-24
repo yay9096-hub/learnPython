@@ -1,0 +1,18 @@
+{
+  "day": 9,
+  "title": "专属魔法阵",
+  "hook": "填充、圆环、坐标 —— 画一个属于你的魔法阵",
+  "stage": 1,
+  "concepts": ["turtle 坐标", "填充", "背景色"],
+  "estimated_minutes": 40,
+  "needs_stdin": false,
+  "uses_turtle": true,
+  "next_teaser": "明天是第一章最后一天 —— 命运抽卡机，看看你能不能抽到 SSR 🎴",
+  "cheatsheet": [
+    { "name": "goto(x, y)", "desc": "直接跳到坐标，中心是 (0,0)", "code": "turtle.goto(-100, 50)" },
+    { "name": "begin_fill / end_fill", "desc": "把这中间画出的形状填上色", "code": "turtle.begin_fill()" },
+    { "name": "fillcolor()", "desc": "设置填充色", "code": "turtle.fillcolor(\"#DDCEFF\")" },
+    { "name": "bgcolor()", "desc": "设置画布背景色", "code": "turtle.bgcolor(\"#1A1625\")" },
+    { "name": "setheading()", "desc": "直接指定朝向，0 是正右方", "code": "turtle.setheading(90)" }
+  ]
+}

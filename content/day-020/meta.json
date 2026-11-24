@@ -1,0 +1,20 @@
+{
+  "day": 20,
+  "title": "回合制战斗模拟",
+  "hook": "两个角色自动对打，一回合一回合，直到一方倒下",
+  "stage": 2,
+  "concepts": ["while + 状态变化", "回合制逻辑", "综合统计"],
+  "estimated_minutes": 45,
+  "needs_stdin": false,
+  "uses_turtle": false,
+  "next_teaser": "明天是复习作品日 —— 做一个真正能玩的文字冒险游戏 🎮",
+  "challenge": {
+    "title": "暴击与闪避",
+    "desc": "加两个机制：20% 概率暴击（伤害翻倍）、10% 概率闪避（伤害为 0）。"
+  },
+  "cheatsheet": [
+    { "name": "状态循环", "desc": "只要双方都活着就继续", "code": "while hp_a > 0 and hp_b > 0:" },
+    { "name": "回合计数", "desc": "每轮加一", "code": "turn += 1" },
+    { "name": "扣血", "desc": "状态在循环里被改变", "code": "hp_b -= damage" }
+  ]
+}

@@ -1,0 +1,63 @@
+[
+  {
+    "id": "d41-p1",
+    "type": "predict",
+    "title": "筛选返回什么",
+    "question": "一个都不符合时，筛选函数返回什么？",
+    "code": "def filt(lst, n):\n    out = []\n    for x in lst:\n        if x > n:\n            out.append(x)\n    return out\n\nprint(filt([1, 2, 3], 99))",
+    "options": ["None", "[]", "报错"],
+    "answer": 1,
+    "explain": "空列表一路带到最后，返回的就是 `[]`。**返回空列表比返回 None 好用** —— 调用方可以直接拿去遍历，不用先判断。"
+  },
+  {
+    "id": "d41-p2",
+    "type": "predict",
+    "title": "查找函数的提前返回",
+    "question": "列表里有两个符合的，这个函数返回哪个？",
+    "code": "def find(lst, n):\n    for x in lst:\n        if x > n:\n            return x\n    return None\n\nprint(find([1, 5, 8], 3))",
+    "options": ["5", "8", "[5, 8]"],
+    "answer": 0,
+    "explain": "`return` 一执行函数就结束了，所以只会拿到**第一个**符合的。这正是查找和筛选的区别。"
+  },
+  {
+    "id": "d41-p3",
+    "type": "predict",
+    "title": "空列表求平均",
+    "question": "这段会怎样？",
+    "code": "def avg(lst):\n    return sum(lst) / len(lst)\n\nprint(avg([]))",
+    "options": ["0", "报 ZeroDivisionError", "None"],
+    "answer": 1,
+    "explain": "空列表长度是 0，除以零直接崩。**算平均前必须先检查非空** —— 函数库要经得起各种输入。"
+  },
+  {
+    "id": "d41-b1",
+    "type": "fixbug",
+    "title": "return 放错位置",
+    "question": "这段只检查了第一个成员就返回了。修好它，让它输出 True。",
+    "code": "def has_fire(team):\n    for m in team:\n        if m[\"element\"] == \"火\":\n            return True\n        return False\n\nprint(has_fire([{\"element\": \"水\"}, {\"element\": \"火\"}]))",
+    "expect_contains": "True",
+    "nudge": "`return False` 缩进多了一层，跑到循环里去了。把它跟 `for` 对齐。",
+    "explain": "「找不到」的结论必须等**整个循环跑完**才能下。放在循环里，第一轮不符合就草率地返回了 😅"
+  },
+  {
+    "id": "d41-b2",
+    "type": "fixbug",
+    "title": "筛选改动了原数据",
+    "question": "这段筛完之后原列表也变了。改成返回新列表，让最后输出 3。",
+    "code": "def filt(team, n):\n    for m in list(team):\n        if m[\"atk\"] < n:\n            team.remove(m)\n    return team\n\ndata = [{\"atk\": 50}, {\"atk\": 80}, {\"atk\": 60}]\nfilt(data, 70)\nprint(len(data))",
+    "expect_contains": "3",
+    "nudge": "别在原列表上 remove。改成建一个空列表 `out = []`，符合条件的 append 进去，最后 return out。",
+    "explain": "**筛选要返回新列表，不能动原数据** —— 否则原始数据就再也回不来了 ✨"
+  },
+  {
+    "id": "d41-e1",
+    "type": "fill",
+    "title": "回响 · Day 37 的返回值",
+    "echo": 37,
+    "question": "把两个筛选串起来：先筛火属性，再从结果里筛攻击 >= 85（答案应该是 1 人）。",
+    "code": "def by_el(team, el):\n    return [m for m in team if m[\"element\"] == el]\n\ndef by_atk(team, n):\n    return [m for m in team if m[\"atk\"] >= n]\n\nteam = [\n    {\"name\": \"樱\", \"atk\": 88, \"element\": \"火\"},\n    {\"name\": \"灯\", \"atk\": 72, \"element\": \"火\"},\n    {\"name\": \"凛\", \"atk\": 110, \"element\": \"水\"},\n]\n\nresult = ___\nprint(len(result))",
+    "expect_contains": "1",
+    "nudge": "把一个函数的返回值直接喂给另一个：`by_atk(by_el(team, \"火\"), 85)`",
+    "explain": "因为筛选**返回的还是列表**，所以能一层套一层。这就是「小零件拼大功能」的威力 ✨"
+  }
+]

@@ -1,0 +1,63 @@
+[
+  {
+    "id": "d65-p1",
+    "type": "predict",
+    "title": "label 不写 legend",
+    "question": "只写了 label 没调 legend()，图例会显示吗？",
+    "code": "# plt.plot(x, y, label=\"运行次数\")\n# 没有 plt.legend()",
+    "options": ["会显示", "不会显示", "报错"],
+    "answer": 1,
+    "explain": "`label` 只是**给线起个名字**，`legend()` 才是把这些名字画出来。**两个必须配套。**"
+  },
+  {
+    "id": "d65-p2",
+    "type": "predict",
+    "title": "累计曲线的特点",
+    "question": "累计学习时长这条曲线可能下降吗？",
+    "code": "total = 0\nfor m in [40, 35, 50]:\n    total += m\n    print(total)",
+    "options": ["可能", "不可能，只会持平或上升", "看数据"],
+    "answer": 1,
+    "explain": "每次只加不减，所以**累计曲线永远不会下降**。如果你画出来的降了，说明累加器写错了。"
+  },
+  {
+    "id": "d65-p3",
+    "type": "predict",
+    "title": "autopct 里的百分号",
+    "question": "`autopct=\"%1.0f%%\"` 最后两个 %% 是什么？",
+    "code": "# 一块占 30% 时会显示成 30%",
+    "options": ["两个百分号", "一个百分号", "格式错误"],
+    "answer": 1,
+    "explain": "在格式字符串里，`%` 是特殊符号。想显示一个真的百分号，要写两个 `%%` —— 跟 Day 6 的 `\\` 是同一个道理。"
+  },
+  {
+    "id": "d65-b1",
+    "type": "fixbug",
+    "title": "没完成的天拉低了平均",
+    "question": "有两天还没做（0 分钟），平均值被拉低了。筛掉它们，让输出变成 45.0。",
+    "code": "records = [\n    {\"minutes\": 40, \"status\": \"done\"},\n    {\"minutes\": 50, \"status\": \"done\"},\n    {\"minutes\": 0, \"status\": \"locked\"},\n    {\"minutes\": 0, \"status\": \"locked\"},\n]\n\nprint(round(sum(r[\"minutes\"] for r in records) / len(records), 1))",
+    "expect_contains": "45.0",
+    "nudge": "先 `done = [r for r in records if r[\"status\"] == \"done\"]`，再对 done 求平均。",
+    "explain": "**统计前先过滤**。真实数据里总有没填的、无效的行，不筛掉算出来的结论就是错的 ✨"
+  },
+  {
+    "id": "d65-b2",
+    "type": "fixbug",
+    "title": "一次都没运行就算报错率",
+    "question": "runs 是 0 时这段崩了。修好它，让它输出 0.0。",
+    "code": "runs = 0\nerrors = 0\n\nrate = round(errors / runs * 100, 1)\nprint(rate)",
+    "expect_contains": "0.0",
+    "nudge": "用 `round(errors / runs * 100, 1) if runs else 0.0`。",
+    "explain": "**算比率之前永远先检查分母** —— 这个坑从 Day 41 一路跟到第七章 😉"
+  },
+  {
+    "id": "d65-e1",
+    "type": "fill",
+    "title": "回响 · Day 30 的字典计数",
+    "echo": 30,
+    "question": "按章汇总时长（第 1 章应该是 75）。",
+    "code": "done = [\n    {\"stage\": 1, \"minutes\": 40},\n    {\"stage\": 2, \"minutes\": 50},\n    {\"stage\": 1, \"minutes\": 35},\n]\n\nby_stage = {}\nfor r in done:\n    key = r[\"stage\"]\n    ___\n\nprint(by_stage[1])",
+    "expect_contains": "75",
+    "nudge": "`by_stage[key] = by_stage.get(key, 0) + r[\"minutes\"]`",
+    "explain": "`.get(键, 默认值)` 让「第一次遇到」和「已经有了」用同一行搞定 —— 分组汇总的标准写法 ✨"
+  }
+]

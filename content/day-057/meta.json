@@ -1,0 +1,21 @@
+{
+  "day": 57,
+  "title": "给属性上保险",
+  "hook": "血量不该超过上限，也不该变成负数 —— 让类自己守规矩",
+  "stage": 6,
+  "concepts": ["方法内校验", "min/max 夹取", "不变量"],
+  "estimated_minutes": 45,
+  "needs_stdin": false,
+  "uses_turtle": false,
+  "uses_files": false,
+  "next_teaser": "明天管理一整支队伍 —— 再造一个 Team 类 👥",
+  "challenge": {
+    "title": "护盾机制",
+    "desc": "给 Role 加一个 shield 属性，受伤时先扣护盾，护盾破了才扣血。"
+  },
+  "cheatsheet": [
+    { "name": "夹在范围里", "desc": "上下都不越界", "code": "hp = max(0, min(hp, max_hp))" },
+    { "name": "不变量", "desc": "任何时候都必须成立的规则", "code": "0 <= hp <= max_hp" },
+    { "name": "拒绝非法参数", "desc": "方法开头就挡住", "code": "if amount < 0:\n    raise ValueError(...)" }
+  ]
+}

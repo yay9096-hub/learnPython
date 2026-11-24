@@ -1,0 +1,20 @@
+{
+  "day": 15,
+  "title": "星星金字塔",
+  "hook": "知道要重复几次的时候，for 比 while 好用一百倍",
+  "stage": 2,
+  "concepts": ["for", "range", "循环变量"],
+  "estimated_minutes": 40,
+  "needs_stdin": false,
+  "uses_turtle": false,
+  "next_teaser": "明天用循环重画 Day 8 的五角星 —— 9 行代码会变成 3 行 🌟",
+  "challenge": {
+    "title": "倒金字塔",
+    "desc": "在正金字塔下面再画一个倒过来的，拼成一个沙漏。提示：range 的第三个参数可以是 -1。"
+  },
+  "cheatsheet": [
+    { "name": "for + range", "desc": "重复固定次数", "code": "for i in range(5):\n    print(i)" },
+    { "name": "range(a, b)", "desc": "从 a 到 b-1，不含 b", "code": "range(1, 6)  # 1,2,3,4,5" },
+    { "name": "range(a, b, c)", "desc": "第三个是步长", "code": "range(10, 0, -1)  # 倒数" }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "day": 70,
+  "title": "毕业作品",
+  "hook": "最后一天 —— 这次没有标准答案，题目由你自己定",
+  "stage": 7,
+  "concepts": ["自由创作", "综合运用", "毕业"],
+  "estimated_minutes": 90,
+  "needs_stdin": false,
+  "uses_turtle": true,
+  "uses_files": true,
+  "uses_plot": true,
+  "review": true,
+  "graduation": true,
+  "challenge": {
+    "title": "给下一个人",
+    "desc": "在作品最后打印一段话，写给「一个刚打开 Day 1 的人」——你想告诉她什么。"
+  },
+  "cheatsheet": []
+}

@@ -1,0 +1,43 @@
+[
+  {
+    "id": "d19-p1",
+    "type": "predict",
+    "title": "怎么表示 10% 的概率",
+    "question": "哪一句表示「大约十分之一的概率成立」？",
+    "code": "import random\n# A: random.randint(1, 10) == 1\n# B: random.randint(1, 10) > 1\n# C: random.randint(0, 1) == 1",
+    "options": ["A", "B", "C"],
+    "answer": 0,
+    "explain": "`randint(1, 10)` 会等概率给出 1~10 十个数，其中只有 1 满足条件，所以是 1/10。B 是 90%，C 是 50%。"
+  },
+  {
+    "id": "d19-p2",
+    "type": "predict",
+    "title": "penup 忘了会怎样",
+    "question": "循环里 goto 之前没有 penup()，画面上会出现什么？",
+    "code": "for i in range(50):\n    turtle.goto(随机坐标)\n    turtle.dot(4)",
+    "options": ["只有点", "点之间连满乱线", "什么都没有"],
+    "answer": 1,
+    "explain": "笔没抬起来，每次 `goto` 都会**拖出一条线**。50 个随机点就是一团乱麻。Day 8 的「抬笔→移动→落笔」三步，这里只需要抬笔一次。"
+  },
+  {
+    "id": "d19-b1",
+    "type": "fixbug",
+    "title": "所有星星挤在一起",
+    "question": "这段的星星全叠在同一个位置。修好它，让每颗星位置都不同。",
+    "code": "import random\n\nx = random.randint(-200, 200)\ny = random.randint(-150, 150)\npoints = []\n\nfor i in range(5):\n    points.append((x, y))\n\nprint(f\"不同的位置有 {len(set(points))} 个\")",
+    "expect_contains": "不同的位置有 5 个",
+    "nudge": "随机坐标要在循环**里面**生成，写在外面就只随机了一次。",
+    "explain": "把两行 `random.randint` 挪进循环里就好。**随机要每圈都重新掷一次**，写在循环外等于只掷了一次骰子 😅"
+  },
+  {
+    "id": "d19-e1",
+    "type": "fill",
+    "title": "回响 · Day 17 的统计",
+    "echo": 17,
+    "question": "统计 100 颗星里有几颗是「亮星」（10% 概率）。补全累加那一行。",
+    "code": "import random\n\nbright = 0\n\nfor i in range(100):\n    if random.randint(1, 10) == 1:\n        ___\n\nprint(f\"亮星大约 {bright} 颗\")",
+    "expect_contains": "亮星大约",
+    "nudge": "累加一次：`bright += 1`",
+    "explain": "「归零在外、累加在内、使用在外」——这个模式从 Day 14 的计数器一路用到现在，以后还会用几百次 ✨"
+  }
+]

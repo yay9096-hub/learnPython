@@ -1,0 +1,63 @@
+[
+  {
+    "id": "d53-p1",
+    "type": "predict",
+    "title": "浮点数的意外",
+    "question": "这段会打印什么？",
+    "code": "print(0.1 + 0.2)",
+    "options": ["0.3", "0.30000000000000004", "0.300000"],
+    "answer": 1,
+    "explain": "计算机存小数有精度误差。**涉及钱的地方一律 `round(x, 2)` 再显示**，否则账单上会出现一串诡异的小数。"
+  },
+  {
+    "id": "d53-p2",
+    "type": "predict",
+    "title": "切出月份",
+    "question": "`\"2026-09-02\"[:7]` 是什么？",
+    "code": "print(\"2026-09-02\"[:7])",
+    "options": ["2026-09-", "2026-09", "2026-0"],
+    "answer": 1,
+    "explain": "前 7 个字符正好是「年-月」。**日期格式统一成 YYYY-MM-DD 之后，按月分组就是一个切片的事** ✨"
+  },
+  {
+    "id": "d53-p3",
+    "type": "predict",
+    "title": "分组累加的关键判断",
+    "question": "少了 `if` 判断会怎样？",
+    "code": "g = {}\nfor x in [(\"a\", 10), (\"a\", 20)]:\n    g[x[0]] = x[1]\nprint(g[\"a\"])",
+    "options": ["30", "20", "10"],
+    "answer": 1,
+    "explain": "直接赋值是**覆盖**，第二笔把第一笔顶掉了。要累加必须先 `if key in g:` 判断 —— Day 50 加道具时踩过同一个坑。"
+  },
+  {
+    "id": "d53-b1",
+    "type": "fixbug",
+    "title": "收入混进了支出统计",
+    "question": "这段把收入也算成支出了。修好它，让它输出 30。",
+    "code": "records = [\n    {\"type\": \"收入\", \"amount\": 100},\n    {\"type\": \"支出\", \"amount\": 30},\n]\n\ntotal = 0\nfor r in records:\n    total += r[\"amount\"]\n\nprint(total)",
+    "expect_contains": "30",
+    "nudge": "循环里先判断 `if r[\"type\"] != \"支出\": continue`。",
+    "explain": "**统计前先过滤**。混进一条不该算的记录，整张报表的数字就全错了 —— 而且很难发现 ✨"
+  },
+  {
+    "id": "d53-b2",
+    "type": "fixbug",
+    "title": "校验函数把错吞了",
+    "question": "这个函数遇到非法输入悄悄返回了 0，调用方根本不知道。改成 raise，让外面打印出「金额得是数字」。",
+    "code": "def validate(text):\n    try:\n        return float(text)\n    except ValueError:\n        return 0\n\ntry:\n    validate(\"abc\")\n    print(\"没问题\")\nexcept ValueError as e:\n    print(e)",
+    "expect_contains": "金额得是数字",
+    "nudge": "把 `return 0` 换成 `raise ValueError(\"金额得是数字\")`。",
+    "explain": "**悄悄用一个假数据继续跑，比直接报错危险得多** —— 错误的账目会一路流到报表里 ✨"
+  },
+  {
+    "id": "d53-e1",
+    "type": "fill",
+    "title": "回响 · Day 51 的 datetime",
+    "echo": 51,
+    "question": "把日期文字转成 date 对象，取出月份（应输出 9）。",
+    "code": "from datetime import date\n\nd = ___\nprint(d.month)",
+    "expect_contains": "9",
+    "nudge": "`date.fromisoformat(\"2026-09-02\")`",
+    "explain": "**只要分组用切片就够了，但要做日期加减、算连续天数，还是得转成真正的 date** ✨"
+  }
+]

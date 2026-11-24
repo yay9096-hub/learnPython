@@ -1,0 +1,63 @@
+[
+  {
+    "id": "d48-p1",
+    "type": "predict",
+    "title": "readlines 带换行吗",
+    "question": "读出来的每一项末尾有什么？",
+    "code": "with open(\"t.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"甲\n乙\n\")\n\nwith open(\"t.txt\", encoding=\"utf-8\") as f:\n    lines = f.readlines()\n\nprint(repr(lines[0]))",
+    "options": ["'甲'", "'甲\n'", "'甲乙'"],
+    "answer": 1,
+    "explain": "`readlines()` **保留每行末尾的换行符**。所以从文件读出来的第一件事通常是 `.strip()`。"
+  },
+  {
+    "id": "d48-p2",
+    "type": "predict",
+    "title": "空字符串在 if 里",
+    "question": "空行会被 `if line:` 放过吗？",
+    "code": "lines = [\"甲\", \"\", \"乙\"]\nn = 0\nfor line in lines:\n    if line:\n        n += 1\nprint(n)",
+    "options": ["3", "2", "0"],
+    "answer": 1,
+    "explain": "**空字符串在 `if` 里算 False**，所以被跳过了。这是过滤空行最简洁的写法。"
+  },
+  {
+    "id": "d48-p3",
+    "type": "predict",
+    "title": "read 还是 for line",
+    "question": "文件有 10GB，哪种读法不会把电脑卡死？",
+    "code": "# A: text = f.read()\n# B: lines = f.readlines()\n# C: for line in f:",
+    "options": ["A", "B", "C"],
+    "answer": 2,
+    "explain": "只有 `for line in f` 是**一次只读一行**。前两种都会把整个文件塞进内存 —— 10GB 直接卡死。"
+  },
+  {
+    "id": "d48-b1",
+    "type": "fixbug",
+    "title": "字数多算了",
+    "question": "三行内容共 3 个字，但算出了 6。修好它，让它输出 3。",
+    "code": "with open(\"t.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"甲\n乙\n丙\n\")\n\ntotal = 0\nwith open(\"t.txt\", encoding=\"utf-8\") as f:\n    for line in f:\n        total += len(line)\n\nprint(total)",
+    "expect_contains": "3",
+    "nudge": "每行末尾的 `\n` 也被算成一个字了。先 `line = line.strip()` 再数。",
+    "explain": "换行符也是字符，`len(\"甲\n\")` 是 2 不是 1。**统计前先 strip** 是处理文件的标配动作 ✨"
+  },
+  {
+    "id": "d48-b2",
+    "type": "fixbug",
+    "title": "return 放进循环里了",
+    "question": "这段只检查了第一行就返回。修好它，让它找到「乙」。",
+    "code": "lines = [\"甲\", \"乙\", \"丙\"]\n\ndef find(target):\n    for line in lines:\n        if line == target:\n            return line\n        return None\n\nprint(find(\"乙\"))",
+    "expect_contains": "乙",
+    "nudge": "`return None` 缩进多了一层，把它跟 `for` 对齐。",
+    "explain": "「找不到」的结论要等**整个循环跑完**才能下 —— 这个坑 Day 41 也踩过一次 😉"
+  },
+  {
+    "id": "d48-e1",
+    "type": "fill",
+    "title": "回响 · Day 28 的 split",
+    "echo": 28,
+    "question": "从「2026-09-04 今天 天气 很好」里只拆出日期和其余全部（输出应为「2026-09-04」）。",
+    "code": "line = \"2026-09-04 今天 天气 很好\"\n\nparts = ___\nprint(parts[0])",
+    "expect_contains": "2026-09-04",
+    "nudge": "`line.split(\" \", 1)` —— 第二个参数限制最多拆一次。",
+    "explain": "不加那个 `1` 的话，正文里的空格也会被拆开，得到 4 项。**限制拆分次数**在处理「前缀 + 自由文本」时非常有用 ✨"
+  }
+]

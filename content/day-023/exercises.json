@@ -1,0 +1,63 @@
+[
+  {
+    "id": "d23-p1",
+    "type": "predict",
+    "title": "编号从几开始",
+    "question": "这段会打印什么？",
+    "code": "team = [\"樱\", \"琉璃\", \"灯\"]\nprint(team[1])",
+    "options": ["樱", "琉璃", "灯"],
+    "answer": 1,
+    "explain": "编号**从 0 开始**，所以 `[1]` 是第二个。这是列表最容易搞错的地方，多练几次就习惯了。"
+  },
+  {
+    "id": "d23-p2",
+    "type": "predict",
+    "title": "长度和最大编号",
+    "question": "3 个成员的列表，`team[3]` 会怎样？",
+    "code": "team = [\"樱\", \"琉璃\", \"灯\"]\nprint(team[3])",
+    "options": ["打印灯", "打印空的", "报 IndexError"],
+    "answer": 2,
+    "explain": "3 个成员的编号是 0、1、2，**没有 3**。长度和最大编号永远差 1。想取最后一个直接写 `[-1]` 最省心。"
+  },
+  {
+    "id": "d23-p3",
+    "type": "predict",
+    "title": "负编号",
+    "question": "`team[-2]` 取的是哪个？",
+    "code": "team = [\"樱\", \"琉璃\", \"灯\", \"凛\"]\nprint(team[-2])",
+    "options": ["琉璃", "灯", "凛"],
+    "answer": 1,
+    "explain": "`-1` 是最后一个（凛），`-2` 就是倒数第二个（灯）。倒着数没有 0，直接从 -1 开始。"
+  },
+  {
+    "id": "d23-p4",
+    "type": "predict",
+    "title": "列表能改，字符串不能",
+    "question": "这段会怎样？",
+    "code": "name = \"樱花\"\nname[0] = \"月\"\nprint(name)",
+    "options": ["打印 月花", "报 TypeError", "打印 樱花"],
+    "answer": 1,
+    "explain": "**字符串不能改**，列表才能。想改字符串只能造一个新的，比如 `name = \"月\" + name[1:]`。"
+  },
+  {
+    "id": "d23-b1",
+    "type": "fixbug",
+    "title": "取最后一个",
+    "question": "这段想打印最后一个成员，但报了 IndexError。修好它。",
+    "code": "team = [\"樱\", \"琉璃\", \"灯\"]\nprint(team[len(team)])",
+    "expect_contains": "灯",
+    "nudge": "长度是 3，但最大编号是 2。要么写 `len(team) - 1`，要么直接用 `[-1]`。",
+    "explain": "`team[-1]` 是最省心的写法。这个「差一个」的坑（off-by-one）在 Day 15 也出现过 😉"
+  },
+  {
+    "id": "d23-e1",
+    "type": "fill",
+    "title": "回响 · Day 17 的累加器",
+    "echo": 17,
+    "question": "算出这支队伍的总血量（应该是 900）。补全循环里那一行。",
+    "code": "hps = [340, 280, 280]\ntotal = 0\n\nfor hp in hps:\n    ___\n\nprint(f\"总血量 {total}\")",
+    "expect_contains": "总血量 900",
+    "nudge": "每转一圈把当前的 hp 加进去：`total += hp`",
+    "explain": "「归零在外、累加在内」的老套路，只是这次遍历的是列表而不是 `range`。明天开始这个组合会天天用 ✨"
+  }
+]

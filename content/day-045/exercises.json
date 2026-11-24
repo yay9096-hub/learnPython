@@ -1,0 +1,63 @@
+[
+  {
+    "id": "d45-p1",
+    "type": "predict",
+    "title": "try 接住之后还继续吗",
+    "question": "这段会打印几行？",
+    "code": "try:\n    n = int(\"abc\")\nexcept ValueError:\n    print(\"转不了\")\n\nprint(\"继续\")",
+    "options": ["只有「转不了」", "转不了\n继续", "报错，什么都不打印"],
+    "answer": 1,
+    "explain": "错误被接住之后，程序**继续正常往下跑**。这正是 try/except 的意义 —— 出错不等于崩溃。"
+  },
+  {
+    "id": "d45-p2",
+    "type": "predict",
+    "title": "接错类型会怎样",
+    "question": "这段会怎样？",
+    "code": "try:\n    n = int(\"abc\")\nexcept ZeroDivisionError:\n    print(\"接住了\")",
+    "options": ["打印「接住了」", "还是抛 ValueError", "什么都不发生"],
+    "answer": 1,
+    "explain": "`except` 只接住**它写明的那种**错误。类型对不上就接不住，异常照样往外抛。"
+  },
+  {
+    "id": "d45-p3",
+    "type": "predict",
+    "title": "finally 一定会跑吗",
+    "question": "函数里已经 return 了，finally 还会执行吗？",
+    "code": "def f():\n    try:\n        return \"A\"\n    finally:\n        print(\"B\")\n\nprint(f())",
+    "options": ["A", "B\nA", "A\nB"],
+    "answer": 1,
+    "explain": "`finally` **在 return 真正生效之前**执行，所以先打印 B 再返回 A。它常用来做「无论如何都要做」的收尾，比如关文件。"
+  },
+  {
+    "id": "d45-b1",
+    "type": "fixbug",
+    "title": "光秃秃的 except 吞掉了 bug",
+    "question": "这段本该报「变量名打错」，却被吞了。改成只接 ValueError，让真 bug 暴露出来后再修好它，输出「星野樱」。",
+    "code": "try:\n    nmae = \"星野樱\"\n    print(name)\nexcept:\n    print(\"出错了\")",
+    "expect_contains": "星野樱",
+    "nudge": "把 `except:` 改成 `except ValueError:`，你会看到真正的 NameError，然后把 `nmae` 改成 `name`。",
+    "explain": "**光秃秃的 `except:` 是最危险的写法** —— 它让程序「看起来正常」，实际上一直在错 😱"
+  },
+  {
+    "id": "d45-b2",
+    "type": "fixbug",
+    "title": "try 包太多了",
+    "question": "这段把不该包的也包进来了，出错时看不出是哪一步。缩小 try 的范围，只包住 int() 那一行，输出「年龄 16」。",
+    "code": "text = \"16\"\ntry:\n    age = int(text)\n    print(f\"年龄 {age}\")\n    print(\"登记完成\")\nexcept ValueError:\n    print(\"不是数字\")",
+    "expect_contains": "年龄 16",
+    "nudge": "`try` 里只留 `age = int(text)`，两个 print 挪到 try 外面（或者 else 里）。",
+    "explain": "**try 越小越好** —— 范围一大，别处的错也会被误接住，排查起来非常痛苦 ✨"
+  },
+  {
+    "id": "d45-e1",
+    "type": "fill",
+    "title": "回响 · Day 44 的 isdigit",
+    "echo": 44,
+    "question": "Day 44 用 isdigit 检查，但它挡不住小数。用 try 写一个能认小数的版本（应该输出 True）。",
+    "code": "def can_be_float(text):\n    \"\"\"能不能转成小数。\"\"\"\n    ___\n        ___\n        return True\n    except ValueError:\n        return False\n\nprint(can_be_float(\"3.14\"))",
+    "expect_contains": "True",
+    "nudge": "第一行 `try:`，第二行 `float(text)`。",
+    "explain": "「3.14」的 `isdigit()` 是 False —— 用 `if` 判断小数格式要写一大堆，**用 try 两行就完事**。这就是两种防御各自的场合 ✨"
+  }
+]

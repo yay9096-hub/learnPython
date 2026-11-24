@@ -1,0 +1,21 @@
+{
+  "day": 37,
+  "title": "骰子与判定",
+  "hook": "让函数把结果交回来，而不只是打印出来",
+  "stage": 4,
+  "concepts": ["return", "返回值", "print 和 return 的区别"],
+  "estimated_minutes": 40,
+  "needs_stdin": false,
+  "uses_turtle": false,
+  "next_teaser": "明天学默认参数 —— 常用的值可以省着不写 🎛",
+  "challenge": {
+    "title": "优势掷骰",
+    "desc": "写一个 roll_advantage()，掷两次取较高的那次（跑团里的「优势」规则）。"
+  },
+  "cheatsheet": [
+    { "name": "return", "desc": "把结果交回给调用的地方", "code": "return atk - defense" },
+    { "name": "接住返回值", "desc": "用变量接", "code": "dmg = deal(88, 25)" },
+    { "name": "return 会结束函数", "desc": "后面的代码不执行", "code": "return x\nprint(\"不会跑\")" },
+    { "name": "没写 return", "desc": "默认返回 None", "code": "print(f())  # None" }
+  ]
+}

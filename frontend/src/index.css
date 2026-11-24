@@ -1,0 +1,154 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  body {
+    @apply bg-paper text-ink font-round antialiased;
+    background-image:
+      radial-gradient(circle at 12% 8%, rgba(167, 139, 250, 0.14), transparent 42%),
+      radial-gradient(circle at 88% 4%, rgba(236, 111, 169, 0.12), transparent 38%),
+      radial-gradient(circle at 50% 100%, rgba(167, 139, 250, 0.08), transparent 45%);
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+
+  ::selection {
+    @apply bg-magic-200 text-ink;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-magic-200;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-magic-400;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
+@layer components {
+  .card {
+    @apply rounded-2xl border border-magic-100 bg-paper-card shadow-card;
+  }
+
+  .btn {
+    @apply inline-flex select-none items-center justify-center gap-1.5 rounded-xl px-4 py-2
+           text-sm font-semibold transition active:translate-y-0.5 disabled:cursor-not-allowed
+           disabled:opacity-45 disabled:active:translate-y-0;
+  }
+  .btn-primary {
+    @apply btn bg-magic-500 text-white shadow-pop hover:bg-magic-600;
+  }
+  .btn-check {
+    @apply btn bg-mint-600 text-white shadow-pop hover:brightness-105;
+  }
+  .btn-ghost {
+    @apply btn border border-magic-100 bg-white text-ink-soft hover:border-magic-200 hover:text-magic-600;
+  }
+  .btn-sm {
+    @apply px-3 py-1 text-xs;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-semibold;
+  }
+
+  /* lesson.md 渲染后的排版 */
+  .prose-py {
+    @apply text-[15px] leading-[1.85] text-ink;
+  }
+  .prose-py h1 {
+    @apply mb-3 mt-1 text-xl font-bold text-magic-600;
+  }
+  .prose-py h2 {
+    @apply mb-2 mt-6 flex items-center gap-2 border-b border-magic-100 pb-1.5 text-base font-bold text-ink;
+  }
+  .prose-py h3 {
+    @apply mb-1.5 mt-4 text-sm font-bold text-magic-600;
+  }
+  .prose-py p {
+    @apply my-2.5;
+  }
+  .prose-py ul,
+  .prose-py ol {
+    @apply my-2.5 space-y-1 pl-5;
+  }
+  .prose-py ul {
+    @apply list-disc marker:text-magic-400;
+  }
+  .prose-py ol {
+    @apply list-decimal marker:text-magic-400 marker:font-bold;
+  }
+  .prose-py strong {
+    @apply font-bold text-magic-600;
+  }
+  .prose-py code {
+    @apply rounded-md bg-magic-50 px-1.5 py-0.5 font-mono text-[13px] text-magic-600;
+  }
+  .prose-py pre {
+    @apply my-3 overflow-x-auto rounded-xl bg-[#2E2545] p-3.5 text-[13px] leading-relaxed text-[#EDE4FF];
+  }
+  .prose-py pre code {
+    @apply bg-transparent p-0 text-inherit;
+  }
+  .prose-py blockquote {
+    @apply my-3 rounded-r-xl border-l-4 border-sakura-400 bg-sakura-50 py-2 pl-3.5 pr-3 text-[14px];
+  }
+  .prose-py blockquote p {
+    @apply my-1;
+  }
+  .prose-py table {
+    @apply my-3 w-full border-collapse overflow-hidden rounded-xl text-[13.5px];
+  }
+  .prose-py th {
+    @apply border border-magic-100 bg-magic-50 px-2.5 py-1.5 text-left font-bold;
+  }
+  .prose-py td {
+    @apply border border-magic-100 px-2.5 py-1.5 align-top;
+  }
+  .prose-py hr {
+    @apply my-5 border-magic-100;
+  }
+  .prose-py a {
+    @apply text-magic-600 underline decoration-magic-200 underline-offset-2;
+  }
+}
+
+/* CodeMirror 微调 */
+.cm-editor {
+  height: 100%;
+  font-size: 14.5px;
+}
+.cm-editor .cm-scroller {
+  font-family: "Cascadia Code", "JetBrains Mono", Consolas, "Courier New", monospace;
+  line-height: 1.7;
+}
+.cm-editor.cm-focused {
+  outline: none;
+}
+.cm-gutters {
+  border-right: 1px solid #ede4ff !important;
+  background: #fdfaff !important;
+  color: #b8a9d4 !important;
+}
+.cm-activeLine {
+  background: rgba(167, 139, 250, 0.07) !important;
+}
+.cm-activeLineGutter {
+  background: rgba(167, 139, 250, 0.13) !important;
+  color: #7c3aed !important;
+}
+.cm-error-line {
+  background: rgba(244, 114, 182, 0.16) !important;
+  box-shadow: inset 3px 0 0 #ec6fa9;
+}

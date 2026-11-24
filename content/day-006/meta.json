@@ -1,0 +1,17 @@
+{
+  "day": 6,
+  "title": "剧情对话框",
+  "hook": "让文字排版听你的话 —— 做一个 galgame 风格的对话框",
+  "stage": 1,
+  "concepts": ["转义字符", "多行字符串", "print 参数"],
+  "estimated_minutes": 40,
+  "needs_stdin": false,
+  "uses_turtle": false,
+  "next_teaser": "明天是复习作品日，把这六天全串起来做一个 RPG 开场 🎬",
+  "cheatsheet": [
+    { "name": "\n", "desc": "换行", "code": "print(\"上\n下\")" },
+    { "name": "\t", "desc": "制表符，用来对齐", "code": "print(\"名字\t等级\")" },
+    { "name": "三引号", "desc": "多行字符串，所见即所得", "code": "s = \"\"\"第一行\n第二行\"\"\"" },
+    { "name": "sep / end", "desc": "控制分隔符和结尾", "code": "print(\"a\", \"b\", sep=\"-\", end=\"\")" }
+  ]
+}

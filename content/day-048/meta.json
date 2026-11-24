@@ -1,0 +1,22 @@
+{
+  "day": 48,
+  "title": "翻开日记",
+  "hook": "把写进去的东西读回来，还要能查、能统计",
+  "stage": 5,
+  "concepts": ["read", "readlines", "逐行遍历"],
+  "estimated_minutes": 40,
+  "needs_stdin": true,
+  "uses_turtle": false,
+  "uses_files": true,
+  "next_teaser": "明天做错题本 —— 学会「文件不存在怎么办」和追加模式 📓",
+  "challenge": {
+    "title": "关键词搜索",
+    "desc": "问一个关键词，把日记里所有含这个词的行连同行号一起列出来。"
+  },
+  "cheatsheet": [
+    { "name": "f.read()", "desc": "整个读成一个字符串", "code": "text = f.read()" },
+    { "name": "f.readlines()", "desc": "读成列表，每项一行", "code": "lines = f.readlines()" },
+    { "name": "for line in f", "desc": "逐行遍历，最省内存", "code": "for line in f:" },
+    { "name": ".rstrip()", "desc": "去掉行尾的换行符", "code": "line.rstrip(\"\n\")" }
+  ]
+}

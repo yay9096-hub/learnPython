@@ -1,0 +1,63 @@
+[
+  {
+    "id": "d38-p1",
+    "type": "predict",
+    "title": "不给就用默认",
+    "question": "这段会打印什么？",
+    "code": "def greet(name, word=\"你好\"):\n    print(f\"{word}，{name}\")\n\ngreet(\"樱\")",
+    "options": ["你好，樱", "word，樱", "报错"],
+    "answer": 0,
+    "explain": "`word` 有默认值，不给就用 `\"你好\"`。默认参数让「大多数情况」变得很省事。"
+  },
+  {
+    "id": "d38-p2",
+    "type": "predict",
+    "title": "参数顺序有规矩",
+    "question": "这段会怎样？",
+    "code": "def f(hp=100, name):\n    print(name, hp)",
+    "options": ["正常定义", "报 SyntaxError", "运行时才报错"],
+    "answer": 1,
+    "explain": "**有默认值的参数必须放后面**。否则 `f(\"樱\")` 里的值该给谁就说不清了，所以 Python 直接在语法层面禁止。"
+  },
+  {
+    "id": "d38-p3",
+    "type": "predict",
+    "title": "可变默认值的陷阱",
+    "question": "这段第二次调用会打印什么？",
+    "code": "def add(x, lst=[]):\n    lst.append(x)\n    return lst\n\nprint(add(1))\nprint(add(2))",
+    "options": ["[1]\n[2]", "[1]\n[1, 2]", "[1, 2]\n[1, 2]"],
+    "answer": 1,
+    "explain": "默认的 `[]` **只在定义时创建一次**，之后每次调用都是同一个列表，所以第二次带着第一次的数据。**默认值永远别用列表或字典。**"
+  },
+  {
+    "id": "d38-p4",
+    "type": "predict",
+    "title": "关键字参数能跳过中间的吗",
+    "question": "这段 atk 是多少？",
+    "code": "def f(name, hp=100, atk=30, el=\"无\"):\n    print(atk)\n\nf(\"樱\", el=\"火\")",
+    "options": ["30", "火", "报错"],
+    "answer": 0,
+    "explain": "点名给 `el` 之后，中间的 `hp` 和 `atk` 保持默认。**这正是关键字参数的价值 —— 能跳过中间的参数。**"
+  },
+  {
+    "id": "d38-b1",
+    "type": "fixbug",
+    "title": "关键字参数放错位置",
+    "question": "这段报了 SyntaxError。修好它，让它输出「樱 340」。",
+    "code": "def f(name, hp=100):\n    print(name, hp)\n\nf(name=\"樱\", 340)",
+    "expect_contains": "樱 340",
+    "nudge": "点名的参数必须放**最后**。改成 `f(\"樱\", hp=340)` 或者 `f(name=\"樱\", hp=340)`。",
+    "explain": "规矩是：**位置参数在前，关键字参数在后**。混着用时别把顺序搞反 ✨"
+  },
+  {
+    "id": "d38-e1",
+    "type": "fill",
+    "title": "回响 · Day 6 的 print 参数",
+    "echo": 6,
+    "question": "`sep` 和 `end` 其实就是关键字参数。补全这行，输出 `a-b-c`（不换行）。",
+    "code": "print(\"a\", \"b\", \"c\", ___)\nprint(\"!\")",
+    "expect_contains": "a-b-c!",
+    "nudge": "`sep=\"-\", end=\"\"` —— 两个关键字参数用逗号隔开。",
+    "explain": "你从 Day 6 就在用关键字参数了，只是那时候还不知道它叫什么名字 😉"
+  }
+]

@@ -1,0 +1,20 @@
+{
+  "day": 43,
+  "title": "分形树",
+  "hook": "一个函数调用它自己 —— 十几行画出一整棵树",
+  "stage": 4,
+  "concepts": ["递归", "出口条件", "递归+turtle"],
+  "estimated_minutes": 45,
+  "needs_stdin": false,
+  "uses_turtle": true,
+  "next_teaser": "明天是第四章复习日 —— 用函数重写猜数字，感受代码量的变化 🔧",
+  "challenge": {
+    "title": "随机森林",
+    "desc": "给分叉角度和长度加一点随机扰动，让树看起来更自然，再画三棵大小不同的树。"
+  },
+  "cheatsheet": [
+    { "name": "递归", "desc": "函数调用它自己", "code": "def f(n):\n    f(n - 1)" },
+    { "name": "出口条件", "desc": "必须有，否则停不下来", "code": "if n <= 0:\n    return" },
+    { "name": "每次要变小", "desc": "参数要往出口靠近", "code": "f(n - 1)  # 不是 f(n)" }
+  ]
+}

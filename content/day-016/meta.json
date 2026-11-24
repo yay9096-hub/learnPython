@@ -1,0 +1,19 @@
+{
+  "day": 16,
+  "title": "循环画图 · 万花筒",
+  "hook": "回到 Day 8 那颗五角星 —— 9 行代码，今天 3 行搞定",
+  "stage": 2,
+  "concepts": ["for + turtle", "正多边形规律", "旋转叠加"],
+  "estimated_minutes": 45,
+  "needs_stdin": false,
+  "uses_turtle": true,
+  "next_teaser": "明天回收抽卡机 —— 终于能十连抽了 🎴",
+  "challenge": {
+    "title": "彩虹万花筒",
+    "desc": "让每一层用不同的颜色。提示：把颜色放进一个列表，用 colors[i % 4] 取。"
+  },
+  "cheatsheet": [
+    { "name": "正多边形", "desc": "转的角度 = 360 ÷ 边数", "code": "for i in range(6):\n    t.forward(80)\n    t.right(60)" },
+    { "name": "万花筒", "desc": "画完一个图形转一点，再画一遍", "code": "for i in range(12):\n    画一个圆\n    t.right(30)" }
+  ]
+}

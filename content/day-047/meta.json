@@ -1,0 +1,22 @@
+{
+  "day": 47,
+  "title": "我的日记本",
+  "hook": "程序第一次真正「记住东西」—— 关掉浏览器再回来，它还在",
+  "stage": 5,
+  "concepts": ["open", "write", "with"],
+  "estimated_minutes": 40,
+  "needs_stdin": true,
+  "uses_turtle": false,
+  "uses_files": true,
+  "next_teaser": "明天把日记读回来 —— 学会 read 和逐行处理 📖",
+  "challenge": {
+    "title": "多篇日记",
+    "desc": "让每篇日记存成单独的文件（比如 日记-1.txt、日记-2.txt），用循环写 3 篇。"
+  },
+  "cheatsheet": [
+    { "name": "with open", "desc": "打开文件，用完自动关", "code": "with open(\"a.txt\", \"w\", encoding=\"utf-8\") as f:" },
+    { "name": "模式 w", "desc": "写入，会清空原内容", "code": "open(f, \"w\")" },
+    { "name": "模式 a", "desc": "追加，接在后面", "code": "open(f, \"a\")" },
+    { "name": "encoding", "desc": "中文必须写 utf-8", "code": "encoding=\"utf-8\"" }
+  ]
+}

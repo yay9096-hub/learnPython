@@ -1,0 +1,63 @@
+[
+  {
+    "id": "d31-p1",
+    "type": "predict",
+    "title": "两层方括号怎么读",
+    "question": "`team[1][\"name\"]` 会拿到什么？",
+    "code": "team = [{\"name\": \"樱\"}, {\"name\": \"琉璃\"}]\nprint(team[1][\"name\"])",
+    "options": ["樱", "琉璃", "报错"],
+    "answer": 1,
+    "explain": "**从左往右一层层剥**：`team[1]` 先拿到第二个字典，再 `[\"name\"]` 从里面取名字。"
+  },
+  {
+    "id": "d31-p2",
+    "type": "predict",
+    "title": "遍历拿到的是什么",
+    "question": "`for m in team:` 里的 m 是什么？",
+    "code": "team = [{\"name\": \"樱\", \"hp\": 340}]\nfor m in team:\n    print(m)",
+    "options": ["樱", "{'name': '樱', 'hp': 340}", "name"],
+    "answer": 1,
+    "explain": "外层是列表，遍历拿到的是列表里的每一项 —— 也就是**一整个字典**。想要名字还得再 `m[\"name\"]`。"
+  },
+  {
+    "id": "d31-p3",
+    "type": "predict",
+    "title": "遍历时改数据会生效吗",
+    "question": "这段之后，team 里的 hp 变了吗？",
+    "code": "team = [{\"hp\": 100}]\nfor m in team:\n    m[\"hp\"] += 50\nprint(team[0][\"hp\"])",
+    "options": ["100", "150", "报错"],
+    "answer": 1,
+    "explain": "`m` 指的就是列表里那个字典**本身**，不是复制品。所以改它，原数据真的会变。这一点跟数字很不一样。"
+  },
+  {
+    "id": "d31-b1",
+    "type": "fixbug",
+    "title": "用错了取值方式",
+    "question": "这段报了 TypeError。修好它，打印出「樱」。",
+    "code": "team = [{\"name\": \"樱\", \"hp\": 340}]\n\nprint(team[0][0])",
+    "expect_contains": "樱",
+    "nudge": "`team[0]` 是个**字典**，字典要用字段名取值，不是数字编号。",
+    "explain": "`team[0][\"name\"]` 才对。**列表用数字编号，字典用字段名** —— 嵌套结构里要看清楚当前这一层是哪种。"
+  },
+  {
+    "id": "d31-b2",
+    "type": "fixbug",
+    "title": "append 加错了东西",
+    "question": "这段想加一个新成员，但加进去的不是完整档案。修好它，让最后打印出「凛」。",
+    "code": "team = [{\"name\": \"樱\", \"hp\": 340}]\n\nteam.append(\"凛\")\n\nprint(team[1][\"name\"])",
+    "expect_contains": "凛",
+    "nudge": "列表里每一项都该是**字典**，所以要 append 一个 `{\"name\": \"凛\", \"hp\": ...}`。",
+    "explain": "结构要保持一致 —— 列表里混着字符串和字典，后面遍历时就会到处崩 😅"
+  },
+  {
+    "id": "d31-e1",
+    "type": "fill",
+    "title": "回响 · Day 30 的条件统计",
+    "echo": 30,
+    "question": "数一数队里有几个火属性（答案是 2）。",
+    "code": "team = [\n    {\"name\": \"樱\", \"element\": \"火\"},\n    {\"name\": \"琉璃\", \"element\": \"水\"},\n    {\"name\": \"幽香\", \"element\": \"火\"},\n]\n\ncount = 0\nfor m in team:\n    if ___:\n        count += 1\n\nprint(f\"火属性有 {count} 人\")",
+    "expect_contains": "火属性有 2 人",
+    "nudge": "条件是 `m[\"element\"] == \"火\"`",
+    "explain": "「遍历 + if + 计数」这个组合从 Day 17 用到现在，只是取值方式从 `hp` 变成了 `m[\"element\"]` ✨"
+  }
+]

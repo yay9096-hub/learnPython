@@ -1,0 +1,21 @@
+{
+  "day": 39,
+  "title": "属性生成器",
+  "hook": "一个函数一次交回好几个结果",
+  "stage": 4,
+  "concepts": ["多返回值", "元组解包", "返回字典"],
+  "estimated_minutes": 40,
+  "needs_stdin": false,
+  "uses_turtle": false,
+  "next_teaser": "明天揭开一个经典陷阱：为什么函数里改了，外面却没变？🕳",
+  "challenge": {
+    "title": "重骰机制",
+    "desc": "如果生成的总属性太低（比如 < 200），自动重骰一次，最多重骰 3 次。"
+  },
+  "cheatsheet": [
+    { "name": "返回多个", "desc": "逗号隔开就行", "code": "return hp, mp, atk" },
+    { "name": "接住", "desc": "左边写同样多的变量", "code": "hp, mp, atk = gen()" },
+    { "name": "只要一个", "desc": "用 _ 占位", "code": "hp, _, _ = gen()" },
+    { "name": "超过 3 个", "desc": "改用字典更清楚", "code": "return {\"hp\": hp, ...}" }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "day": 42,
+  "title": "整理你的工具箱",
+  "hook": "把能跑的代码，变成一周后自己还看得懂的代码",
+  "stage": 4,
+  "concepts": ["重构", "docstring", "常量与命名"],
+  "estimated_minutes": 45,
+  "needs_stdin": false,
+  "uses_turtle": false,
+  "next_teaser": "明天来点炫的 —— 一个会调用自己的函数，画出一棵树 🌳",
+  "challenge": {
+    "title": "参数校验",
+    "desc": "给每个函数开头加一句检查，参数不合法就 return 一个安全的默认值。"
+  },
+  "cheatsheet": [
+    { "name": "docstring", "desc": "函数第一行的三引号说明", "code": "def f():\n    \"\"\"这个函数干什么。\"\"\"" },
+    { "name": "常量", "desc": "全大写，写在文件顶部", "code": "MAX_HP = 500" },
+    { "name": "魔法数字", "desc": "代码里裸露的数字，要提取成常量", "code": "if hp > 500  ->  if hp > MAX_HP" }
+  ]
+}

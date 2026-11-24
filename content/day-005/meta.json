@@ -1,0 +1,17 @@
+{
+  "day": 5,
+  "title": "中二称号生成器",
+  "hook": "输入名字，自动生成一个羞耻度爆表的称号",
+  "stage": 1,
+  "concepts": ["字符串方法", "len", "字符串乘法"],
+  "estimated_minutes": 40,
+  "needs_stdin": true,
+  "uses_turtle": false,
+  "next_teaser": "明天做一个带边框的剧情对话框，学会让文字排版听话 💬",
+  "cheatsheet": [
+    { "name": "len()", "desc": "数一数有几个字", "code": "len(\"星野樱\")   # 3" },
+    { "name": ".upper()", "desc": "英文字母全变大写", "code": "\"fire\".upper()   # FIRE" },
+    { "name": "字符串 * 数字", "desc": "把一段文字重复若干遍", "code": "\"★\" * 3   # ★★★" },
+    { "name": ".strip()", "desc": "去掉首尾多余的空格", "code": "\"  樱 \".strip()" }
+  ]
+}

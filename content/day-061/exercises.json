@@ -1,0 +1,73 @@
+[
+  {
+    "id": "d61-p1",
+    "type": "predict",
+    "title": "没有 __str__ 会怎样",
+    "question": "print 一个没定义 __str__ 的对象，看到什么？",
+    "code": "class A:\n    pass\n\nprint(A())",
+    "options": ["A", "空行", "<__main__.A object at 0x...>"],
+    "answer": 2,
+    "explain": "默认显示的是「类名 + 内存地址」，对人完全没用。**定义 `__str__` 就是为了替掉它。**"
+  },
+  {
+    "id": "d61-p2",
+    "type": "predict",
+    "title": "列表里用哪个",
+    "question": "打印一个装着对象的列表，调用的是 __str__ 还是 __repr__？",
+    "code": "class A:\n    def __str__(self):\n        return \"S\"\n    def __repr__(self):\n        return \"R\"\n\nprint([A()])",
+    "options": ["['S']", "[S]", "[R]"],
+    "answer": 2,
+    "explain": "**容器里的元素用 `__repr__`**。所以 `__repr__` 要写得准确，调试时才看得清。"
+  },
+  {
+    "id": "d61-p3",
+    "type": "predict",
+    "title": "默认的 == 比什么",
+    "question": "两个内容一样的对象，默认 == 是什么？",
+    "code": "class A:\n    def __init__(self, x):\n        self.x = x\n\nprint(A(1) == A(1))",
+    "options": ["True", "False", "报错"],
+    "answer": 1,
+    "explain": "默认比的是「**是不是同一个对象**」，不是内容。想按内容比就得自己定义 `__eq__`。"
+  },
+  {
+    "id": "d61-p4",
+    "type": "predict",
+    "title": "__len__ 影响真假判断",
+    "question": "有 __len__ 且返回 0 的对象，在 if 里是真是假？",
+    "code": "class T:\n    def __len__(self):\n        return 0\n\nif T():\n    print(\"真\")\nelse:\n    print(\"假\")",
+    "options": ["真", "假", "报错"],
+    "answer": 1,
+    "explain": "**有了 `__len__`，Python 用「长度是不是 0」判断真假**。所以空队伍、空列表、空字符串在 `if` 里都是 False。"
+  },
+  {
+    "id": "d61-b1",
+    "type": "fixbug",
+    "title": "__str__ 返回了非字符串",
+    "question": "这段报了 TypeError。修好它，让它输出 340。",
+    "code": "class R:\n    def __init__(self, hp):\n        self.hp = hp\n    def __str__(self):\n        return self.hp\n\nprint(R(340))",
+    "expect_contains": "340",
+    "nudge": "`__str__` 必须返回字符串，用 `str(self.hp)` 或 f-string 包一下。",
+    "explain": "`__str__` / `__repr__` **必须返回 str**，返回数字直接报错 ✨"
+  },
+  {
+    "id": "d61-b2",
+    "type": "fixbug",
+    "title": "__eq__ 没检查类型",
+    "question": "跟字符串比较时崩了。加上类型检查，让它输出 False。",
+    "code": "class R:\n    def __init__(self, name):\n        self.name = name\n    def __eq__(self, other):\n        return self.name == other.name\n\nprint(R(\"樱\") == \"樱\")",
+    "expect_contains": "False",
+    "nudge": "开头加一句 `if not isinstance(other, R): return False`。",
+    "explain": "**别人拿什么来比你管不着** —— `__eq__` 第一件事永远是检查类型 ✨"
+  },
+  {
+    "id": "d61-e1",
+    "type": "fill",
+    "title": "回响 · Day 27 的排序",
+    "echo": 27,
+    "question": "Day 27 排序要写 key=lambda。有了 __lt__ 之后补全这一行（应输出「灯」）。",
+    "code": "class R:\n    def __init__(self, name, atk):\n        self.name = name\n        self.atk = atk\n    def __lt__(self, other):\n        return self.atk < other.atk\n\nroles = [R(\"樱\", 88), R(\"灯\", 72)]\n\nweakest = ___\nprint(weakest.name)",
+    "expect_contains": "灯",
+    "nudge": "`min(roles)` —— 不用写 key 了。",
+    "explain": "**把「怎么比大小」写进类里，所有排序相关的函数都自动会用** —— 这比每次传 key 干净得多 ✨"
+  }
+]

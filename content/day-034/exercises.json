@@ -1,0 +1,53 @@
+[
+  {
+    "id": "d34-p1",
+    "type": "predict",
+    "title": "复习：遍历时新增字段",
+    "question": "这段之后，students[0] 里有几个键？",
+    "code": "students = [{\"name\": \"樱\", \"math\": 90}]\nfor s in students:\n    s[\"total\"] = s[\"math\"]\nprint(len(students[0]))",
+    "options": ["2", "3", "1"],
+    "answer": 1,
+    "explain": "遍历时给字典赋一个新键，就是**新增字段**，原数据真的会变。所以从 2 个键变成 3 个。"
+  },
+  {
+    "id": "d34-p2",
+    "type": "predict",
+    "title": "复习：分档顺序",
+    "question": "总分 283，这段会判成什么？",
+    "code": "total = 283\n\nif total >= 210:\n    print(\"及格\")\nelif total >= 270:\n    print(\"优秀\")",
+    "options": ["优秀", "及格", "两个都打印"],
+    "answer": 1,
+    "explain": "又是分支顺序！`283 >= 210` 先成立就直接执行并跳过后面。**分档必须从高到低写**。"
+  },
+  {
+    "id": "d34-p3",
+    "type": "predict",
+    "title": "复习：字典当计数器",
+    "question": "这段最后 grades[\"优秀\"] 是多少？",
+    "code": "grades = {\"优秀\": 0}\nfor t in [280, 290, 200]:\n    if t >= 270:\n        grades[\"优秀\"] += 1\nprint(grades[\"优秀\"])",
+    "options": ["1", "2", "3"],
+    "answer": 1,
+    "explain": "280 和 290 达标，200 不达标，所以是 2。**用字典当计数器**比开四个变量清爽得多。"
+  },
+  {
+    "id": "d34-b1",
+    "type": "fixbug",
+    "title": "名次找早了",
+    "question": "这段查出来的名次是错的（应该是第 1 名）。修好它。",
+    "code": "students = [\n    {\"name\": \"樱\", \"total\": 200},\n    {\"name\": \"凛\", \"total\": 283},\n]\n\nplace = 0\nfor i, s in enumerate(students):\n    if s[\"name\"] == \"凛\":\n        place = i + 1\n\nstudents.sort(key=lambda s: s[\"total\"], reverse=True)\n\nprint(f\"凛是第 {place} 名\")",
+    "expect_contains": "凛是第 1 名",
+    "nudge": "找名次要在**排序之后**做。把 sort 那一行挪到循环前面。",
+    "explain": "名次取决于排序结果，顺序反了名次就没意义了。**先排序，再查名次** ✨"
+  },
+  {
+    "id": "d34-e1",
+    "type": "fill",
+    "title": "回响 · Day 28 的 join",
+    "echo": 28,
+    "question": "把所有人的名字拼成一行，用「、」隔开。",
+    "code": "students = [{\"name\": \"樱\"}, {\"name\": \"凛\"}, {\"name\": \"灯\"}]\n\nnames = []\nfor s in students:\n    names.append(s[\"name\"])\n\nprint(___)",
+    "expect_contains": "樱、凛、灯",
+    "nudge": "`\"、\".join(names)` —— 连接符在前，列表在括号里。",
+    "explain": "**先收集成列表，再 join 成一行** —— 今天的挑战关（导出 CSV 成绩单）就是这个套路 ✨"
+  }
+]

@@ -1,0 +1,20 @@
+{
+  "day": 14,
+  "title": "猜数字游戏",
+  "hook": "程序会一直问，直到你猜对为止 —— 第一个真正能玩的游戏",
+  "stage": 2,
+  "concepts": ["while", "循环条件", "计数器"],
+  "estimated_minutes": 45,
+  "needs_stdin": true,
+  "uses_turtle": false,
+  "next_teaser": "明天学 for 循环，用它打印各种 ASCII 图案 🔺",
+  "challenge": {
+    "title": "限次挑战",
+    "desc": "只给 5 次机会，用完还没猜中就宣告失败。提示：循环条件里再加一个 and。"
+  },
+  "cheatsheet": [
+    { "name": "while", "desc": "只要条件成立，就一直重复", "code": "while guess != answer:\n    ..." },
+    { "name": "计数器", "desc": "每转一圈就加 1", "code": "count = count + 1" },
+    { "name": "死循环", "desc": "循环里必须有能让条件变假的东西", "code": "# 忘了改变量 = 停不下来" }
+  ]
+}

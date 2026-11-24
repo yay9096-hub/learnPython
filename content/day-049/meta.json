@@ -1,0 +1,21 @@
+{
+  "day": 49,
+  "title": "错题本",
+  "hook": "文件还不存在怎么办？—— 让程序第一次运行也不崩",
+  "stage": 5,
+  "concepts": ["FileNotFoundError", "os.path.exists", "追加模式"],
+  "estimated_minutes": 40,
+  "needs_stdin": true,
+  "uses_turtle": false,
+  "uses_files": true,
+  "next_teaser": "明天学 json —— 把整个字典、整个列表原样存进文件 💾",
+  "challenge": {
+    "title": "掌握度统计",
+    "desc": "同一道题错第二次时不新增记录，而是把次数 +1，最后按错误次数排序。"
+  },
+  "cheatsheet": [
+    { "name": "文件不存在", "desc": "读之前先判断", "code": "if os.path.exists(f):" },
+    { "name": "或者接住", "desc": "try + FileNotFoundError", "code": "except FileNotFoundError:\n    return []" },
+    { "name": "追加一条", "desc": "a 模式最适合日志", "code": "open(f, \"a\", encoding=\"utf-8\")" }
+  ]
+}

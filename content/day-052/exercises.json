@@ -1,0 +1,63 @@
+[
+  {
+    "id": "d52-p1",
+    "type": "predict",
+    "title": "CSV 读出来是什么类型",
+    "question": "从文件里 split 出来的 \"88\" 是数字还是文字？",
+    "code": "line = \"星野樱,88,92\"\nparts = line.split(\",\")\nprint(parts[1] + parts[2])",
+    "options": ["180", "8892", "报错"],
+    "answer": 1,
+    "explain": "**CSV 里读出来的全是文字**，`+` 变成了拼接。要算数必须先 `int()` —— 这是 Day 4 那个坑的第 N 次出现 😄"
+  },
+  {
+    "id": "d52-p2",
+    "type": "predict",
+    "title": "文字排序的陷阱",
+    "question": "不转成数字直接排序，谁排前面？",
+    "code": "scores = [\"9\", \"10\", \"8\"]\nprint(sorted(scores)[0])",
+    "options": ["8", "9", "10"],
+    "answer": 2,
+    "explain": "按**文字**排序时比的是第一个字符，「1」比「8」「9」小，所以 \"10\" 跑到最前面了。**数字字段一定要转成 int**。"
+  },
+  {
+    "id": "d52-p3",
+    "type": "predict",
+    "title": "zip 配对",
+    "question": "`zip(header, parts)` 会产生什么？",
+    "code": "header = [\"姓名\", \"语文\"]\nparts = [\"樱\", \"88\"]\nprint(list(zip(header, parts))[1])",
+    "options": ["('语文', '88')", "('姓名', '樱')", "['语文', '88']"],
+    "answer": 0,
+    "explain": "`zip` 把两个列表**一一配成元组**。用它遍历，正好一边是键、一边是值 —— 建字典特别顺手。"
+  },
+  {
+    "id": "d52-b1",
+    "type": "fixbug",
+    "title": "表头被当成数据了",
+    "question": "这段把表头也读成了一条记录。修好它，让它输出 2。",
+    "code": "lines = [\"姓名,分数\", \"甲,80\", \"乙,90\"]\n\nrows = []\nfor line in lines:\n    rows.append(line.split(\",\"))\n\nprint(len(rows))",
+    "expect_contains": "2",
+    "nudge": "第一行是表头，数据从 `lines[1:]` 开始。",
+    "explain": "**CSV 的第一行是表头，不是数据**。用切片 `lines[1:]` 跳过它 —— 忘了这一步，统计结果就会多出一条 ✨"
+  },
+  {
+    "id": "d52-b2",
+    "type": "fixbug",
+    "title": "join 拼数字报错",
+    "question": "这段写 CSV 时报了 TypeError。修好它，输出 `甲,80`。",
+    "code": "row = {\"姓名\": \"甲\", \"分数\": 80}\nvalues = []\nfor k in [\"姓名\", \"分数\"]:\n    values.append(row[k])\n\nprint(\",\".join(values))",
+    "expect_contains": "甲,80",
+    "nudge": "`join` 只能拼字符串，append 时写成 `str(row[k])`。",
+    "explain": "**写文件时所有值都要先转成文字** —— 这跟读文件时要把文字转成数字，正好是一来一回 ✨"
+  },
+  {
+    "id": "d52-e1",
+    "type": "fill",
+    "title": "回响 · Day 31 的 key=lambda",
+    "echo": 31,
+    "question": "按分数从高到低排序，打印第一名的名字（应输出「乙」）。",
+    "code": "rows = [\n    {\"姓名\": \"甲\", \"分数\": 80},\n    {\"姓名\": \"乙\", \"分数\": 95},\n]\n\nranked = ___\nprint(ranked[0][\"姓名\"])",
+    "expect_contains": "乙",
+    "nudge": "`sorted(rows, key=lambda r: r[\"分数\"], reverse=True)`",
+    "explain": "**CSV 一旦变成列表套字典，第三章学的排序、筛选、统计立刻全部能用** —— 文件只是数据的来源而已 ✨"
+  }
+]

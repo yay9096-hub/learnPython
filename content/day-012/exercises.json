@@ -1,0 +1,63 @@
+[
+  {
+    "id": "d12-p1",
+    "type": "predict",
+    "title": "一堆 if vs elif",
+    "question": "score 是 95，这段会打印几行？",
+    "code": "score = 95\n\nif score >= 90:\n    print(\"优秀\")\nif score >= 60:\n    print(\"及格\")",
+    "options": ["1 行", "2 行", "0 行"],
+    "answer": 1,
+    "explain": "两个**独立**的 if，Python 会各试一遍，两个条件都成立就都打印。想「中了一个就停」，第二个要写成 `elif`。"
+  },
+  {
+    "id": "d12-p2",
+    "type": "predict",
+    "title": "顺序写反了",
+    "question": "score 是 95，这段会打印什么？",
+    "code": "score = 95\n\nif score >= 60:\n    print(\"及格\")\nelif score >= 90:\n    print(\"优秀\")",
+    "options": ["优秀", "及格", "及格\n优秀"],
+    "answer": 1,
+    "explain": "`elif` 从上往下试，`95 >= 60` 先成立就直接执行并**跳过后面全部**。**条件要从最严格写到最宽松。**"
+  },
+  {
+    "id": "d12-p3",
+    "type": "predict",
+    "title": "else 兜住了什么",
+    "question": "element 是「土」，会打印什么？",
+    "code": "element = \"土\"\n\nif element == \"火\":\n    print(\"火属性\")\nelif element == \"水\":\n    print(\"水属性\")\nelse:\n    print(\"未知属性\")",
+    "options": ["火属性", "未知属性", "什么都不打印"],
+    "answer": 1,
+    "explain": "`else` 兜住了**所有没被前面条件抓住的情况**。有了它，无论用户输入什么奇怪的东西程序都不会哑火。"
+  },
+  {
+    "id": "d12-b1",
+    "type": "fixbug",
+    "title": "分支顺序反了",
+    "question": "hp 是 100（满血），但这段说「血量告急」。调整顺序修好它，让它输出「状态良好」。",
+    "code": "hp = 100\n\nif hp < 200:\n    print(\"血量告急\")\nelif hp >= 100:\n    print(\"状态良好\")",
+    "expect_contains": "状态良好",
+    "nudge": "把最严格的条件放最上面。`hp >= 100` 比 `hp < 200` 严格。",
+    "explain": "把两个分支调换位置就好。这个坑在成绩、血量、等级判定里天天出现 —— **写完一定要用边界值试一遍**。"
+  },
+  {
+    "id": "d12-b2",
+    "type": "fixbug",
+    "title": "回响 · Day 11 的缩进",
+    "echo": 11,
+    "question": "这段报了缩进错误。修好它，让它打印「良好」。",
+    "code": "score = 85\n\nif score >= 90:\n    print(\"优秀\")\n    elif score >= 80:\n        print(\"良好\")",
+    "expect_contains": "良好",
+    "nudge": "`elif` 要和 `if` **左边对齐**，跟 `else` 的规矩一样。",
+    "explain": "`if` / `elif` / `else` 三兄弟必须在同一层缩进。缩进了就变成「归 if 管」，Python 直接报错。"
+  },
+  {
+    "id": "d12-f1",
+    "type": "fill",
+    "title": "补一个分支",
+    "question": "补上中间那个 elif，让 75 分显示「及格」（60~79 分算及格）。",
+    "code": "score = 75\n\nif score >= 80:\n    print(\"良好\")\n# 在这里补一个 elif 分支\nelse:\n    print(\"不及格\")",
+    "expect_contains": "及格",
+    "nudge": "`elif score >= 60:` 然后下一行缩进 `print(\"及格\")`。",
+    "explain": "分支链可以随便加中间层，只要保证**从严格到宽松**的顺序就行 ✨"
+  }
+]

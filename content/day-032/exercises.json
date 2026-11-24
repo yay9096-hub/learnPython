@@ -1,0 +1,63 @@
+[
+  {
+    "id": "d32-p1",
+    "type": "predict",
+    "title": "集合会去重",
+    "question": "这段会打印几个元素？",
+    "code": "s = {\"樱\", \"琉璃\", \"樱\", \"樱\"}\nprint(len(s))",
+    "options": ["4", "2", "3"],
+    "answer": 1,
+    "explain": "集合**自动去重**，重复的「樱」只留一个，所以是 2 个。"
+  },
+  {
+    "id": "d32-p2",
+    "type": "predict",
+    "title": "空的大括号是谁",
+    "question": "`type({})` 是什么？",
+    "code": "print(type({}))",
+    "options": ["set", "dict", "list"],
+    "answer": 1,
+    "explain": "空大括号是**字典**！空集合必须写 `set()`。这是集合唯一一个语法上的坑。"
+  },
+  {
+    "id": "d32-p3",
+    "type": "predict",
+    "title": "差集有方向",
+    "question": "`b - a` 的结果是什么？",
+    "code": "a = {1, 2, 3}\nb = {2, 3, 4}\nprint(b - a)",
+    "options": ["{1}", "{4}", "{2, 3}"],
+    "answer": 1,
+    "explain": "`b - a` 是「b 有但 a 没有」= `{4}`。反过来 `a - b` 是 `{1}`。**方向不能写反。**"
+  },
+  {
+    "id": "d32-p4",
+    "type": "predict",
+    "title": "集合能编号取吗",
+    "question": "这段会怎样？",
+    "code": "s = {\"樱\", \"琉璃\"}\nprint(s[0])",
+    "options": ["打印樱", "报 TypeError", "打印琉璃"],
+    "answer": 1,
+    "explain": "集合**没有顺序**，所以不支持 `[0]` 这种取法。想按顺序拿，先 `sorted(s)` 或 `list(s)`。"
+  },
+  {
+    "id": "d32-b1",
+    "type": "fixbug",
+    "title": "集合不用 append",
+    "question": "这段报了 AttributeError。修好它，让集合变成 3 个元素。",
+    "code": "s = {\"樱\", \"琉璃\"}\ns.append(\"灯\")\nprint(len(s))",
+    "expect_contains": "3",
+    "nudge": "集合加元素用 `.add()`，`.append()` 是列表的。",
+    "explain": "`s.add(\"灯\")`。顺带一提：删除建议用 `.discard()`，删不存在的也不会报错 ✨"
+  },
+  {
+    "id": "d32-e1",
+    "type": "fill",
+    "title": "回响 · Day 28 的去重",
+    "echo": 28,
+    "question": "用一行代码完成 Day 28 写了 5 行的去重（答案应该是 3 种）。",
+    "code": "words = [\"牛啊\", \"前排\", \"牛啊\", \"打卡\", \"牛啊\"]\n\nunique = ___\nprint(f\"不重复的有 {len(unique)} 种\")",
+    "expect_contains": "不重复的有 3 种",
+    "nudge": "`set(words)` 就行。",
+    "explain": "先手写一遍循环去重、再学会 `set()` 一行搞定 —— **知道底层怎么回事，再用快捷方式**，这个顺序很重要 ✨"
+  }
+]

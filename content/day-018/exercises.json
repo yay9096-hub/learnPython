@@ -1,0 +1,53 @@
+[
+  {
+    "id": "d18-p1",
+    "type": "predict",
+    "title": "嵌套循环跑几次",
+    "question": "这段一共打印几个星星？",
+    "code": "for row in range(3):\n    for col in range(4):\n        print(\"★\", end=\"\")",
+    "options": ["7 个", "12 个", "3 个"],
+    "answer": 1,
+    "explain": "外层每转 1 圈，内层要跑完整的 4 圈。总次数是**相乘**：3 × 4 = 12。"
+  },
+  {
+    "id": "d18-p2",
+    "type": "predict",
+    "title": "空 print 放错层",
+    "question": "这段的空 `print()` 缩进在内层，结果会怎样？",
+    "code": "for row in range(2):\n    for col in range(3):\n        print(\"★\", end=\"\")\n        print()",
+    "options": ["两行，每行 3 颗星", "六行，每行 1 颗星", "一行，6 颗星"],
+    "answer": 1,
+    "explain": "空 `print()` 在内层，意味着**每画一颗星就换一次行**。它必须缩进在外层（4 格），才是「一行画完再换行」。"
+  },
+  {
+    "id": "d18-p3",
+    "type": "predict",
+    "title": "内层范围跟着外层走",
+    "question": "这段第 3 行会打印几颗星？",
+    "code": "for i in range(1, 4):\n    for j in range(i):\n        print(\"★\", end=\"\")\n    print()",
+    "options": ["1 颗", "3 颗", "都是 3 颗"],
+    "answer": 1,
+    "explain": "内层是 `range(i)`，i 是 3 时跑 3 次。**内层范围用外层变量**，就能画出三角形而不是方块。"
+  },
+  {
+    "id": "d18-b1",
+    "type": "fixbug",
+    "title": "星星竖着排了",
+    "question": "这段想打印 3 行、每行 4 颗星，但星星全竖着排了。修好它。",
+    "code": "for row in range(3):\n    for col in range(4):\n        print(\"★\")\n    print()",
+    "expect_contains": "★★★★",
+    "nudge": "内层的 print 少了 `end=\"\"`。",
+    "explain": "`print` 默认结尾是换行。加上 `end=\"\"` 就是「打完不换行」，星星才会横着排 ✨"
+  },
+  {
+    "id": "d18-e1",
+    "type": "fill",
+    "title": "回响 · Day 13 的 or",
+    "echo": 13,
+    "question": "补全条件，画出一个 4×4 的空心方框（只有边框）。",
+    "code": "size = 4\nfor row in range(size):\n    for col in range(size):\n        if ___:\n            print(\"★\", end=\"\")\n        else:\n            print(\" \", end=\"\")\n    print()",
+    "expect_contains": "★★★★",
+    "nudge": "四个条件用 `or` 连起来：`row == 0 or row == size - 1 or col == 0 or col == size - 1`",
+    "explain": "「边框」= 第一行 **或** 最后一行 **或** 第一列 **或** 最后一列。把几何形状翻译成条件，是编程最核心的能力之一 ✨"
+  }
+]

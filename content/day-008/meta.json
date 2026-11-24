@@ -1,0 +1,18 @@
+{
+  "day": 8,
+  "title": "画一颗魔法星星",
+  "hook": "解锁画笔！小海龟登场，用代码画出第一幅画",
+  "stage": 1,
+  "concepts": ["import", "turtle", "画笔控制"],
+  "estimated_minutes": 40,
+  "needs_stdin": false,
+  "uses_turtle": true,
+  "next_teaser": "明天画一个真正的魔法阵 —— 带填充色和多重圆环 🔮",
+  "cheatsheet": [
+    { "name": "import", "desc": "把别人写好的工具箱搬进来用", "code": "import turtle" },
+    { "name": "forward()", "desc": "朝当前方向前进 N 步", "code": "turtle.forward(100)" },
+    { "name": "right() / left()", "desc": "原地转 N 度", "code": "turtle.right(144)" },
+    { "name": "penup() / pendown()", "desc": "抬笔移动不留痕 / 落笔", "code": "turtle.penup()" },
+    { "name": "circle()", "desc": "画圆", "code": "turtle.circle(60)" }
+  ]
+}

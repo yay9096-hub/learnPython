@@ -1,0 +1,53 @@
+[
+  {
+    "id": "d22-p1",
+    "type": "predict",
+    "title": "两个退出条件",
+    "question": "答案是 42，玩家连猜 3 个错的（次数上限 3）。循环结束时 guess 等于什么？",
+    "code": "answer = 42\nguess = -1\ntries = 0\n\nwhile guess != answer and tries < 3:\n    tries += 1\n    guess = 7          # 假装每次都猜 7\n\nprint(guess)",
+    "options": ["42", "7", "-1"],
+    "answer": 1,
+    "explain": "是**次数用完**才退出的，不是猜对。所以 `guess` 还停在 7。**这就是为什么循环结束后必须判断「是怎么结束的」。**"
+  },
+  {
+    "id": "d22-p2",
+    "type": "predict",
+    "title": "统计变量放哪层",
+    "question": "`games = 0` 写在外层循环里面，玩三局后打印什么？",
+    "code": "while True:\n    games = 0\n    games += 1\n    if games >= 1:\n        break\n\nprint(games)",
+    "options": ["3", "1", "0"],
+    "answer": 1,
+    "explain": "每进一次循环就归零，所以永远是 1。**统计变量必须放在所有循环外面** —— 「归零在外」的老规矩。"
+  },
+  {
+    "id": "d22-p3",
+    "type": "predict",
+    "title": "回响 · Day 18 的嵌套次数",
+    "echo": 18,
+    "question": "外层 2 局、每局内层最多猜 3 次，最多一共猜几次？",
+    "code": "count = 0\nfor game in range(2):\n    for guess in range(3):\n        count += 1\nprint(count)",
+    "options": ["5", "6", "3"],
+    "answer": 1,
+    "explain": "嵌套循环的总次数是**相乘**：2 × 3 = 6。"
+  },
+  {
+    "id": "d22-b1",
+    "type": "fixbug",
+    "title": "次数限制没生效",
+    "question": "这段本该最多猜 3 次，但会一直猜下去。修好它，让它输出「猜了 3 次」。",
+    "code": "answer = 42\nguess = -1\ntries = 0\n\nwhile guess != answer:\n    tries += 1\n    guess = 7\n    if tries >= 100:\n        break\n\nprint(f\"猜了 {tries} 次\")",
+    "expect_contains": "猜了 3 次",
+    "nudge": "把次数限制加进循环条件里：`while guess != answer and tries < 3:`",
+    "explain": "两个退出条件用 `and` 连起来。这比在循环里写 `if ...: break` 更清楚 —— **一眼就能看出这个循环什么时候会停。**"
+  },
+  {
+    "id": "d22-b2",
+    "type": "fixbug",
+    "title": "最佳成绩记反了",
+    "question": "最佳成绩应该是「用的次数最少」，但这段记成了最多。修好它，让它输出 2。",
+    "code": "best = 999\n\nfor tries in [5, 2, 8]:\n    if tries > best:\n        best = tries\n\nprint(best)",
+    "expect_contains": "2",
+    "nudge": "「更好」在这里的意思是「更少」，所以比较符号要反过来。",
+    "explain": "改成 `if tries < best:` 就对了。找最小值和找最大值套路一样，只是**初始值要设得足够大**、比较符号要反过来 ✨"
+  }
+]

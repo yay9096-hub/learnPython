@@ -1,0 +1,19 @@
+{
+  "day": 12,
+  "title": "属性克制判定",
+  "hook": "三条路以上怎么选？elif 登场",
+  "stage": 2,
+  "concepts": ["elif", "多分支", "条件顺序"],
+  "estimated_minutes": 40,
+  "needs_stdin": true,
+  "uses_turtle": false,
+  "next_teaser": "明天学会把好几个条件拼在一起判断，比如「等级够 而且 魔力够」⚡",
+  "challenge": {
+    "title": "五行相克",
+    "desc": "把火水风扩展成火→风→水→火的循环克制，再加上「同属性平局」。"
+  },
+  "cheatsheet": [
+    { "name": "elif", "desc": "上一个条件不成立时，再试这个", "code": "elif score >= 80:\n    print(\"良好\")" },
+    { "name": "分支顺序", "desc": "从上往下试，中了一个就跳过剩下全部", "code": "if / elif / elif / else" }
+  ]
+}

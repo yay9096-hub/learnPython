@@ -1,0 +1,17 @@
+{
+  "day": 53,
+  "title": "记账本",
+  "hook": "把这一章学的全串起来 —— 一个你真能拿去用的记账程序",
+  "stage": 5,
+  "concepts": ["综合应用", "按月统计", "数据持久化"],
+  "estimated_minutes": 50,
+  "needs_stdin": true,
+  "uses_turtle": false,
+  "uses_files": true,
+  "next_teaser": "明天是第五章复习日 —— 带存档的文字冒险游戏 🗺",
+  "challenge": {
+    "title": "预算警告",
+    "desc": "给每个分类设一个月度预算，超支时在报表里标红提示。"
+  },
+  "cheatsheet": []
+}

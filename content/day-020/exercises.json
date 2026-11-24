@@ -1,0 +1,53 @@
+[
+  {
+    "id": "d20-p1",
+    "type": "predict",
+    "title": "循环条件什么时候检查",
+    "question": "hp_b 在循环中途变成 0 了，B 后面那句攻击还会执行吗？",
+    "code": "while hp_a > 0 and hp_b > 0:\n    hp_b -= 50        # 假设这一下把 B 打到 0\n    hp_a -= 50        # 这一句还会执行吗？",
+    "options": ["不会，立刻跳出", "会，这一轮的代码会跑完", "会报错"],
+    "answer": 1,
+    "explain": "循环条件**只在每轮开头检查一次**。一轮开始了就会跑完整轮，所以「死人反击」这个 bug 才会出现。要立刻停就得用 `break`。"
+  },
+  {
+    "id": "d20-p2",
+    "type": "predict",
+    "title": "-= 在做什么",
+    "question": "这段最后 hp 是多少？",
+    "code": "hp = 100\nhp -= 30\nhp -= 25\nprint(hp)",
+    "options": ["100", "45", "55"],
+    "answer": 1,
+    "explain": "`hp -= 30` 就是 `hp = hp - 30`。连扣两次：100 → 70 → 45。"
+  },
+  {
+    "id": "d20-p3",
+    "type": "predict",
+    "title": "打几个回合",
+    "question": "双方 100 血，每次固定扣 30，只有 A 打 B。要几个回合 B 才倒下？",
+    "code": "hp_b = 100\nturn = 0\nwhile hp_b > 0:\n    turn += 1\n    hp_b -= 30\nprint(turn)",
+    "options": ["3 回合", "4 回合", "5 回合"],
+    "answer": 1,
+    "explain": "100 → 70 → 40 → 10 → -20，第 4 次才让血量不再大于 0。**100 ÷ 30 = 3.33，要向上取整。**"
+  },
+  {
+    "id": "d20-b1",
+    "type": "fixbug",
+    "title": "死循环了",
+    "question": "这段停不下来。修好它，让它正常打完并打印回合数。",
+    "code": "hp = 100\nturn = 0\n\nwhile hp > 0:\n    turn += 1\n    damage = 25\n\nprint(f\"打了 {turn} 回合\")",
+    "expect_contains": "打了 4 回合",
+    "nudge": "算出了伤害，但没扣血。`hp` 永远是 100。",
+    "explain": "加上 `hp -= damage` 就好。**循环条件用到的变量，循环里必须真的改变它** —— 这是 Day 14 就定下的三件套规矩。"
+  },
+  {
+    "id": "d20-e1",
+    "type": "fill",
+    "title": "回响 · Day 12 的分支顺序",
+    "echo": 12,
+    "question": "补上第一个分支，让「双方都倒下」时正确显示「同归于尽」。",
+    "code": "hp_a = 0\nhp_b = 0\n\n# 在这里补上最特殊的那个分支\nif ___:\n    print(\"同归于尽\")\nelif hp_a > 0:\n    print(\"A 获胜\")\nelse:\n    print(\"B 获胜\")",
+    "expect_contains": "同归于尽",
+    "nudge": "「两个都倒下」= `hp_a <= 0 and hp_b <= 0`",
+    "explain": "最特殊的情况放最前面。如果把它放最后，`else` 早就把这种情况抢走了 —— 分支顺序的坑，第三次出现了 😉"
+  }
+]

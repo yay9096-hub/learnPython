@@ -1,0 +1,63 @@
+[
+  {
+    "id": "d28-p1",
+    "type": "predict",
+    "title": "split 拆出几个",
+    "question": "这段会打印什么？",
+    "code": "line = \"a b c\"\nprint(len(line.split()))",
+    "options": ["3", "5", "1"],
+    "answer": 0,
+    "explain": "`.split()` 按空格拆，`\"a b c\"` 拆成 3 个。空格本身不算内容。"
+  },
+  {
+    "id": "d28-p2",
+    "type": "predict",
+    "title": "join 的写法很怪",
+    "question": "哪一句能把列表拼成 `a-b-c`？",
+    "code": "words = [\"a\", \"b\", \"c\"]\n# A: words.join(\"-\")\n# B: \"-\".join(words)\n# C: join(words, \"-\")",
+    "options": ["A", "B", "C"],
+    "answer": 1,
+    "explain": "是**连接符**调用 `.join()`，列表放括号里。读作「用『-』把这个列表连起来」。写法确实反直觉，多用几次就顺了。"
+  },
+  {
+    "id": "d28-p3",
+    "type": "predict",
+    "title": "中文拆得开吗",
+    "question": "`\"今天天气\".split()` 结果是什么？",
+    "code": "print(\"今天天气\".split())",
+    "options": ["['今', '天', '天', '气']", "['今天天气']", "[]"],
+    "answer": 1,
+    "explain": "中文之间没空格，`.split()` 拆不动，整句原样装进一个列表。想拆成单字要用 `list(\"今天天气\")`。"
+  },
+  {
+    "id": "d28-b1",
+    "type": "fixbug",
+    "title": "统计对象搞错了",
+    "question": "这段想统计「牛啊」出现几次（应该是 3 次），但输出 1。修好它。",
+    "code": "words = [\"牛啊\", \"前排\", \"牛啊\", \"牛啊\"]\nunique = [\"牛啊\", \"前排\"]\n\nprint(f\"牛啊出现 {unique.count('牛啊')} 次\")",
+    "expect_contains": "牛啊出现 3 次",
+    "nudge": "要在**原始列表** `words` 里数，`unique` 里每个词只有一份。",
+    "explain": "去重后的列表只用来**遍历**，数次数必须回原始数据里数。这是做词频统计最容易搞错的一步 😅"
+  },
+  {
+    "id": "d28-b2",
+    "type": "fixbug",
+    "title": "join 遇到数字",
+    "question": "这段报了 TypeError。修好它，输出 `1-2-3`。",
+    "code": "nums = [1, 2, 3]\nprint(\"-\".join(nums))",
+    "expect_contains": "1-2-3",
+    "nudge": "`.join()` 只能拼字符串。先用循环把每个数字 `str()` 转一遍，装进新列表。",
+    "explain": "`.join()` 对类型很挑剔。转换的写法：建个空列表，`for n in nums: texts.append(str(n))`，再 join 它。"
+  },
+  {
+    "id": "d28-e1",
+    "type": "fill",
+    "title": "回响 · Day 27 的排序",
+    "echo": 27,
+    "question": "把不重复的词按出现次数从多到少排好，打印出第一名。",
+    "code": "words = [\"a\", \"b\", \"a\", \"c\", \"a\", \"b\"]\nunique = [\"a\", \"b\", \"c\"]\n\npairs = []\nfor w in unique:\n    pairs.append([words.count(w), w])\n\n___\nprint(f\"第一名是 {pairs[0][1]}\")",
+    "expect_contains": "第一名是 a",
+    "nudge": "排序那一句：`pairs.sort(reverse=True)`",
+    "explain": "**打包 → 排序 → 取第一个**，跟昨天的排行榜一模一样。词频排行榜就这么做出来了 ✨"
+  }
+]

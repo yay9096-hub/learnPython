@@ -1,0 +1,63 @@
+[
+  {
+    "id": "d42-p1",
+    "type": "predict",
+    "title": "常量能不能改",
+    "question": "Python 会阻止你修改「常量」吗？",
+    "code": "MAX_HP = 500\nMAX_HP = 999\nprint(MAX_HP)",
+    "options": ["报错", "打印 999", "打印 500"],
+    "answer": 1,
+    "explain": "Python **没有真正的常量**，全大写只是程序员之间的约定：「这个别改」。靠的是自觉，不是语法。"
+  },
+  {
+    "id": "d42-p2",
+    "type": "predict",
+    "title": "docstring 存在哪",
+    "question": "怎么读到一个函数的说明？",
+    "code": "def f():\n    \"\"\"我是说明。\"\"\"\n    pass\n\nprint(f.__doc__)",
+    "options": ["报错", "我是说明。", "None"],
+    "answer": 1,
+    "explain": "docstring 会被存进 `__doc__`。这也是 `help()` 能显示函数说明的原理 —— 它读的就是这个。"
+  },
+  {
+    "id": "d42-p3",
+    "type": "predict",
+    "title": "只有第一句算 docstring",
+    "question": "三引号写在第二行还算 docstring 吗？",
+    "code": "def f():\n    x = 1\n    \"\"\"我是说明。\"\"\"\n    return x\n\nprint(f.__doc__)",
+    "options": ["我是说明。", "None", "报错"],
+    "answer": 1,
+    "explain": "docstring 必须是函数体的**第一句**。写在后面就只是一个没人用的字符串，`__doc__` 是 `None`。"
+  },
+  {
+    "id": "d42-b1",
+    "type": "fixbug",
+    "title": "改名漏了调用点",
+    "question": "重构时函数改名了，但漏改了一处。修好它，让它输出 63。",
+    "code": "def deal_damage(atk, defense):\n    \"\"\"算伤害。\"\"\"\n    return atk - defense\n\nprint(f(88, 25))",
+    "expect_contains": "63",
+    "nudge": "最后一行还在调用旧名字 `f`，改成 `deal_damage`。",
+    "explain": "**改名要连着改所有调用点**。这就是为什么重构时要「改一处、跑一次」—— 漏了立刻就发现 ✨"
+  },
+  {
+    "id": "d42-b2",
+    "type": "fixbug",
+    "title": "常量定义太晚了",
+    "question": "这段报了 NameError。修好它，让它输出 150。",
+    "code": "def bonus(base):\n    \"\"\"算加成。\"\"\"\n    return base * RATE\n\nprint(bonus(100))\n\nRATE = 1.5",
+    "expect_contains": "150",
+    "nudge": "常量要定义在**使用它之前**。把 `RATE = 1.5` 挪到文件上部。",
+    "explain": "跟函数一样，Python 从上往下读。**常量放在 import 之后、函数之前**，是标准的文件组织顺序 ✨"
+  },
+  {
+    "id": "d42-e1",
+    "type": "fill",
+    "title": "回响 · Day 39 的多返回值",
+    "echo": 39,
+    "question": "给这个函数补一个 docstring（说清返回什么），让它能被读出来。",
+    "code": "def check(name):\n    ___\n    if len(name) < 2:\n        return False, \"太短\"\n    return True, \"可以用\"\n\nprint(check.__doc__)",
+    "expect_contains": "返回",
+    "nudge": "第一行写三引号，比如 `\"\"\"检查名字长度，返回 (是否合法, 说明文字)。\"\"\"`",
+    "explain": "**返回多个值的函数，docstring 尤其重要** —— 不写清楚返回顺序，调用的人就得去翻源码 ✨"
+  }
+]

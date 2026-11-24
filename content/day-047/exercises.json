@@ -1,0 +1,63 @@
+[
+  {
+    "id": "d47-p1",
+    "type": "predict",
+    "title": "w 模式会保留原内容吗",
+    "question": "连着用两次 \"w\" 写同一个文件，最后里面是什么？",
+    "code": "with open(\"t.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"第一次\")\nwith open(\"t.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"第二次\")\nwith open(\"t.txt\", encoding=\"utf-8\") as f:\n    print(f.read())",
+    "options": ["第一次第二次", "第二次", "第一次"],
+    "answer": 1,
+    "explain": "`\"w\"` 会**先把文件清空**再写。想接在后面必须用 `\"a\"`。这个坑一旦踩中，之前的数据就永远没了 😱"
+  },
+  {
+    "id": "d47-p2",
+    "type": "predict",
+    "title": "write 自动换行吗",
+    "question": "三次 write 之后，文件里有几行？",
+    "code": "with open(\"t.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"甲\")\n    f.write(\"乙\")\n    f.write(\"丙\")\nwith open(\"t.txt\", encoding=\"utf-8\") as f:\n    print(len(f.read().splitlines()))",
+    "options": ["3", "1", "0"],
+    "answer": 1,
+    "explain": "**`write` 不像 `print`，不会自动换行**，三次全挤在一行。要换行得自己写 `\"\n\"`。"
+  },
+  {
+    "id": "d47-p3",
+    "type": "predict",
+    "title": "文件不存在时",
+    "question": "用 \"w\" 打开一个不存在的文件会怎样？",
+    "code": "with open(\"全新的文件.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"你好\")\nprint(\"写完了\")",
+    "options": ["报 FileNotFoundError", "自动创建并写入", "什么都不发生"],
+    "answer": 1,
+    "explain": "`\"w\"` 和 `\"a\"` 都会**自动创建**不存在的文件。只有 `\"r\"`（读）会因为文件不存在而报错。"
+  },
+  {
+    "id": "d47-b1",
+    "type": "fixbug",
+    "title": "第二篇把第一篇覆盖了",
+    "question": "这段想写两篇日记，但只剩第二篇。修好它，让输出里两篇都在。",
+    "code": "with open(\"d.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"第一篇\n\")\n\nwith open(\"d.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"第二篇\n\")\n\nwith open(\"d.txt\", encoding=\"utf-8\") as f:\n    print(f.read())",
+    "expect_contains": ["第一篇", "第二篇"],
+    "nudge": "第二个 `\"w\"` 改成 `\"a\"`。",
+    "explain": "**第一次用 w、后面全用 a** —— 这是「日志式」写文件的标准套路 ✨"
+  },
+  {
+    "id": "d47-b2",
+    "type": "fixbug",
+    "title": "全挤在一行了",
+    "question": "这段写出来的三项全在一行。修好它，让文件里有 3 行。",
+    "code": "items = [\"甲\", \"乙\", \"丙\"]\n\nwith open(\"t.txt\", \"w\", encoding=\"utf-8\") as f:\n    for x in items:\n        f.write(x)\n\nwith open(\"t.txt\", encoding=\"utf-8\") as f:\n    print(len(f.read().splitlines()))",
+    "expect_contains": "3",
+    "nudge": "写成 `f.write(x + \"\n\")`。",
+    "explain": "也可以一句搞定：`f.write(\"\n\".join(items))` —— Day 28 的 join 在这里正好派上用场 ✨"
+  },
+  {
+    "id": "d47-e1",
+    "type": "fill",
+    "title": "回响 · Day 30 的 items()",
+    "echo": 30,
+    "question": "把字典写进文件，每个键值对一行（应该输出 2 行）。",
+    "code": "role = {\"名字\": \"樱\", \"血量\": 340}\n\nwith open(\"r.txt\", \"w\", encoding=\"utf-8\") as f:\n    for ___ in role.items():\n        f.write(f\"{k}: {v}\n\")\n\nwith open(\"r.txt\", encoding=\"utf-8\") as f:\n    print(len(f.read().splitlines()))",
+    "expect_contains": "2",
+    "nudge": "`for k, v in role.items():`",
+    "explain": "遍历字典 + 写文件，两个老朋友一组合，就是最简单的「存档」了。明天会学更专业的 json 写法 ✨"
+  }
+]

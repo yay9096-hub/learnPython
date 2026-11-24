@@ -1,0 +1,24 @@
+{
+  "day": 66,
+  "title": "文本捕手",
+  "hook": "从一大段文字里精准揪出日期、数字、邮箱 —— 正则表达式",
+  "stage": 7,
+  "concepts": ["正则表达式", "findall", "分组"],
+  "estimated_minutes": 45,
+  "needs_stdin": false,
+  "uses_turtle": false,
+  "uses_files": false,
+  "uses_plot": false,
+  "next_teaser": "明天画科赫雪花 —— 第七章视觉冲击最强的一天 ❄️",
+  "challenge": {
+    "title": "敏感词打码",
+    "desc": "用 re.sub 把文本里的手机号中间四位替换成 ****。"
+  },
+  "cheatsheet": [
+    { "name": "找全部", "desc": "返回一个列表", "code": "re.findall(r\"\\d+\", text)" },
+    { "name": "字符类", "desc": "数字 / 字母数字下划线 / 空白", "code": "\\d  \\w  \\s" },
+    { "name": "量词", "desc": "多少个", "code": "+ 一个以上   * 零个以上   {4} 正好 4 个" },
+    { "name": "分组", "desc": "括号里的部分单独取出", "code": "re.findall(r\"(\\d+)-(\\d+)\", text)" },
+    { "name": "替换", "desc": "换掉匹配到的", "code": "re.sub(r\"\\d\", \"*\", text)" }
+  ]
+}

@@ -1,0 +1,63 @@
+[
+  {
+    "id": "d68-p1",
+    "type": "predict",
+    "title": "二维列表的经典陷阱",
+    "question": "改一个格子，会影响几行？",
+    "code": "board = [[\".\"] * 3] * 3\nboard[0][0] = \"X\"\nprint(board[1][0])",
+    "options": [".", "X", "报错"],
+    "answer": 1,
+    "explain": "外层的 `* 3` 复制的是**同一个列表的引用** —— 三行其实是同一行。必须用 `[[\".\"] * 3 for _ in range(3)]`。"
+  },
+  {
+    "id": "d68-p2",
+    "type": "predict",
+    "title": "先行还是先列",
+    "question": "`board[1][2]` 取的是哪一格？",
+    "code": "board = [\n    [\"a\", \"b\", \"c\"],\n    [\"d\", \"e\", \"f\"],\n]\nprint(board[1][2])",
+    "options": ["b", "f", "c"],
+    "answer": 1,
+    "explain": "**先行后列**：`board[1]` 是第 2 行 `[\"d\",\"e\",\"f\"]`，再 `[2]` 取第 3 个，就是 f。"
+  },
+  {
+    "id": "d68-p3",
+    "type": "predict",
+    "title": "只数一边够吗",
+    "question": "四连的正中间落子，只往右数能数出几个？",
+    "code": "# X X [X] X   ← 中括号是刚落的那个\n# 只往右数：1 个\n# 加上自己：2 个",
+    "options": ["4，够了", "2，不够", "3，不够"],
+    "answer": 1,
+    "explain": "**必须两边都数**：`1 + 右边 + 左边`。只数一边的话，落在中间时会漏判胜利。"
+  },
+  {
+    "id": "d68-b1",
+    "type": "fixbug",
+    "title": "越界检查放晚了",
+    "question": "这段报了 IndexError。调整顺序修好它，输出「超出棋盘」。",
+    "code": "board = [[\".\"] * 3 for _ in range(3)]\n\ndef can_place(row, col):\n    if board[row][col] != \".\":\n        return \"有子了\"\n    if row >= 3 or col >= 3:\n        return \"超出棋盘\"\n    return \"可以下\"\n\nprint(can_place(9, 9))",
+    "expect_contains": "超出棋盘",
+    "nudge": "把越界那个 `if` 挪到取值的 `if` **前面**。",
+    "explain": "**先确认位置合法，再去访问它** —— 顺序反了，检查函数自己就先崩了 ✨"
+  },
+  {
+    "id": "d68-b2",
+    "type": "fixbug",
+    "title": "把自己数了两遍",
+    "question": "四连应该判 True，但这段算出了 5。修好它，让它输出 4。",
+    "code": "board = [[\".\"] * 7 for _ in range(7)]\nfor c in [1, 2, 3, 4]:\n    board[3][c] = \"X\"\n\ndef count(row, col, dr, dc):\n    n = 0\n    r, c = row, col\n    while 0 <= r < 7 and 0 <= c < 7 and board[r][c] == \"X\":\n        n += 1\n        r += dr\n        c += dc\n    return n\n\ntotal = 1 + count(3, 2, 0, 1) + count(3, 2, 0, -1)\nprint(total)",
+    "expect_contains": "4",
+    "nudge": "`count` 从起点自己开始数了。改成 `r, c = row + dr, col + dc`。",
+    "explain": "起点在 `total = 1` 里已经算过一次了。**数方向的函数必须从下一格开始** ✨"
+  },
+  {
+    "id": "d68-e1",
+    "type": "fill",
+    "title": "回响 · Day 18 的嵌套循环",
+    "echo": 18,
+    "question": "数一数棋盘上有几个空位（应输出 8）。",
+    "code": "board = [[\".\", \"X\", \".\"], [\".\", \".\", \".\"], [\".\", \".\", \".\"]]\n\nempty = 0\n___\n    ___\n        if board[r][c] == \".\":\n            empty += 1\n\nprint(empty)",
+    "expect_contains": "8",
+    "nudge": "两层循环：`for r in range(3):` 外层，`for c in range(3):` 内层。",
+    "explain": "**外层管行、内层管列** —— 二维数据的遍历永远是这个形状 ✨"
+  }
+]

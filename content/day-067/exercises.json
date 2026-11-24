@@ -1,0 +1,63 @@
+[
+  {
+    "id": "d67-p1",
+    "type": "predict",
+    "title": "线段数怎么长",
+    "question": "depth 每加 1，线段数变成几倍？",
+    "code": "for d in range(4):\n    print(d, 4 ** d)",
+    "options": ["3 倍", "4 倍", "翻倍"],
+    "answer": 1,
+    "explain": "一条线拆成**四段**，每段再各自拆成四段 —— 所以是 4 的幂。depth=7 就有 16384 段，浏览器会卡住。"
+  },
+  {
+    "id": "d67-p2",
+    "type": "predict",
+    "title": "转角为什么要抵消",
+    "question": "左60、右120、左60 加起来转了多少度？",
+    "code": "print(60 - 120 + 60)",
+    "options": ["240", "0", "-120"],
+    "answer": 1,
+    "explain": "**正好抵消**。这样画完一条科赫曲线之后，海龟的朝向跟出发时一样，上一层才能接着画下一段 —— 跟 Day 43 的树是同一条铁律。"
+  },
+  {
+    "id": "d67-p3",
+    "type": "predict",
+    "title": "出口那一句",
+    "question": "depth 为 0 时 koch 应该做什么？",
+    "code": "# if depth == 0:\n#     ???\n#     return",
+    "options": ["什么都不做", "画一条直线", "再调用自己"],
+    "answer": 1,
+    "explain": "**最底层就是一条普通直线** —— `turtle.forward(length)`。什么都不做的话整个图形就是空的。"
+  },
+  {
+    "id": "d67-b1",
+    "type": "fixbug",
+    "title": "长度没变短",
+    "question": "这段会无限递归。修好它，让它输出「画完了」。",
+    "code": "def koch(length, depth):\n    if depth == 0:\n        return\n    koch(length, depth)\n    print(\"画完了\")\n\nkoch(300, 1)",
+    "expect_contains": "画完了",
+    "nudge": "递归调用要**朝出口靠近**：`koch(length / 3, depth - 1)`。",
+    "explain": "有出口还不够，**参数必须每次都往出口方向变** —— `depth` 不减的话永远到不了 0 ✨"
+  },
+  {
+    "id": "d67-b2",
+    "type": "fixbug",
+    "title": "两片之间拖了条线",
+    "question": "这段从上一个位置拖了条线过来。加两行修好它，输出「移动完成」。",
+    "code": "import turtle\n\nturtle.forward(50)\nturtle.goto(-100, -100)\nprint(\"移动完成\")",
+    "expect_contains": "移动完成",
+    "nudge": "`goto` 之前 `turtle.penup()`，之后 `turtle.pendown()`。",
+    "explain": "**抬笔 → 移动 → 落笔** 是海龟绘图的标准三步 —— 从 Day 8 用到今天 ✨"
+  },
+  {
+    "id": "d67-e1",
+    "type": "fill",
+    "title": "回响 · Day 16 的正多边形",
+    "echo": 16,
+    "question": "补全循环，画出雪花的三条边（应输出三次「画了一条边」）。",
+    "code": "def koch(length, depth):\n    print(\"画了一条边\")\n\n___\n    koch(100, 2)\n    # turtle.right(120)",
+    "expect_contains": "画了一条边",
+    "nudge": "`for i in range(3):`",
+    "explain": "**正 N 边形 = 循环 N 次「画一条边 + 转 360/N 度」** —— 只不过这次的「一条边」是一整条科赫曲线 ✨"
+  }
+]

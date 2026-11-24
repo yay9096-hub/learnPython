@@ -1,0 +1,63 @@
+[
+  {
+    "id": "d57-p1",
+    "type": "predict",
+    "title": "夹取怎么读",
+    "question": "`max(0, min(150, 100))` 等于多少？",
+    "code": "print(max(0, min(150, 100)))",
+    "options": ["150", "100", "0"],
+    "answer": 1,
+    "explain": "从里往外：`min(150, 100)` 先砍到上限 100，`max(0, 100)` 再确认不低于 0。**这就是把值夹进范围的标准写法。**"
+  },
+  {
+    "id": "d57-p2",
+    "type": "predict",
+    "title": "返回请求值还是实际值",
+    "question": "100 血的角色挨 999 点伤害，实际扣了多少？",
+    "code": "hp = 100\nbefore = hp\nhp = max(0, hp - 999)\nprint(before - hp)",
+    "options": ["999", "100", "0"],
+    "answer": 1,
+    "explain": "血只有 100，最多扣 100。**返回实际变化量**（先记 before、改完算差）才是对的，否则伤害统计会虚高。"
+  },
+  {
+    "id": "d57-p3",
+    "type": "predict",
+    "title": "复活的最低保障",
+    "question": "10 点满血的角色按 0.01 复活，不加保护会是多少血？",
+    "code": "max_hp = 10\nprint(int(max_hp * 0.01))",
+    "options": ["1", "0", "0.1"],
+    "answer": 1,
+    "explain": "`int(0.1)` 是 **0** —— 复活完还是死的。所以要写 `max(1, int(...))` 兜底。"
+  },
+  {
+    "id": "d57-b1",
+    "type": "fixbug",
+    "title": "血量变成了负数",
+    "question": "这段扣完变成 -899。修好它，让它输出 0。",
+    "code": "hp = 100\nhp = hp - 999\nprint(hp)",
+    "expect_contains": "0",
+    "nudge": "用 `max(0, hp - 999)` 守住下界。",
+    "explain": "**负血量是最经典的状态 bug** —— 它会一路流进战斗统计、存档、排行榜，等发现时早就说不清是哪来的了 ✨"
+  },
+  {
+    "id": "d57-b2",
+    "type": "fixbug",
+    "title": "状态没跟着同步",
+    "question": "血掉光了，alive 却还是 True。修好它，让它输出 False。",
+    "code": "hp = 100\nalive = True\n\nhp = max(0, hp - 200)\n\nprint(alive)",
+    "expect_contains": "False",
+    "nudge": "改完血量后加一句 `alive = hp > 0`。",
+    "explain": "**两个属性有关联时，改一个就要同步另一个** —— 否则会出现「0 血但还活着」这种自相矛盾的状态 ✨"
+  },
+  {
+    "id": "d57-e1",
+    "type": "fill",
+    "title": "回响 · Day 46 的 raise",
+    "echo": 46,
+    "question": "挡住负数伤害。补全那一行，让它打印出错误信息。",
+    "code": "def take_damage(amount):\n    if amount < 0:\n        ___\n    return amount\n\ntry:\n    take_damage(-100)\nexcept ValueError as e:\n    print(e)",
+    "expect_contains": "-100",
+    "nudge": "`raise ValueError(f\"伤害不能是负数（收到 {amount}）\")`",
+    "explain": "**参数荒谬就抛错、结果越界就夹取** —— 这两种保护各管一头，都要有 ✨"
+  }
+]
